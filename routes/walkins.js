@@ -80,7 +80,7 @@ router.get('/notifyfbsubscribers', function(req, res,
                 }
             })
             html = html + '</tbody></table></body></html>'
-            fbusersCollection.find({}).toArray(function(err, fbsubscribers) {
+            db.collection('fbusers').find({}).toArray(function(err, fbsubscribers) {
                 if (err) {
                     res.send(err);
                 } else {
@@ -102,7 +102,7 @@ router.get('/notifyfbsubscribers', function(req, res,
 router.post('/bulkmailer', function(req, res, next) {
     var message = req.body.message;
     var html = '';
-    fbusersCollection.find({}).toArray(function(err, fbsubscribers) {
+    db.collection('fbusers').find({}).toArray(function(err, fbsubscribers) {
         if (err) {
             res.send("failed");
         } else {
@@ -123,7 +123,7 @@ router.post('/bulkmailer', function(req, res, next) {
 /* Get registered fb subscribers */
 router.get('/fbsubscribers', function(req, res,
     next) {
-    fbusersCollection.find({}).toArray(function(err, fbsubscribers) {
+    db.collection('fbusers').find({}).toArray(function(err, fbsubscribers) {
         if (err) {
             res.send(err);
         } else {
