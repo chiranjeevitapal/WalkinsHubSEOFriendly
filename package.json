@@ -1,0 +1,46 @@
+{
+  "name": "crud-express-mongo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.14.2",
+    "bootstrap": "^3.3.7",
+    "ejs": "^2.3.4",
+    "express": "^4.13.3",
+    "font-awesome": "^4.7.0",
+    "jquery": "^3.1.1",
+    "mongodb": "^2.1.4",
+    "bcryptjs": "^2.4.0",
+    "body-parser": "*",
+    "cheerio": "^0.22.0",
+    "compression": "^1.6.2",
+    "connect-flash": "*",
+    "cookie-parser": "*",
+    "express": "*",
+    "express-fileupload": "0.0.5",
+    "express-messages": "*",
+    "express-session": "*",
+    "express-static-gzip": "^0.2.2",
+    "express-validator": "*",
+    "forever": "^0.15.3",
+    "fs": "0.0.2",
+    "line-reader": "^0.4.0",
+    "mkdirp": "*",
+    "multer": "^1.2.1",
+    "nodemailer": "^2.7.0",
+    "passport": "*",
+    "passport-http": "*",
+    "passport-local": "*",
+    "request": "^2.79.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.8.1"
+  }
+}

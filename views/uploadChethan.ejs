@@ -1,0 +1,45 @@
+<script src="jquery/dist/jquery.min.js"></script>
+<script>
+    function scrapeAll() {
+        $.ajax({
+            url: '/api/scrapeTodayUrls',
+            type: 'GET',
+            success: function(data) {
+                //console.log(data);
+                var website = "todaywalkins";
+                //var time = 500;
+                data.forEach(function(url, i) {
+                    setTimeout(function() {
+                        $.ajax({
+                            url: '/api/scrape/' + website + '/' + url,
+                            type: 'GET',
+                            success: function(walkin) {
+                                //console.log(walkin);
+                                $.ajax({
+                                    url: "/api/postWalkin",
+                                    type: "POST",
+                                    data: JSON.stringify(walkin),
+                                    contentType: "application/json",
+                                    dataType: "json",
+                                    success: function() {
+                                        console.log("data uploaded");
+                                    }
+                                });
+                                console.log("data uploaded !!!");
+                            },
+                            error: function(d) {
+                                console.log('woops!'); //or whatever
+                            }
+
+                        });
+                    }, (i + 1) * 50);
+                })
+            },
+            error: function(data) {
+                console.log('woops!'); //or whatever
+            }
+        });
+    }
+</script>
+
+<button onclick="scrapeAll()">Scrape All </button>
