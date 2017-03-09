@@ -3,6 +3,7 @@ var app = express()
 var MongoClient = require('mongodb').MongoClient
 var ObjectId = require('mongodb').ObjectID;
 var bodyParser = require('body-parser');
+var compression = require('compression');
 var db
 
 var walkins = require('./routes/walkins');
@@ -15,6 +16,8 @@ MongoClient.connect('mongodb://localhost:27017/jobu', (err, database) => {
     })
 })
 
+// compress all responses
+app.use(compression())
 app.use(bodyParser.urlencoded({
     extended: true
 }))
