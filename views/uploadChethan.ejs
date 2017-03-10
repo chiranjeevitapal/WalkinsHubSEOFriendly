@@ -41,21 +41,28 @@
         });
     }
 
-    function notify(){
-      $.ajax({
-          url: '/api/notifyfbsubscribers',
-          type: 'GET',
-          success: function(walkin) {
-              alert("Emails Triggered.");
-          },
-          error: function(d) {
-              alert('woops!'); //or whatever
-          }
+    function notify() {
+        $.ajax({
+            url: '/api/notifyfbsubscribers',
+            type: 'GET',
+            success: function(walkin) {
+                alert("Emails Triggered.");
+            },
+            error: function(d) {
+                alert('woops!'); //or whatever
+            }
 
-      });
+        });
     }
 </script>
-
-<button onclick="scrapeAll()">Scrape All </button>
-<br/>
-<button onclick="notify()">Notify</button>
+<div class="container top-buffer">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+            <button class="btn btn-md btn-danger" onclick="scrapeAll()">Scrape All </button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+            <button class="btn btn-md btn-danger" onclick="notify()">Notify</button>
+        </div>
+    </div>

@@ -61,7 +61,7 @@ router.get('/notifyfbsubscribers', function(req, res,
         '</thead>' +
         '<tbody>';
 
-    collection.find({}).toArray(function(err, walkins) {
+    db.collection('walkins').find({}).toArray(function(err, walkins) {
         var obj = [];
         var today = new Date();
         var todayDateString = today.yyyymmdd();
