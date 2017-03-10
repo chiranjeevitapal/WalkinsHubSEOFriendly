@@ -152,24 +152,10 @@ router.get('/scrape/:website/:link', function(req, res) {
     }
 })
 
-//upload each walkin to DB
-/*router.post('/postWalkin', function(req, res, next) {
-    var walkin = req.body.walkin;
-    console.log(walkin);
-    db.collection('walkins').insert(walkin,
-        function(error, record) {
-            if (error) {
-                res.json(error);
-            } else {
-                res.json(record);
-            }
-        });
-});*/
-
 router.post('/postWalkin', (req, res) => {
     db.collection('walkins').save(req.body, (err, result) => {
         if (err) return console.log(err)
-        console.log('saved to database')
+        //console.log('saved to database')
         //res.redirect('/')
         res.json(result);
     })

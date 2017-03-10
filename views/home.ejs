@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Fresher Walkins | Experienced Walkins </title>
     <meta name="description" content="Walkins : fresher walkins, walk in interview for freshers. Visit us for walkin interviews in Hyderabad, Bangalore, Chennai and more cities." />
-    <meta name="keywords" content="Fresher Jobs, Hyderabad walkins, Bangalore walkins, Chennai walkins, latest walkins in hyderabad,latest walkins in bangalore,latest walkins in chennai,recruitment in Hyderabad, recruitment in bangalore, recruitment in chennai, fresher jobs, Hyderabad, freshers jobs, Bangalore, freshers jobs, Chennai, fresher jobs pune, fresher jobs mumbai"
+    <meta name="keywords" content="Fresher Jobs, Software jobs, Bank jobs, Hyderabad walkins, Bangalore walkins, Chennai walkins, latest walkins in hyderabad,latest walkins in bangalore,latest walkins in chennai,recruitment in Hyderabad, recruitment in bangalore, recruitment in chennai, fresher jobs, Hyderabad, freshers jobs, Bangalore, freshers jobs, Chennai, fresher jobs pune, fresher jobs mumbai"
     />
     <meta name="application-name" content="www.walkinshub.com - Best job search site for freshers/experienced" />
     <meta name="copyright" content="2016 www.walkinshub.com" />
@@ -22,7 +22,7 @@
     <meta property="og:type" content="website" />
     <meta property="og:url" content="http://www.walkinshub.com" />
     <meta property="og:description" content="Just choose an interview. Your dream job is a click away." />
-    <meta property="og:image" content="https://ia601503.us.archive.org/1/items/InterviewToday/Interview-today.jpg" />
+    <meta property="og:image" content="https://d1u4oo4rb13yy8.cloudfront.net/article/52926-hhfznxsiri-1488778826.jpg" />
     <meta property="og:image:type" content="jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
@@ -112,12 +112,29 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2">
+            <a class="card-1 btn btn-danger btn-sm top-buffer-small" href="/fresherjobs">Freshers</a>
+          </div>
+          <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2">
+            <a class="card-1 btn btn-success btn-sm top-buffer-small" href="/">All Cities</a>
+          </div>
+          <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2">
+            <a class="card-1 btn btn-success btn-sm top-buffer-small" href="/hyderabadjobs">Hyderabad</a>
+          </div>
+          <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2">
+            <a class="card-1 btn btn-success btn-sm top-buffer-small" href="/bangalorejobs">Bangalore</a>
+          </div>
+          <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2">
+            <a class="card-1 btn btn-success btn-sm top-buffer-small" href="/chennaijobs">Chennai</a>
+          </div>
+        </div>
+        <div class="row top-buffer-small">
+            <!--div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <div class="alert alert-info alert-dismissible" role="alert">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h5>Latest jobs are on the top. Please click on <i>More Details</i> for job description.</h5>
                 </div>
-            </div>
+            </div-->
 
             <% for(var i=0; i<walkins.length; i++) {%>
                 <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
@@ -128,12 +145,12 @@
                                 <% } else {%>
                                     <p><b class="small">Walkin Date:</b> <b class="small text-danger"><%= walkins[i].walkinDate.substring(0,22) %></b></p>
                                     <% } %>
-                                        <h3><b class="small"><%= walkins[i].company.substring(0,30) %></b></h3>
+                                        <p><b class="small"><%= walkins[i].company.substring(0,30) %></b></p>
                                         <p class="small">
                                             <%= walkins[i].position.substring(0,35) %>
                                         </p>
                                         <p><b class="small"><%= walkins[i].location.substring(0,25) %>  <i class="pull-right"><%= walkins[i].experience %></i></b></p>
-                                        <a class="card-1 btn btn-primary btn-xs pull-right" href="/walkin/<%= walkins[i]._id %>" target="_blank">More Details</a>
+                                        <a class="card-1 btn btn-primary btn-md pull-right" href="/walkin/<%= walkins[i]._id %>" target="_blank">More Details</a>
                                         <div class="clearfix"></div>
                         </div>
                     </div>

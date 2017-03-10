@@ -17,6 +17,10 @@
                             type: 'GET',
                             success: function(walkin) {
                                 //console.log(walkin);
+                                var companyName = walkin.company.replace(/[^a-zA-Z0-9_-]/g,'-');
+                                //var today = new Date();
+                                //var todayDateString = today.yyyymmdd();
+                              //  walkin._id=companyName+'';
                                 $.ajax({
                                     url: "/api/postWalkin",
                                     type: "POST",
@@ -56,6 +60,17 @@
 
         });
     }
+
+    Date.prototype.yyyymmdd = function() {
+        var mm = this.getMonth() + 1; // getMonth() is zero-based
+        var dd = this.getDate();
+
+        return [this.getFullYear(),
+            (mm > 9 ? '' : '0') + mm,
+            (dd > 9 ? '' : '0') + dd
+        ].join('-');
+    };
+
 </script>
 <div class="container top-buffer">
     <div class="row">

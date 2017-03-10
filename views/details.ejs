@@ -16,15 +16,15 @@
     <meta name="robots" content="ALL" />
     <meta name="pragma" content="no-cache" />
     <meta name="revisit-after" content="1 day" />
-    <meta name="classification" content="<%= walkin.company %> Job, Referral Jobs, Work From Home, Jobs, Career, Freshers jobs, Bank Jobs, IT Jobs, Technical Jobs, Govt Jobs" />
+    <meta name="classification" content="Jobs in <%= walkin.company %>, Referral Jobs, Work From Home, Jobs, Career, Freshers jobs, Bank Jobs, IT Jobs, Technical Jobs, Govt Jobs" />
     <meta http-equiv="content-type" content="text/html;charset=ISO-8859-1" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta property="fb:app_id" content="1646263562333117" />
-    <meta property="og:title" content="Interviews in your city." />
+    <meta property="og:title" content="Walk-in interviews in <%= walkin.company %>, <%= walkin.location %>" />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="http://www.walkinshub.com" />
-    <meta property="og:description" content="Just choose an interview. Your dream job is a click away." />
-    <meta property="og:image" content="https://ia601503.us.archive.org/1/items/InterviewToday/Interview-today.jpg" />
+    <meta property="og:url" content="http://www.walkinshub.com/walkin/<%= walkin._id %>" />
+    <meta property="og:description" content="<%= walkin.company %> is hiring freshers and experienced. Interested candidate walk-in to the venue." />
+    <meta property="og:image" content="https://officechai.com/wp-content/uploads/2015/04/womenAttheworkplace.jpg" />
     <meta property="og:image:type" content="jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
@@ -112,6 +112,23 @@
                 <!--div class="fb-follow pull-right" data-href="https://www.facebook.com/walkinshubadmin" data-layout="button_count" data-size="small" data-show-faces="false"></div-->
                 <div class="fb-like pull-right" data-layout="button_count" data-action="like" data-size="large" data-show-faces="false" data-share="true"></div>
             </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2">
+            <a class="card-1 btn btn-danger btn-sm top-buffer-small" href="/fresherjobs">Freshers</a>
+          </div>
+          <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2">
+            <a class="card-1 btn btn-success btn-sm top-buffer-small" href="/">All Cities</a>
+          </div>
+          <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2">
+            <a class="card-1 btn btn-success btn-sm top-buffer-small" href="/hyderabadjobs">Hyderabad</a>
+          </div>
+          <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2">
+            <a class="card-1 btn btn-success btn-sm top-buffer-small" href="/bangalorejobs">Bangalore</a>
+          </div>
+          <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2">
+            <a class="card-1 btn btn-success btn-sm top-buffer-small" href="/chennaijobs">Chennai</a>
+          </div>
         </div>
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">

@@ -34,6 +34,51 @@ app.get('/', (req, res) => {
     })
 })
 
+app.get('/home', (req, res) => {
+  db.collection('walkins').find().toArray((err, result) => {
+      if (err) return console.log(err)
+      res.render('home.ejs', {
+          walkins: result
+      })
+  })
+})
+
+app.get('/fresherjobs', (req, res) => {
+  db.collection('walkins').find({ $or: [ {"experience": /0/}, {"experience": /Fresher/} ] }  ).toArray((err, result) => {
+      if (err) return console.log(err)
+      res.render('home.ejs', {
+          walkins: result
+      })
+  })
+})
+
+app.get('/hyderabadjobs', (req, res) => {
+    db.collection('walkins').find({ $or: [ {"location": /Hyderabad/}, {"location": /hyderabad/}  ] }  ).toArray((err, result) => {
+        if (err) return console.log(err)
+        res.render('home.ejs', {
+            walkins: result
+        })
+    })
+})
+
+app.get('/bangalorejobs', (req, res) => {
+    db.collection('walkins').find({ $or: [ {"location": /Bangalore/}, {"location": /bangalore/}  ] }  ).toArray((err, result) => {
+        if (err) return console.log(err)
+        res.render('home.ejs', {
+            walkins: result
+        })
+    })
+})
+
+app.get('/chennaijobs', (req, res) => {
+    db.collection('walkins').find({ $or: [ {"location": /Chennai/}, {"location": /chennai/}  ] }  ).toArray((err, result) => {
+        if (err) return console.log(err)
+        res.render('home.ejs', {
+            walkins: result
+        })
+    })
+})
+
 app.get('/tutorials', (req, res) => {
     db.collection('walkins').find().toArray((err, result) => {
         if (err) return console.log(err)
@@ -42,6 +87,7 @@ app.get('/tutorials', (req, res) => {
         })
     })
 })
+
 app.get('/contact', (req, res) => {
     res.render('contact.ejs');
 })
@@ -54,6 +100,7 @@ app.get('/uploadChethan', (req, res) => {
 app.get('/walkin/:id', function(req, res) {
     //var id = req.params.id.substring(req.params.id.lastIndexOf('-') + 1);
     var id = req.params.id;
+    console.log(id);
     db.collection('walkins').findOne({
         _id: ObjectId(id)
     }, function(err, result) {
