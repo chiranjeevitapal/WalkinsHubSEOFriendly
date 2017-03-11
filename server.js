@@ -6,6 +6,8 @@ var bodyParser = require('body-parser');
 var compression = require('compression');
 var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
+var minify = require('express-minify');
+
 
 // load up the user model
 //var User       = require('../app/models/user');
@@ -22,7 +24,8 @@ MongoClient.connect('mongodb://localhost:27017/jobu', (err, database) => {
 })
 
 // compress all responses
-app.use(compression())
+app.use(compression());
+app.use(minify());
 app.use(bodyParser.urlencoded({
     extended: true
 }))
