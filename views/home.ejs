@@ -100,11 +100,11 @@
         <!-- /.container-fluid -->
     </nav>
     <div class="container top-buffer">
-        <script async type="text/javascript">
+        <!--script async type="text/javascript">
             var infolinks_pid = 2959628;
             var infolinks_wsid = 0;
         </script>
-        <script async type="text/javascript" src="//resources.infolinks.com/js/infolinks_main.js"></script>
+        <script async type="text/javascript" src="//resources.infolinks.com/js/infolinks_main.js"></script-->
         <!--div class="jumbotron text-center">
         <p>Login or Register</p>
         <a href="/auth/facebook" class="btn btn-primary"><span class="fa fa-facebook"></span> Facebook</a>
@@ -142,16 +142,16 @@
                     <div class="panel panel-success effect2">
                         <div class="panel-body">
                             <%if (walkins[i].walkinDate == '') { %>
-                                <p><b class="small">Walkin Date:</b> <b class="small text-danger">Check Details</b></p>
+                                <p><b class="small">Interview Date:</b> <b class="small text-danger">Check Details</b></p>
                                 <% } else {%>
-                                    <p><b class="small">Walkin Date:</b> <b class="small text-danger"><%= walkins[i].walkinDate.substring(0,22) %></b></p>
+                                    <p><b class="small">Interview Date:</b> <b class="small text-danger"><%= walkins[i].walkinDate.substring(0,22) %></b></p>
                                     <% } %>
                                         <p><b class="small"><%= walkins[i].company.substring(0,30) %></b></p>
                                         <p class="small">
                                             <%= walkins[i].position.substring(0,35) %>
                                         </p>
                                         <p><b class="small"><%= walkins[i].location.substring(0,25) %>  <i class="pull-right"><%= walkins[i].experience %></i></b></p>
-                                        <a class="card-1 btn btn-primary btn-md pull-right" href="/walkin/<%= walkins[i]._id %>" target="_blank">Job Details</a>
+                                        <a class="card-1 btn btn-warning btn-md pull-right" href="/walkin/<%= walkins[i]._id %>" target="_blank">Job Details</a>
                                         <div class="clearfix"></div>
                         </div>
                     </div>
