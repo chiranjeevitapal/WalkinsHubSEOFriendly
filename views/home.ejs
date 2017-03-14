@@ -136,12 +136,16 @@
             <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2">
                 <a class="card-1 btn btn-success btn-sm top-buffer-small" href="/chennaijobs">Chennai</a>
             </div>
+            <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2">
+              <a class="card-1 btn btn-success btn-sm top-buffer-small" href="/mumbaijobs">Mumbai</a>
+            </div>
         </div>
         <div class="row top-buffer-small">
             <% for(var i=0; i<walkins.length; i++) {%>
                 <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
                     <div class="panel panel-success effect2">
                         <div class="panel-body">
+                        <p><b class="small">Posted On:</b> <b class="small text-danger"> <%= walkins[i].date.substring(0,10) %> </b></p>
                             <%if (walkins[i].walkinDate == '') { %>
                                 <p><b class="small">Interview Date:</b> <b class="small text-danger">Check Details</b></p>
                                 <% } else {%>
@@ -152,7 +156,7 @@
                                             <%= walkins[i].position.substring(0,35) %>
                                         </p>
                                         <p><b class="small"><%= walkins[i].location.substring(0,25) %>  <i class="pull-right"><%= walkins[i].experience %></i></b></p>
-                                        <a class="card-1 btn btn-warning btn-md pull-right" href="/walkin/<%= walkins[i]._id %>" target="_blank">Job Details</a>
+                                        <a class="card-1 btn btn-info btn-md pull-right" href="/walkin/<%= walkins[i]._id %>" target="_blank">Job Details</a>
                                         <div class="clearfix"></div>
                         </div>
                     </div>

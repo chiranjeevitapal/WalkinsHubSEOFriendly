@@ -34,7 +34,7 @@ app.use(express.static('public'))
 app.use(express.static('node_modules'))
 
 app.get('/', (req, res) => {
-    db.collection('walkins').find().toArray((err, result) => {
+    db.collection('walkins').find().sort({"date":-1}).toArray((err, result) => {
         if (err) return console.log(err)
         res.render('home.ejs', {
             walkins: result
@@ -43,7 +43,7 @@ app.get('/', (req, res) => {
 })
 
 app.get('/home', (req, res) => {
-  db.collection('walkins').find().toArray((err, result) => {
+  db.collection('walkins').find().sort({"date":-1}).toArray((err, result) => {
       if (err) return console.log(err)
       res.render('home.ejs', {
           walkins: result
@@ -52,7 +52,7 @@ app.get('/home', (req, res) => {
 })
 
 app.get('/fresherjobs', (req, res) => {
-  db.collection('walkins').find({ $or: [ {"experience": /0/}, {"experience": /Fresher/} ] }  ).toArray((err, result) => {
+  db.collection('walkins').find({ $or: [ {"experience": /0/}, {"experience": /Fresher/} ] }  ).sort({"date":-1}).toArray((err, result) => {
       if (err) return console.log(err)
       res.render('home.ejs', {
           walkins: result
@@ -61,7 +61,7 @@ app.get('/fresherjobs', (req, res) => {
 })
 
 app.get('/hyderabadjobs', (req, res) => {
-    db.collection('walkins').find({ $or: [ {"location": /Hyderabad/}, {"location": /hyderabad/}  ] }  ).toArray((err, result) => {
+    db.collection('walkins').find({ $or: [ {"location": /Hyderabad/}, {"location": /hyderabad/}  ] }  ).sort({"date":-1}).toArray((err, result) => {
         if (err) return console.log(err)
         res.render('home.ejs', {
             walkins: result
@@ -70,7 +70,7 @@ app.get('/hyderabadjobs', (req, res) => {
 })
 
 app.get('/bangalorejobs', (req, res) => {
-    db.collection('walkins').find({ $or: [ {"location": /Bangalore/}, {"location": /bangalore/}  ] }  ).toArray((err, result) => {
+    db.collection('walkins').find({ $or: [ {"location": /Bangalore/}, {"location": /bangalore/}  ] }  ).sort({"date":-1}).toArray((err, result) => {
         if (err) return console.log(err)
         res.render('home.ejs', {
             walkins: result
@@ -79,7 +79,16 @@ app.get('/bangalorejobs', (req, res) => {
 })
 
 app.get('/chennaijobs', (req, res) => {
-    db.collection('walkins').find({ $or: [ {"location": /Chennai/}, {"location": /chennai/}  ] }  ).toArray((err, result) => {
+    db.collection('walkins').find({ $or: [ {"location": /Chennai/}, {"location": /chennai/}  ] }  ).sort({"date":-1}).toArray((err, result) => {
+        if (err) return console.log(err)
+        res.render('home.ejs', {
+            walkins: result
+        })
+    })
+})
+
+app.get('/mumbaijobs', (req, res) => {
+    db.collection('walkins').find({ $or: [ {"location": /Mumbai/}, {"location": /mumbai/}  ] }  ).sort({"date":-1}).toArray((err, result) => {
         if (err) return console.log(err)
         res.render('home.ejs', {
             walkins: result
