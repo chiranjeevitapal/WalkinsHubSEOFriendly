@@ -100,6 +100,10 @@ app.get('/contact', (req, res) => {
     res.render('contact.ejs');
 })
 
+app.get('/about', (req, res) => {
+    res.render('about.ejs');
+})
+
 app.get('/uploadChethan', (req, res) => {
     res.render('uploadChethan.ejs');
 })
