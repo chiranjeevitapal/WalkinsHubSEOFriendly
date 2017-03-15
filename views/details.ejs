@@ -107,7 +107,9 @@
         </button-->
                 <!--button *ngIf="showSubscribeButton" type="submit" (click)="checkLoginState()" class="card-1 btn btn-primary btn-sm"><i class="fa fa-facebook-square"></i> Subscribe</button-->
                 <!--div class="fb-follow pull-right" data-href="https://www.facebook.com/walkinshubadmin" data-layout="button_count" data-size="small" data-show-faces="false"></div-->
-                <div class="fb-like pull-right" data-layout="button_count" data-action="like" data-size="large" data-show-faces="false" data-share="true"></div>
+                <div class="fb-like" data-layout="button_count" data-action="like" data-size="large" data-show-faces="false" data-share="true"></div>
+                <!-- <a href="whatsapp://send?text=Walk-in interviews in <%= walkin.company %>, <%= walkin.location %>" data-href="" data-action="share/whatsapp/share" class=""><i class="fa fa-whatsapp" aria-hidden="true"></i> Share</a> -->
+                <a href="whatsapp://send?text=Walk-in interviews in <%= walkin.company %>, <%= walkin.location %> http://www.walkinshub.com/walkin/<%= walkin._id %>" data-action="share/whatsapp/share" data-href="" class="btn btn-sm btn-success hidden-md hidden-lg"><i class="fa fa-whatsapp" aria-hidden="true"></i> Share</a>
             </div>
         </div>
         <div class="row">
@@ -115,19 +117,19 @@
                 <a class="card-1 btn btn-danger btn-sm top-buffer-small" href="/fresherjobs">Fresher Jobs</a>
             </div>
             <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2">
-                <a class="card-1 btn btn-success btn-sm top-buffer-small" href="/">All Jobs</a>
+                <a class="card-1 btn btn-primary btn-sm top-buffer-small" href="/">All Jobs</a>
             </div>
             <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2">
-                <a class="card-1 btn btn-success btn-sm top-buffer-small" href="/hyderabadjobs">Hyderabad Jobs</a>
+                <a class="card-1 btn btn-primary btn-sm top-buffer-small" href="/hyderabadjobs">Hyderabad Jobs</a>
             </div>
             <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2">
-                <a class="card-1 btn btn-success btn-sm top-buffer-small" href="/bangalorejobs">Bangalore Jobs</a>
+                <a class="card-1 btn btn-primary btn-sm top-buffer-small" href="/bangalorejobs">Bangalore Jobs</a>
             </div>
             <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2">
-                <a class="card-1 btn btn-success btn-sm top-buffer-small" href="/chennaijobs">Chennai Jobs</a>
+                <a class="card-1 btn btn-primary btn-sm top-buffer-small" href="/chennaijobs">Chennai Jobs</a>
             </div>
             <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2">
-                <a class="card-1 btn btn-success btn-sm top-buffer-small" href="/mumbaijobs">Mumbai Jobs</a>
+                <a class="card-1 btn btn-primary btn-sm top-buffer-small" href="/mumbaipunejobs">Mumbai/Pune Jobs</a>
             </div>
         </div>
         <div class="row">

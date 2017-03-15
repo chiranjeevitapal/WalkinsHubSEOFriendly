@@ -87,8 +87,8 @@ app.get('/chennaijobs', (req, res) => {
     })
 })
 
-app.get('/mumbaijobs', (req, res) => {
-    db.collection('walkins').find({ $or: [ {"location": /Mumbai/}, {"location": /mumbai/}  ] }  ).sort({"date":-1}).toArray((err, result) => {
+app.get('/mumbaipunejobs', (req, res) => {
+    db.collection('walkins').find({ $or: [ {"location": /Mumbai/}, {"location": /mumbai/},{"location": /Pune/}, {"location": /pune/}  ] }  ).sort({"date":-1}).toArray((err, result) => {
         if (err) return console.log(err)
         res.render('home.ejs', {
             walkins: result

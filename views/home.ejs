@@ -117,7 +117,7 @@
           </button-->
                 <!--button *ngIf="showSubscribeButton" type="submit" (click)="checkLoginState()" class="card-1 btn btn-primary btn-sm"><i class="fa fa-facebook-square"></i> Subscribe</button-->
                 <!--div class="fb-follow pull-right" data-href="https://www.facebook.com/walkinshubadmin" data-layout="button_count" data-size="small" data-show-faces="false"></div-->
-                <div class="fb-like pull-right" data-layout="button_count" data-action="like" data-size="large" data-show-faces="false" data-share="true"></div>
+                <div class="fb-like" data-layout="button_count" data-action="like" data-size="large" data-show-faces="false" data-share="true"></div>
             </div>
         </div>
         <div class="row">
@@ -125,19 +125,19 @@
                 <a class="card-1 btn btn-danger btn-sm top-buffer-small" href="/fresherjobs">Fresher Jobs</a>
             </div>
             <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2">
-                <a class="card-1 btn btn-success btn-sm top-buffer-small" href="/">All Jobs</a>
+                <a class="card-1 btn btn-primary btn-sm top-buffer-small" href="/">All Jobs</a>
             </div>
             <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2">
-                <a class="card-1 btn btn-success btn-sm top-buffer-small" href="/hyderabadjobs">Hyderabad Jobs</a>
+                <a class="card-1 btn btn-primary btn-sm top-buffer-small" href="/hyderabadjobs">Hyderabad Jobs</a>
             </div>
             <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2">
-                <a class="card-1 btn btn-success btn-sm top-buffer-small" href="/bangalorejobs">Bangalore Jobs</a>
+                <a class="card-1 btn btn-primary btn-sm top-buffer-small" href="/bangalorejobs">Bangalore Jobs</a>
             </div>
             <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2">
-                <a class="card-1 btn btn-success btn-sm top-buffer-small" href="/chennaijobs">Chennai Jobs</a>
+                <a class="card-1 btn btn-primary btn-sm top-buffer-small" href="/chennaijobs">Chennai Jobs</a>
             </div>
             <div class="col-xs-4 col-sm-4 col-md-2 col-lg-2">
-                <a class="card-1 btn btn-success btn-sm top-buffer-small" href="/mumbaijobs">Mumbai Jobs</a>
+                <a class="card-1 btn btn-primary btn-sm top-buffer-small" href="/mumbaipunejobs">Mumbai/Pune Jobs</a>
             </div>
         </div>
         <div class="row top-buffer-small">
@@ -157,6 +157,8 @@
                                         </p>
                                         <p><b class="small"><%= walkins[i].location.substring(0,25) %>  <i class="pull-right"><%= walkins[i].experience %></i></b></p>
                                         <a class="card-1 btn btn-info btn-md pull-right" href="/walkin/<%= walkins[i]._id %>" target="_blank">Job Details</a>
+                                        <a href="whatsapp://send?text=Walk-in interviews in <%= walkins[i].company %>, <%= walkins[i].location %> http://www.walkinshub.com/walkin/<%= walkins[i]._id %>" data-action="share/whatsapp/share" data-href="" class="btn btn-lg btn-success hidden-md hidden-lg"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+                                        <!--div class="fb-like" data-layout="button_count" data-action="like" data-href='http://www.walkinshub.com/walkin/<%= walkins[i]._id %>' data-size="small" data-show-faces="false" data-share="true"></div-->
                                         <div class="clearfix"></div>
                         </div>
                     </div>
