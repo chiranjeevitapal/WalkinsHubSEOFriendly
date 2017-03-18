@@ -185,6 +185,10 @@ app.get('/walkin/:id', function(req, res) {
 
 });
 
+app.get('/**', (req, res) => {
+    res.redirect('/')
+})
+
 app.post('/quotes', (req, res) => {
     db.collection('quotes').save(req.body, (err, result) => {
         if (err) return console.log(err)
