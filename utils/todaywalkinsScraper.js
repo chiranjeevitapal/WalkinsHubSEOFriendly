@@ -21,7 +21,7 @@ function scrapeTodayUrls(res) {
                 mm = '0' + mm;
             }
             var today = dd + '/' + mm;
-            console.log(today);
+            //console.log(today);
 
             var tableHtml = html.substring(html.indexOf('</thead>') + 8, html.indexOf('</table>'));
             html = '<div class="myLinks">' + tableHtml + '</div>'

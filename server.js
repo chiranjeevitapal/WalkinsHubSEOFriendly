@@ -169,7 +169,7 @@ app.get('/uploadChethan', (req, res) => {
 app.get('/walkin/:id', function(req, res) {
     //var id = req.params.id.substring(req.params.id.lastIndexOf('-') + 1);
     var id = req.params.id;
-    console.log(id);
+    //console.log(id);
     db.collection('walkins').findOne({
         _id: ObjectId(id)
     }, function(err, result) {
@@ -185,14 +185,10 @@ app.get('/walkin/:id', function(req, res) {
 
 });
 
-app.get('/**', (req, res) => {
-    res.redirect('/')
-})
-
 app.post('/quotes', (req, res) => {
     db.collection('quotes').save(req.body, (err, result) => {
         if (err) return console.log(err)
-        console.log('saved to database')
+        //console.log('saved to database')
         res.redirect('/')
     })
 })
@@ -323,7 +319,7 @@ passport.use(new FacebookStrategy({
                           // if successful, return the new user
                           return done(null, newUser);
                       });*/
-                    console.log(profile.id);
+                    //console.log(profile.id);
                 }
 
             });
@@ -332,3 +328,6 @@ passport.use(new FacebookStrategy({
     }));
 
 app.use('/api/', walkins);
+app.get('/**', (req, res) => {
+    res.redirect('/')
+})
