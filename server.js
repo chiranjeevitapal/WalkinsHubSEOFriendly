@@ -34,7 +34,9 @@ app.use(express.static('public'))
 app.use(express.static('node_modules'))
 
 app.get('/', (req, res) => {
-    db.collection('walkins').find().sort({"date":-1}).toArray((err, result) => {
+    db.collection('walkins').find().sort({
+        "date": -1
+    }).toArray((err, result) => {
         if (err) return console.log(err)
         res.render('home.ejs', {
             walkins: result
@@ -43,25 +45,43 @@ app.get('/', (req, res) => {
 })
 
 app.get('/home', (req, res) => {
-  db.collection('walkins').find().sort({"date":-1}).toArray((err, result) => {
-      if (err) return console.log(err)
-      res.render('home.ejs', {
-          walkins: result
-      })
-  })
+    db.collection('walkins').find().sort({
+        "date": -1
+    }).toArray((err, result) => {
+        if (err) return console.log(err)
+        res.render('home.ejs', {
+            walkins: result
+        })
+    })
 })
 
 app.get('/fresherjobs', (req, res) => {
-  db.collection('walkins').find({ $or: [ {"experience": /0/}, {"experience": /Fresher/} ] }  ).sort({"date":-1}).toArray((err, result) => {
-      if (err) return console.log(err)
-      res.render('home.ejs', {
-          walkins: result
-      })
-  })
+    db.collection('walkins').find({
+        $or: [{
+            "experience": /0/
+        }, {
+            "experience": /Fresher/
+        }]
+    }).sort({
+        "date": -1
+    }).toArray((err, result) => {
+        if (err) return console.log(err)
+        res.render('home.ejs', {
+            walkins: result
+        })
+    })
 })
 
 app.get('/hyderabadjobs', (req, res) => {
-    db.collection('walkins').find({ $or: [ {"location": /Hyderabad/}, {"location": /hyderabad/}  ] }  ).sort({"date":-1}).toArray((err, result) => {
+    db.collection('walkins').find({
+        $or: [{
+            "location": /Hyderabad/
+        }, {
+            "location": /hyderabad/
+        }]
+    }).sort({
+        "date": -1
+    }).toArray((err, result) => {
         if (err) return console.log(err)
         res.render('home.ejs', {
             walkins: result
@@ -70,7 +90,15 @@ app.get('/hyderabadjobs', (req, res) => {
 })
 
 app.get('/bangalorejobs', (req, res) => {
-    db.collection('walkins').find({ $or: [ {"location": /Bangalore/}, {"location": /bangalore/}  ] }  ).sort({"date":-1}).toArray((err, result) => {
+    db.collection('walkins').find({
+        $or: [{
+            "location": /Bangalore/
+        }, {
+            "location": /bangalore/
+        }]
+    }).sort({
+        "date": -1
+    }).toArray((err, result) => {
         if (err) return console.log(err)
         res.render('home.ejs', {
             walkins: result
@@ -79,7 +107,15 @@ app.get('/bangalorejobs', (req, res) => {
 })
 
 app.get('/chennaijobs', (req, res) => {
-    db.collection('walkins').find({ $or: [ {"location": /Chennai/}, {"location": /chennai/}  ] }  ).sort({"date":-1}).toArray((err, result) => {
+    db.collection('walkins').find({
+        $or: [{
+            "location": /Chennai/
+        }, {
+            "location": /chennai/
+        }]
+    }).sort({
+        "date": -1
+    }).toArray((err, result) => {
         if (err) return console.log(err)
         res.render('home.ejs', {
             walkins: result
@@ -88,7 +124,19 @@ app.get('/chennaijobs', (req, res) => {
 })
 
 app.get('/mumbaipunejobs', (req, res) => {
-    db.collection('walkins').find({ $or: [ {"location": /Mumbai/}, {"location": /mumbai/},{"location": /Pune/}, {"location": /pune/}  ] }  ).sort({"date":-1}).toArray((err, result) => {
+    db.collection('walkins').find({
+        $or: [{
+            "location": /Mumbai/
+        }, {
+            "location": /mumbai/
+        }, {
+            "location": /Pune/
+        }, {
+            "location": /pune/
+        }]
+    }).sort({
+        "date": -1
+    }).toArray((err, result) => {
         if (err) return console.log(err)
         res.render('home.ejs', {
             walkins: result
@@ -126,9 +174,13 @@ app.get('/walkin/:id', function(req, res) {
         _id: ObjectId(id)
     }, function(err, result) {
         if (err) return console.log(err)
-        res.render('details.ejs', {
-            walkin: result
-        })
+        if (result == null) {
+          res.redirect('/')
+        } else {
+            res.render('details.ejs', {
+                walkin: result
+            })
+        }
     });
 
 });
@@ -171,23 +223,25 @@ app.delete('/quotes', (req, res) => {
 })
 
 // =====================================
-    // FACEBOOK ROUTES =====================
-    // =====================================
-    // route for facebook authentication and login
-    app.get('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
+// FACEBOOK ROUTES =====================
+// =====================================
+// route for facebook authentication and login
+app.get('/auth/facebook', passport.authenticate('facebook', {
+    scope: 'email'
+}));
 
-    // handle the callback after facebook has authenticated the user
-    app.get('/auth/facebook/callback',
-        passport.authenticate('facebook', {
-            successRedirect : '/home',
-            failureRedirect : '/'
-        }));
+// handle the callback after facebook has authenticated the user
+app.get('/auth/facebook/callback',
+    passport.authenticate('facebook', {
+        successRedirect: '/home',
+        failureRedirect: '/'
+    }));
 
-    // route for logging out
-    app.get('/logout', function(req, res) {
-        req.logout();
-        res.redirect('/');
-    });
+// route for logging out
+app.get('/logout', function(req, res) {
+    req.logout();
+    res.redirect('/');
+});
 
 
 // route middleware to make sure a user is logged in
@@ -221,54 +275,56 @@ passport.deserializeUser(function(id, done) {
 // =========================================================================
 passport.use(new FacebookStrategy({
 
-    // pull in our app id and secret from our auth.js file
-    clientID        : '1646263562333117',
-    clientSecret    : '91de007328f4ccfd7807b2aa1ce11a56',
-    callbackURL     : 'http://localhost/auth/facebook/callback'
+        // pull in our app id and secret from our auth.js file
+        clientID: '1646263562333117',
+        clientSecret: '91de007328f4ccfd7807b2aa1ce11a56',
+        callbackURL: 'http://localhost/auth/facebook/callback'
 
-},
+    },
 
-// facebook will send back the token and profile
-function(token, refreshToken, profile, done) {
+    // facebook will send back the token and profile
+    function(token, refreshToken, profile, done) {
 
-    // asynchronous
-    process.nextTick(function() {
+        // asynchronous
+        process.nextTick(function() {
 
-        // find the user in the database based on their facebook id
-        db.collection('fbusers').findOne({ 'facebook.id' : profile.id }, function(err, user) {
+            // find the user in the database based on their facebook id
+            db.collection('fbusers').findOne({
+                'facebook.id': profile.id
+            }, function(err, user) {
 
-            // if there is an error, stop everything and return that
-            // ie an error connecting to the database
-            if (err)
-                return done(err);
+                // if there is an error, stop everything and return that
+                // ie an error connecting to the database
+                if (err)
+                    return done(err);
 
-            // if the user is found, then log them in
-            if (user) {
-                return done(null, user); // user found, return that user
-            } else {
-                // if there is no user found with that facebook id, create them
-                var newUser            = new User();
+                // if the user is found, then log them in
+                if (user) {
+                    return done(null, user); // user found, return that user
+                } else {
+                    // if there is no user found with that facebook id, create them
+                    var newUser = new User();
 
-                // set all of the facebook information in our user model
-                //newUser.facebook.id    = profile.id; // set the users facebook id
-                //newUser.facebook.token = token; // we will save the token that facebook provides to the user
-                //newUser.facebook.name  = profile.name.givenName + ' ' + profile.name.familyName; // look at the passport user profile to see how names are returned
-                //newUser.facebook.email = profile.emails[0].value; // facebook can return multiple emails so we'll take the first
+                    // set all of the facebook information in our user model
+                    //newUser.facebook.id    = profile.id; // set the users facebook id
+                    //newUser.facebook.token = token; // we will save the token that facebook provides to the user
+                    //newUser.facebook.name  = profile.name.givenName + ' ' + profile.name.familyName; // look at the passport user profile to see how names are returned
+                    //newUser.facebook.email = profile.emails[0].value; // facebook can return multiple emails so we'll take the first
 
-                // save our user to the database
-              /*  newUser.save(function(err) {
-                    if (err)
-                        throw err;
+                    // save our user to the database
+                    /*  newUser.save(function(err) {
+                          if (err)
+                              throw err;
 
-                    // if successful, return the new user
-                    return done(null, newUser);
-                });*/
-                console.log(profile.id);
-            }
+                          // if successful, return the new user
+                          return done(null, newUser);
+                      });*/
+                    console.log(profile.id);
+                }
 
+            });
         });
-    });
 
-}));
+    }));
 
 app.use('/api/', walkins);
