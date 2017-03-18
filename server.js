@@ -5,9 +5,14 @@ var ObjectId = require('mongodb').ObjectID;
 var bodyParser = require('body-parser');
 var compression = require('compression');
 var passport = require('passport');
-var FacebookStrategy = require('passport-facebook').Strategy;
 var minify = require('express-minify');
+var mongoose = require('mongoose');
+var flash    = require('connect-flash');
 
+// configuration ===============================================================
+mongoose.connect('mongodb://localhost:27017/jobu'); // connect to our database
+
+require('./config/passport')(passport); // pass passport for configuration
 
 // load up the user model
 //var User       = require('../app/models/user');
@@ -18,8 +23,8 @@ var walkins = require('./routes/walkins');
 MongoClient.connect('mongodb://localhost:27017/jobu', (err, database) => {
     if (err) return console.log(err)
     db = database
-    app.listen(process.env.PORT || 80, () => {
-        console.log('listening on 80')
+    app.listen(process.env.PORT || 8080, () => {
+        console.log('listening on 8080')
     })
 })
 
@@ -32,6 +37,12 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json())
 app.use(express.static('public'))
 app.use(express.static('node_modules'))
+
+// required for passport
+	//app.use(express.session({ secret: 'ilovetocode' })); // session secret
+	app.use(passport.initialize());
+	app.use(passport.session()); // persistent login sessions
+	app.use(flash()); // use connect-flash for flash messages stored in session
 
 app.get('/', (req, res) => {
     db.collection('walkins').find().sort({
@@ -185,147 +196,38 @@ app.get('/walkin/:id', function(req, res) {
 
 });
 
-app.post('/quotes', (req, res) => {
-    db.collection('quotes').save(req.body, (err, result) => {
-        if (err) return console.log(err)
-        //console.log('saved to database')
-        res.redirect('/')
-    })
-})
-
-app.put('/quotes', (req, res) => {
-    db.collection('quotes')
-        .findOneAndUpdate({
-            name: 'Yoda'
-        }, {
-            $set: {
-                name: req.body.name,
-                quote: req.body.quote
-            }
-        }, {
-            sort: {
-                _id: -1
-            },
-            upsert: true
-        }, (err, result) => {
-            if (err) return res.send(err)
-            res.send(result)
-        })
-})
-
-app.delete('/quotes', (req, res) => {
-    db.collection('quotes').findOneAndDelete({
-        name: req.body.name
-    }, (err, result) => {
-        if (err) return res.send(500, err)
-        res.send('A darth vadar quote got deleted')
-    })
-})
 
 // =====================================
-// FACEBOOK ROUTES =====================
-// =====================================
-// route for facebook authentication and login
-app.get('/auth/facebook', passport.authenticate('facebook', {
-    scope: 'email'
-}));
+	// FACEBOOK ROUTES =====================
+	// =====================================
+	// route for facebook authentication and login
+	app.get('/auth/facebook', passport.authenticate('facebook', { authType: 'rerequest', scope: ['public_profile,email'] }));
 
-// handle the callback after facebook has authenticated the user
-app.get('/auth/facebook/callback',
-    passport.authenticate('facebook', {
-        successRedirect: '/home',
-        failureRedirect: '/'
-    }));
+	// handle the callback after facebook has authenticated the user
+	app.get('/auth/facebook/callback',
+		passport.authenticate('facebook', {
+			successRedirect : '/',
+			failureRedirect : '/'
+		}));
 
-// route for logging out
-app.get('/logout', function(req, res) {
-    req.logout();
-    res.redirect('/');
-});
+	// =====================================
+	// LOGOUT ==============================
+	// =====================================
+	app.get('/logout', function(req, res) {
+		req.logout();
+		res.redirect('/');
+	});
 
-
-// route middleware to make sure a user is logged in
+  // route middleware to make sure
 function isLoggedIn(req, res, next) {
 
-    // if user is authenticated in the session, carry on
-    if (req.isAuthenticated())
-        return next();
+	// if user is authenticated in the session, carry on
+	if (req.isAuthenticated())
+		return next();
 
-    // if they aren't redirect them to the home page
-    res.redirect('/');
+	// if they aren't redirect them to the home page
+	res.redirect('/');
 }
-
-// used to serialize the user for the session
-passport.serializeUser(function(user, done) {
-    done(null, user.id);
-});
-
-// used to deserialize the user
-passport.deserializeUser(function(id, done) {
-    User.findById(id, function(err, user) {
-        done(err, user);
-    });
-});
-
-// code for login (use('local-login', new LocalStategy))
-// code for signup (use('local-signup', new LocalStategy))
-
-// =========================================================================
-// FACEBOOK ================================================================
-// =========================================================================
-passport.use(new FacebookStrategy({
-
-        // pull in our app id and secret from our auth.js file
-        clientID: '1646263562333117',
-        clientSecret: '91de007328f4ccfd7807b2aa1ce11a56',
-        callbackURL: 'http://localhost/auth/facebook/callback'
-
-    },
-
-    // facebook will send back the token and profile
-    function(token, refreshToken, profile, done) {
-
-        // asynchronous
-        process.nextTick(function() {
-
-            // find the user in the database based on their facebook id
-            db.collection('fbusers').findOne({
-                'facebook.id': profile.id
-            }, function(err, user) {
-
-                // if there is an error, stop everything and return that
-                // ie an error connecting to the database
-                if (err)
-                    return done(err);
-
-                // if the user is found, then log them in
-                if (user) {
-                    return done(null, user); // user found, return that user
-                } else {
-                    // if there is no user found with that facebook id, create them
-                    var newUser = new User();
-
-                    // set all of the facebook information in our user model
-                    //newUser.facebook.id    = profile.id; // set the users facebook id
-                    //newUser.facebook.token = token; // we will save the token that facebook provides to the user
-                    //newUser.facebook.name  = profile.name.givenName + ' ' + profile.name.familyName; // look at the passport user profile to see how names are returned
-                    //newUser.facebook.email = profile.emails[0].value; // facebook can return multiple emails so we'll take the first
-
-                    // save our user to the database
-                    /*  newUser.save(function(err) {
-                          if (err)
-                              throw err;
-
-                          // if successful, return the new user
-                          return done(null, newUser);
-                      });*/
-                    //console.log(profile.id);
-                }
-
-            });
-        });
-
-    }));
 
 app.use('/api/', walkins);
 app.get('/**', (req, res) => {

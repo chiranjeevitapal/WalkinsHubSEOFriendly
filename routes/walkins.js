@@ -46,6 +46,23 @@ router.get('/sitemap.xml', function(req, res) {
     });
 });
 
+router.get('/walkinstoday', function(req, res,
+    next) {
+      var today = new Date();
+      var todayDateString = today.yyyymmdd();
+      db.collection('walkins').find({
+          "date": { $regex : todayDateString }
+      }).toArray(function(err, walkins) {
+          var obj = [];
+
+          if (err) {
+              res.send(err);
+          } else {
+            res.json(walkins);
+          }
+    });
+  });
+
 /* Push notifications to registered fb subscribers */
 router.get('/notifyfbsubscribers', function(req, res,
     next) {
@@ -61,33 +78,33 @@ router.get('/notifyfbsubscribers', function(req, res,
         '</thead>' +
         '<tbody>';
 
-    db.collection('walkins').find({}).toArray(function(err, walkins) {
-        var obj = [];
         var today = new Date();
         var todayDateString = today.yyyymmdd();
+
+    db.collection('walkins').find({
+        "date": { $regex : todayDateString }
+    }).toArray(function(err, walkins) {
+        var obj = [];
+
         if (err) {
             res.send(err);
         } else {
             walkins.forEach(function(walkin) {
-                if (todayDateString == walkin.date.substring(0, walkin.date.indexOf('T'))) {
-                    //obj.push(walkin);
-                    //var companyName = walkin.company.replace(/[^a-zA-Z0-9_-]/g,'-');
-                    html = html + '<tr><td style="border: 1px solid black;">' + walkin.company + '</td>' +
-                        '<td style="border: 1px solid black;">' + walkin.title + '</td>' +
-                        '<td style="border: 1px solid black;">' + walkin.experience + '</td>' +
-                        '<td style="border: 1px solid black;">' + walkin.location + '</td>' +
-                        '<td style="border: 1px solid black;"><a href="www.walkinshub.com/walkin/' + walkin._id + '"> Details </a></td></tr>';
-                }
+              html = html + '<tr><td style="border: 1px solid black;">' + walkin.company + '</td>' +
+                  '<td style="border: 1px solid black;">' + walkin.title + '</td>' +
+                  '<td style="border: 1px solid black;">' + walkin.experience + '</td>' +
+                  '<td style="border: 1px solid black;">' + walkin.location + '</td>' +
+                  '<td style="border: 1px solid black;"><a href="www.walkinshub.com/walkin/' + walkin._id + '"> Details </a></td></tr>';
             })
             html = html + '</tbody></table></body></html>'
-            db.collection('fbusers').find({}).toArray(function(err, fbsubscribers) {
+            db.collection('users').find({}).toArray(function(err, subscriber) {
                 if (err) {
                     res.send(err);
                 } else {
-                    fbsubscribers.forEach(function(subscriber, i) {
+                    subscriber.forEach(function(subscriber, i) {
                         setTimeout(function() {
-                            if (subscriber.fb_email != '' && subscriber.fb_email != undefined && subscriber.fb_email != null) {
-                                mailSender.sendMail('"www.walkinshub.com" <walkinshubindia@gmail.com>', subscriber.fb_email, 'Today Walkin Interviews', 'Here is th list of interviews that are posted on walkinshub.com today', html);
+                            if (subscriber.facebook.email != '' && subscriber.facebook.email != undefined && subscriber.facebook.email != null) {
+                                mailSender.sendMail('"www.walkinshub.com" <walkinshubindia@gmail.com>', subscriber.facebook.email, 'Today Walkin Interviews', 'Here is th list of interviews that are posted on walkinshub.com today', html);
                             }
                         }, (i + 1) * 5000);
                     })
@@ -102,16 +119,16 @@ router.get('/notifyfbsubscribers', function(req, res,
 router.post('/bulkmailer', function(req, res, next) {
     var message = req.body.message;
     var html = '';
-    db.collection('fbusers').find({}).toArray(function(err, fbsubscribers) {
+    db.collection('users').find({}).toArray(function(err, subscriber) {
         if (err) {
             res.send("failed");
         } else {
-            fbsubscribers.forEach(function(subscriber, i) {
+            subscriber.forEach(function(subscriber, i) {
                 html = '';
                 html = html + '<p>' + message + '</p>'
                 setTimeout(function() {
-                    if (subscriber.fb_email != '' && subscriber.fb_email != undefined && subscriber.fb_email != null) {
-                        mailSender.sendMail('"www.walkinshub.com" <walkinshubindia@gmail.com>', subscriber.fb_email, 'Message from Walkinshub', '', html);
+                    if (subscriber.email != '' && subscriber.email != undefined && subscriber.email != null) {
+                        mailSender.sendMail('"www.walkinshub.com" <walkinshubindia@gmail.com>', subscriber.email, 'Message from Walkinshub', '', html);
                     }
                 }, (i + 1) * 5000);
             })
@@ -121,16 +138,16 @@ router.post('/bulkmailer', function(req, res, next) {
 });
 
 /* Get registered fb subscribers */
-router.get('/fbsubscribers', function(req, res,
+router.get('/subscribers', function(req, res,
     next) {
-    db.collection('fbusers').find({}).toArray(function(err, fbsubscribers) {
+    db.collection('users').find({}).toArray(function(err, subscriber) {
         if (err) {
             res.send(err);
         } else {
-            fbsubscribers.forEach(function(subscriber) {
-                console.log(subscriber.fb_email);
+            subscriber.forEach(function(subscriber) {
+                console.log(subscriber.email);
             })
-            res.json(fbsubscribers);
+            res.json(subscriber);
         }
     });
 });
