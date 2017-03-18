@@ -23,8 +23,8 @@ var walkins = require('./routes/walkins');
 MongoClient.connect('mongodb://localhost:27017/jobu', (err, database) => {
     if (err) return console.log(err)
     db = database
-    app.listen(process.env.PORT || 8080, () => {
-        console.log('listening on 8080')
+    app.listen(process.env.PORT || 80, () => {
+        console.log('listening on 80')
     })
 })
 
