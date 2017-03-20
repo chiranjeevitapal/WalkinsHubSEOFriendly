@@ -17,10 +17,10 @@
                             type: 'GET',
                             success: function(walkin) {
                                 //console.log(walkin);
-                                var companyName = walkin.company.replace(/[^a-zA-Z0-9_-]/g,'-');
+                                var companyName = walkin.company.replace(/[^a-zA-Z0-9_-]/g, '-');
                                 //var today = new Date();
                                 //var todayDateString = today.yyyymmdd();
-                              //  walkin._id=companyName+'';
+                                //  walkin._id=companyName+'';
                                 $.ajax({
                                     url: "/api/postWalkin",
                                     type: "POST",
@@ -71,6 +71,46 @@
         ].join('-');
     };
 
+
+
+    $(function() {
+        $('#upload').click(function(e) {
+            e.preventDefault();
+            var data = {};
+            data.title = $("#title").val();
+            data.date = new Date();
+            data.position = $("#position").val();
+            data.location = $("#location").val();
+            data.company = $("#company").val();
+            data.eligibility = $("#eligibility").val();
+            data.experience = $("#experience").val();
+            data.jobDescription = $("#jobDescription").val();
+            data.salary = $("#salary").val();
+            data.lastDate = $("#lastDate").val();
+            data.walkinDate = $("#title").val();
+            data.walkinDate = $("#title").val();
+            data.walkinTime = $("#walkinTime").val();
+            data.companyProfile = $("#companyProfile").val();
+            data.howToApply = $("#howToApply").val();
+            data.website = $("#website").val();
+            data.contactDetails = $("#contactDetails").val();
+            data.jobRequirements = $("#jobRequirements").val();
+            data.candidateProfile = $("#candidateProfile").val();
+            data.title = $("#title").val();
+
+            console.log(data);
+            $.ajax({
+                type: 'POST',
+                data: JSON.stringify(data),
+                contentType: 'application/json',
+                url: '/api/postWalkin',
+                success: function(data) {
+                    console.log('success');
+                    console.log(JSON.stringify(data));
+                }
+            });
+        });
+    });
 </script>
 <div class="container top-buffer">
     <div class="row">
@@ -81,4 +121,117 @@
             <button class="btn btn-md btn-danger" onclick="notify()">Notify FB</button>
         </div>
     </div>
+
+        <!-- We'll add our form controls here -->
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            <div class="form-group">
+                <label class="control-label" for="title">Title</label>
+                <input type="text" id="title" class="form-control" value="">
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            <div class="form-group">
+                <label class="control-label" for="date">Date</label>
+                <input type="text" id="date" class="form-control">
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            <div class="form-group">
+                <label class="control-label" for="position">Position</label>
+                <input type="text" id="position" class="form-control">
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            <div class="form-group">
+                <label class="control-label" for="location">Location</label>
+                <input type="text" id="location" class="form-control">
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            <div class="form-group">
+                <label class="control-label" for="company">Company</label>
+                <input type="text" id="company" class="form-control">
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            <div class="form-group">
+                <label class="control-label" for="eligibility">Eligibility</label>
+                <input type="text" id="eligibility" class="form-control">
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            <div class="form-group">
+                <label class="control-label" for="experience">Experience</label>
+                <input type="text" id="experience" class="form-control">
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            <div class="form-group">
+                <label class="control-label" for="jobDescription">Job Description</label>
+                <input type="text" id="jobDescription" class="form-control">
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            <div class="form-group">
+                <label class="control-label" for="salary">Salary</label>
+                <input type="text" id="salary" class="form-control">
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            <div class="form-group">
+                <label class="control-label" for="lastDate">LastDate</label>
+                <input type="text" id="lastDate" class="form-control">
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            <div class="form-group">
+                <label class="control-label" for="walkinDate">Walkin Date</label>
+                <input type="text" id="walkinDate" class="form-control">
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            <div class="form-group">
+                <label class="control-label" for="walkinTime">Walkin Time</label>
+                <input type="text" id="walkinTime" class="form-control">
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            <div class="form-group">
+                <label class="control-label" for="companyProfile">Company Profile</label>
+                <input type="text" id="companyProfile" class="form-control">
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            <div class="form-group">
+                <label class="control-label" for="howToApply">How To Apply</label>
+                <input type="text" id="howToApply" class="form-control">
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            <div class="form-group">
+                <label class="control-label" for="website">Company Website</label>
+                <input type="text" id="website" class="form-control">
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            <div class="form-group">
+                <label class="control-label" for="contactDetails">Contact Details</label>
+                <input type="text" id="contactDetails" class="form-control">
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            <div class="form-group">
+                <label class="control-label" for="jobRequirements">Job Requirements</label>
+                <input type="text" id="jobRequirements" class="form-control">
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            <div class="form-group">
+                <label class="control-label" for="candidateProfile">Candidate Profile</label>
+                <input type="text" id="candidateProfile" class="form-control">
+            </div>
+        </div>
+
+        <button type="button" class="btn btn-md btn-success" id="upload">Upload</button>
 </div>
