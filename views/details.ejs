@@ -150,13 +150,13 @@
         </div>
 
         <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                <h3 class="text-danger"><%= walkin.title %></h3>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"  itemscope itemtype="http://schema.org/JobPosting">
+                <h3 class="text-danger"  itemprop="title"><%= walkin.title %></h3>
                 <ul class="list-group">
                     <% if (walkin.company != '') { %>
                         <li class="list-group-item list-group-item-default">
                             <b class="list-group-item-heading">Company</b>
-                            <p class="list-group-item-text">
+                            <p class="list-group-item-text" itemprop="hiringOrganization">
                                 <%= walkin.company %>
                             </p>
                             <p>
@@ -172,7 +172,7 @@
                             <% if (walkin.position != '') { %>
                                 <li class="list-group-item list-group-item-default">
                                     <b class="list-group-item-heading">Position</b>
-                                    <p class="list-group-item-text">
+                                    <p class="list-group-item-text"  itemprop="occupationalCategory">
                                         <%= walkin.position %>
                                     </p>
                                 </li>
@@ -180,7 +180,7 @@
                                     <% if (walkin.location != '') { %>
                                         <li class="list-group-item list-group-item-default">
                                             <b class="list-group-item-heading">Location</b>
-                                            <p class="list-group-item-text">
+                                            <p class="list-group-item-text"  itemprop="jobLocation">
                                                 <%= walkin.location %>
                                             </p>
                                         </li>
@@ -189,7 +189,7 @@
                                             <% if (walkin.eligibility != '') { %>
                                                 <li class="list-group-item list-group-item-default">
                                                     <b class="list-group-item-heading">Eligibility</b>
-                                                    <p class="list-group-item-text">
+                                                    <p class="list-group-item-text"  itemprop="educationRequirements">
                                                         <%= walkin.eligibility %>
                                                     </p>
                                                 </li>
@@ -197,7 +197,7 @@
                                                     <% if (walkin.experience != '') { %>
                                                         <li class="list-group-item list-group-item-default">
                                                             <b class="list-group-item-heading">Experience</b>
-                                                            <p class="list-group-item-text">
+                                                            <p class="list-group-item-text" itemprop="experienceRequirements">
                                                                 <%= walkin.experience %>
                                                             </p>
                                                         </li>
@@ -205,7 +205,7 @@
                                                             <% if (walkin.jobDescription != '') { %>
                                                                 <li class="list-group-item list-group-item-default">
                                                                     <b class="list-group-item-heading">Job Description</b>
-                                                                    <p class="list-group-item-text">
+                                                                    <p class="list-group-item-text" itemprop="description">
                                                                         <%= walkin.jobDescription %>
                                                                     </p>
                                                                 </li>
@@ -213,7 +213,7 @@
                                                                     <% if (walkin.jobRequirements != '') { %>
                                                                         <li class="list-group-item list-group-item-default">
                                                                             <b class="list-group-item-heading">Job Requirements</b>
-                                                                            <p class="list-group-item-text">
+                                                                            <p class="list-group-item-text" itemprop="qualifications">
                                                                                 <%= walkin.jobRequirements %>
                                                                             </p>
                                                                         </li>
@@ -221,7 +221,7 @@
                                                                             <% if (walkin.candidateProfile != '') { %>
                                                                                 <li class="list-group-item list-group-item-default">
                                                                                     <b class="list-group-item-heading">Candidate Profile</b>
-                                                                                    <p class="list-group-item-text">
+                                                                                    <p class="list-group-item-text" itemprop="responsibilities">
                                                                                         <%= walkin.candidateProfile %>
                                                                                     </p>
                                                                                 </li>
@@ -229,7 +229,7 @@
                                                                                     <% if (walkin.salary != '') { %>
                                                                                         <li class="list-group-item list-group-item-default">
                                                                                             <b class="list-group-item-heading">Salary</b>
-                                                                                            <p class="list-group-item-text">
+                                                                                            <p class="list-group-item-text" itemprop="incentiveCompensation">
                                                                                                 <%= walkin.salary %>
                                                                                             </p>
                                                                                         </li>
