@@ -170,9 +170,9 @@
                                 <div class="panel-body" itemscope itemtype="http://schema.org/JobPosting">
                                     <p><b class="small">Posted On:</b> <b class="small text-danger" itemprop="datePosted"> <%= walkins[i].date.substring(0,10) %> </b></p>
                                     <%if (walkins[i].walkinDate == '') { %>
-                                        <p><b class="small">Interview Date:</b> <b class="small text-danger" itemprop="interviewDate">Check Details</b></p>
+                                        <p><b class="small">Interview Date:</b> <b class="small text-danger">Check Details</b></p>
                                         <% } else {%>
-                                            <p><b class="small">Interview Date:</b> <b class="small text-danger" itemprop="interviewDate"><%= walkins[i].walkinDate.substring(0,22) %></b></p>
+                                            <p><b class="small">Interview Date:</b> <b class="small text-danger"><%= walkins[i].walkinDate.substring(0,22) %></b></p>
                                             <% } %>
                                                 <p><b class="small" itemprop="hiringOrganization"><%= walkins[i].company.substring(0,30) %></b></p>
                                                 <p class="small" itemprop="title">
