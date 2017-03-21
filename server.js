@@ -47,7 +47,7 @@ app.use(express.static('node_modules'))
 app.get('/', (req, res) => {
     db.collection('walkins').find().sort({
         "date": -1
-    }).toArray((err, result) => {
+    }).limit(100).toArray((err, result) => {
         if (err) return console.log(err)
         res.render('home.ejs', {
             walkins: result
@@ -58,7 +58,7 @@ app.get('/', (req, res) => {
 app.get('/home', (req, res) => {
     db.collection('walkins').find().sort({
         "date": -1
-    }).toArray((err, result) => {
+    }).limit(100).toArray((err, result) => {
         if (err) return console.log(err)
         res.render('home.ejs', {
             walkins: result
@@ -75,7 +75,7 @@ app.get('/fresherjobs', (req, res) => {
         }]
     }).sort({
         "date": -1
-    }).toArray((err, result) => {
+    }).limit(100).toArray((err, result) => {
         if (err) return console.log(err)
         res.render('home.ejs', {
             walkins: result
@@ -92,7 +92,7 @@ app.get('/hyderabadjobs', (req, res) => {
         }]
     }).sort({
         "date": -1
-    }).toArray((err, result) => {
+    }).limit(100).toArray((err, result) => {
         if (err) return console.log(err)
         res.render('home.ejs', {
             walkins: result
@@ -109,7 +109,7 @@ app.get('/bangalorejobs', (req, res) => {
         }]
     }).sort({
         "date": -1
-    }).toArray((err, result) => {
+    }).limit(100).toArray((err, result) => {
         if (err) return console.log(err)
         res.render('home.ejs', {
             walkins: result
@@ -126,7 +126,7 @@ app.get('/chennaijobs', (req, res) => {
         }]
     }).sort({
         "date": -1
-    }).toArray((err, result) => {
+    }).limit(100).toArray((err, result) => {
         if (err) return console.log(err)
         res.render('home.ejs', {
             walkins: result
@@ -147,7 +147,7 @@ app.get('/mumbaipunejobs', (req, res) => {
         }]
     }).sort({
         "date": -1
-    }).toArray((err, result) => {
+    }).limit(100).toArray((err, result) => {
         if (err) return console.log(err)
         res.render('home.ejs', {
             walkins: result
