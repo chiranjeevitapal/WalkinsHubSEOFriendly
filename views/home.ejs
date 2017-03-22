@@ -174,11 +174,11 @@
                                         <% } else {%>
                                             <p><b class="small">Interview Date:</b> <b class="small text-danger"><%= walkins[i].walkinDate.substring(0,22) %></b></p>
                                             <% } %>
-                                                <p><b class="small" itemprop="hiringOrganization"><%= walkins[i].company.substring(0,30) %></b></p>
-                                                <p class="small" itemprop="title">
+                                                <h1><b class="small" itemprop="hiringOrganization"><%= walkins[i].company.substring(0,15) %></b></h1>
+                                                <h2 class="small" itemprop="title">
                                                     <%= walkins[i].position.substring(0,35) %>
-                                                </p>
-                                                <p><b class="small" itemprop="jobLocation"><%= walkins[i].location.substring(0,25) %></b> <i class="pull-right" itemprop="experienceRequirements"><%= walkins[i].experience %></i></p>
+                                                </h2>
+                                                <h3><b class="small" itemprop="jobLocation"><%= walkins[i].location.substring(0,25) %></b> <i class="pull-right small" itemprop="experienceRequirements"><%= walkins[i].experience %></i></h3>
                                                 <a class="card-1 btn btn-info btn-md pull-right" itemprop="url" href="/walkin/<%= walkins[i]._id %>" target="_blank">Job Details</a>
                                                 <a href="whatsapp://send?text=Walk-in interviews in <%= walkins[i].company %>, <%= walkins[i].location %> http://www.walkinshub.com/walkin/<%= walkins[i]._id %>" data-action="share/whatsapp/share" data-href="" class="btn btn-lg btn-success hidden-md hidden-lg"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
                                                 <!--div class="fb-like" data-layout="button_count" data-action="like" data-href='http://www.walkinshub.com/walkin/<%= walkins[i]._id %>' data-size="small" data-show-faces="false" data-share="true"></div-->
