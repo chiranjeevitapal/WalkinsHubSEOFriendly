@@ -172,8 +172,9 @@ router.get('/scrape/:website/:link', function(req, res) {
 router.post('/postWalkin', (req, res) => {
     var companyName = req.body.company.replace(/[^a-zA-Z0-9_-]+/g, '-');
     var today = new Date();
+    var milli = today.getMilliseconds();
     var todayDateString = today.yyyymmdd();
-    req.body._id = companyName+'-'+todayDateString
+    req.body._id = companyName+'-'+todayDateString+'-'+milli
     db.collection('walkins').save(req.body, (err, result) => {
         if (err) return console.log(err)
         //console.log('saved to database')
