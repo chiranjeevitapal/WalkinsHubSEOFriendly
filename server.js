@@ -7,7 +7,7 @@ var compression = require('compression');
 var passport = require('passport');
 var minify = require('express-minify');
 var mongoose = require('mongoose');
-var flash    = require('connect-flash');
+var flash = require('connect-flash');
 
 // configuration ===============================================================
 mongoose.connect('mongodb://localhost:27017/jobu'); // connect to our database
@@ -39,10 +39,10 @@ app.use(express.static('public'))
 app.use(express.static('node_modules'))
 
 // required for passport
-	//app.use(express.session({ secret: 'ilovetocode' })); // session secret
-	app.use(passport.initialize());
-	app.use(passport.session()); // persistent login sessions
-	app.use(flash()); // use connect-flash for flash messages stored in session
+//app.use(express.session({ secret: 'ilovetocode' })); // session secret
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
+app.use(flash()); // use connect-flash for flash messages stored in session
 
 app.get('/', (req, res) => {
     db.collection('walkins').find().sort({
@@ -181,52 +181,70 @@ app.get('/walkin/:id', function(req, res) {
     //var id = req.params.id.substring(req.params.id.lastIndexOf('-') + 1);
     var id = req.params.id;
     //console.log(id);
-    db.collection('walkins').findOne({
-        _id: ObjectId(id)
-    }, function(err, result) {
-        if (err) return console.log(err)
-        if (result == null) {
-          res.redirect('/')
-        } else {
-            res.render('details.ejs', {
-                walkin: result
-            })
-        }
-    });
+    if (id.indexOf('-') == -1) {
+        db.collection('walkins').findOne({
+            _id: ObjectId(id)
+        }, function(err, result) {
+            if (err) return console.log(err)
+            if (result == null) {
+                res.redirect('/')
+            } else {
+                res.render('details.ejs', {
+                    walkin: result
+                })
+            }
+        });
+    } else {
+        db.collection('walkins').findOne({
+            _id: id
+        }, function(err, result) {
+            if (err) return console.log(err)
+            if (result == null) {
+                res.redirect('/')
+            } else {
+                res.render('details.ejs', {
+                    walkin: result
+                })
+            }
+        });
+    }
 
 });
 
 
 // =====================================
-	// FACEBOOK ROUTES =====================
-	// =====================================
-	// route for facebook authentication and login
-	app.get('/auth/facebook', passport.authenticate('facebook', { authType: 'rerequest', scope: ['public_profile,email'] }));
+// FACEBOOK ROUTES =====================
+// =====================================
+// route for facebook authentication and login
+app.get('/auth/facebook', passport.authenticate('facebook', {
+    authType: 'rerequest',
+    scope: ['public_profile,email']
+}));
 
-	// handle the callback after facebook has authenticated the user
-	app.get('/auth/facebook/callback',
-		passport.authenticate('facebook', {
-			successRedirect : '/',
-			failureRedirect : '/'
-		}));
+// handle the callback after facebook has authenticated the user
+app.get('/auth/facebook/callback',
+    passport.authenticate('facebook', {
+        successRedirect: '/',
+        failureRedirect: '/'
+    }));
 
-	// =====================================
-	// LOGOUT ==============================
-	// =====================================
-	app.get('/logout', function(req, res) {
-		req.logout();
-		res.redirect('/');
-	});
+// =====================================
+// LOGOUT ==============================
+// =====================================
+app.get('/logout', function(req, res) {
+    req.logout();
+    res.redirect('/');
+});
 
-  // route middleware to make sure
+// route middleware to make sure
 function isLoggedIn(req, res, next) {
 
-	// if user is authenticated in the session, carry on
-	if (req.isAuthenticated())
-		return next();
+    // if user is authenticated in the session, carry on
+    if (req.isAuthenticated())
+        return next();
 
-	// if they aren't redirect them to the home page
-	res.redirect('/');
+    // if they aren't redirect them to the home page
+    res.redirect('/');
 }
 
 app.use('/api/', walkins);
