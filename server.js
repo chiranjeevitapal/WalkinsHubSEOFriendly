@@ -8,6 +8,7 @@ var passport = require('passport');
 var minify = require('express-minify');
 var mongoose = require('mongoose');
 var flash = require('connect-flash');
+var mcache = require('memory-cache');
 
 // configuration ===============================================================
 mongoose.connect('mongodb://localhost:27017/jobu'); // connect to our database
@@ -44,7 +45,25 @@ app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
 
-app.get('/', (req, res) => {
+var cache = (duration) => {
+  return (req, res, next) => {
+    var key = '__express__' + req.originalUrl || req.url
+    var cachedBody = mcache.get(key)
+    if (cachedBody) {
+      res.send(cachedBody)
+      return
+    } else {
+      res.sendResponse = res.send
+      res.send = (body) => {
+        mcache.put(key, body, duration * 8000000);
+        res.sendResponse(body)
+      }
+      next()
+    }
+  }
+}
+
+app.get('/', cache(10), (req, res) => {
     db.collection('walkins').find().sort({
         "date": -1
     }).limit(100).toArray((err, result) => {
@@ -55,7 +74,7 @@ app.get('/', (req, res) => {
     })
 })
 
-app.get('/home', (req, res) => {
+app.get('/home', cache(10),(req, res) => {
     db.collection('walkins').find().sort({
         "date": -1
     }).limit(100).toArray((err, result) => {
@@ -66,7 +85,7 @@ app.get('/home', (req, res) => {
     })
 })
 
-app.get('/fresherjobs', (req, res) => {
+app.get('/fresherjobs', cache(10),(req, res) => {
     db.collection('walkins').find({
         $or: [{
             "experience": /0/
@@ -83,7 +102,7 @@ app.get('/fresherjobs', (req, res) => {
     })
 })
 
-app.get('/hyderabadjobs', (req, res) => {
+app.get('/hyderabadjobs', cache(10),(req, res) => {
     db.collection('walkins').find({
         $or: [{
             "location": /Hyderabad/
@@ -100,7 +119,7 @@ app.get('/hyderabadjobs', (req, res) => {
     })
 })
 
-app.get('/bangalorejobs', (req, res) => {
+app.get('/bangalorejobs', cache(10),(req, res) => {
     db.collection('walkins').find({
         $or: [{
             "location": /Bangalore/
@@ -117,7 +136,7 @@ app.get('/bangalorejobs', (req, res) => {
     })
 })
 
-app.get('/chennaijobs', (req, res) => {
+app.get('/chennaijobs', cache(10),(req, res) => {
     db.collection('walkins').find({
         $or: [{
             "location": /Chennai/
@@ -134,7 +153,7 @@ app.get('/chennaijobs', (req, res) => {
     })
 })
 
-app.get('/mumbaipunejobs', (req, res) => {
+app.get('/mumbaipunejobs', cache(10),(req, res) => {
     db.collection('walkins').find({
         $or: [{
             "location": /Mumbai/
@@ -177,7 +196,7 @@ app.get('/uploadChethan', (req, res) => {
 })
 
 /* GET One Walkin with the provided ID */
-app.get('/walkin/:id', function(req, res) {
+app.get('/walkin/:id', cache(10), function(req, res) {
     //var id = req.params.id.substring(req.params.id.lastIndexOf('-') + 1);
     var id = req.params.id;
     //console.log(id);
