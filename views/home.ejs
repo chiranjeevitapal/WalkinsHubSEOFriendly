@@ -9,7 +9,7 @@
         });
     </script>
     <meta charset="UTF-8">
-    <title>Fresher Walkins in India | Fresher recruitment | Fresher Jobs in India | Fresher Job Search | Job Vacancies for Freshers - walkinshub.com</title>
+    <title>Walkins Hub - Fresher Walkins in India</title>
     <meta name="description" content="Best Job site for Fresher walkins Fresher jobs in India. Find the best fresher jobs on walkinshub.com. Subscribe and get daily job alerts for free." />
     <meta name="keywords" content="Fresher referral,Jobs,Walkins,Fresher jobs,Fresher walkins,Software jobs, Today walkins,Backdoor jobs,Referral jobs,Home based jobs,Today jobs, Jobs in Bangalore, Walkins in Bangalore, Fresher Jobs in Bangalore, Fresher Walkins in  Bangalore, Online Jobs in Bangalore, Today Walkins in Bangalore, Today jobs in Bangalore , Jobs in Hyderabad, Walkins in Hyderabad, Fresher Jobs in Hyderabad, Fresher Walkins in  Hyderabad, Online Jobs in Hyderabad, Today Walkins in Hyderabad, Today jobs in Hyderabad,Jobs in Chennai, Walkins in Chennai, Fresher Jobs in Chennai, Fresher Walkins in  Chennai, Online Jobs in Chennai, Today Walkins in Chennai, Today jobs in Chennai,Jobs in Noida, Walkins in Noida, Fresher Jobs in Noida, Fresher Walkins in  Noida, Online Jobs in Noida, Today Walkins in Noida, Today jobs in Noida,Jobs in Pune, Walkins in Pune, Fresher Jobs in Pune, Fresher Walkins in  Pune, Online Jobs in Pune, Today Walkins in Pune, Today jobs in Pune, Work from home jobs,networking jobs, Data entry jobs, medical coding jobs, freelancing, make money online"
     />
@@ -177,11 +177,11 @@
                                         <% } else {%>
                                             <p><b class="small">Interview Date:</b> <b class="small text-danger"><%= walkins[i].walkinDate.substring(0,22) %></b></p>
                                             <% } %>
-                                                <h1><b class="small" itemprop="hiringOrganization"><%= walkins[i].company.substring(0,18) %></b></h1>
-                                                <h2 class="small" itemprop="title">
+                                                <p><b class="small" itemprop="hiringOrganization"><%= walkins[i].company.substring(0,18) %></b></p>
+                                                <p class="small" itemprop="title">
                                                     <%= walkins[i].position.substring(0,35) %>
-                                                </h2>
-                                                <h3><b class="small" itemprop="jobLocation"><%= walkins[i].location.substring(0,25) %></b> <i class="pull-right small" itemprop="experienceRequirements"><%= walkins[i].experience %></i></h3>
+                                                </p>
+                                                <p><b class="small" itemprop="jobLocation"><%= walkins[i].location.substring(0,25) %></b> <i class="pull-right small" itemprop="experienceRequirements"><%= walkins[i].experience %></i></p>
                                                 <a class="card-1 btn btn-info btn-md pull-right" itemprop="url" href="/walkin/<%= walkins[i]._id %>" target="_blank">Job Details</a>
                                                 <a href="whatsapp://send?text=Walk-in interviews in <%= walkins[i].company %>, <%= walkins[i].location %> http://www.walkinshub.com/walkin/<%= walkins[i]._id %>" data-action="share/whatsapp/share" data-href="" class="btn btn-lg btn-success hidden-md hidden-lg"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
                                                 <!--div class="fb-like" data-layout="button_count" data-action="like" data-href='http://www.walkinshub.com/walkin/<%= walkins[i]._id %>' data-size="small" data-show-faces="false" data-share="true"></div-->
