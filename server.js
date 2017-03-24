@@ -267,6 +267,6 @@ function isLoggedIn(req, res, next) {
 }
 
 app.use('/api/', walkins);
-app.get('/**', (req, res) => {
+app.get('/**', cache(10), (req, res) => {
     res.redirect('/')
 })
