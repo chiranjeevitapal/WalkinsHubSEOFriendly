@@ -66,7 +66,16 @@ router.get('/walkinstoday', function(req, res,
   router.get('/similarjobs/:location', function(req, res,
       next) {
         db.collection('walkins').find({
-              "location": ""+req.params.location
+          $or: [{
+              "experience": /0/
+          }, {
+              "experience": /Fresher/
+          }],
+          $and: [{
+              "location": {
+                  $regex: req.params.location
+              }
+          }]
         }).sort({'date':-1}).toArray(function(err, walkins) {
             var obj = [];
             if (err) {

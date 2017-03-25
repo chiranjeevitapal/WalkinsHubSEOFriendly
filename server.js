@@ -64,18 +64,13 @@ var cache = (duration) => {
 }
 
 app.get('/', cache(10), (req, res) => {
-    db.collection('walkins').find().sort({
-        "date": -1
-    }).limit(100).toArray((err, result) => {
-        if (err) return console.log(err)
-        res.render('home.ejs', {
-            walkins: result
-        })
-    })
-})
-
-app.get('/home', cache(10), (req, res) => {
-    db.collection('walkins').find().sort({
+    db.collection('walkins').find({
+      $or: [{
+          "experience": /0/
+      }, {
+          "experience": /Fresher/
+      }],
+    }).sort({
         "date": -1
     }).limit(100).toArray((err, result) => {
         if (err) return console.log(err)
