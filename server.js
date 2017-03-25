@@ -46,21 +46,21 @@ app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
 
 var cache = (duration) => {
-  return (req, res, next) => {
-    var key = '__express__' + req.originalUrl || req.url
-    var cachedBody = mcache.get(key)
-    if (cachedBody) {
-      res.send(cachedBody)
-      return
-    } else {
-      res.sendResponse = res.send
-      res.send = (body) => {
-        mcache.put(key, body, duration * 8000000);
-        res.sendResponse(body)
-      }
-      next()
+    return (req, res, next) => {
+        var key = '__express__' + req.originalUrl || req.url
+        var cachedBody = mcache.get(key)
+        if (cachedBody) {
+            res.send(cachedBody)
+            return
+        } else {
+            res.sendResponse = res.send
+            res.send = (body) => {
+                mcache.put(key, body, duration * 8000000);
+                res.sendResponse(body)
+            }
+            next()
+        }
     }
-  }
 }
 
 app.get('/', cache(10), (req, res) => {
@@ -74,7 +74,7 @@ app.get('/', cache(10), (req, res) => {
     })
 })
 
-app.get('/home', cache(10),(req, res) => {
+app.get('/home', cache(10), (req, res) => {
     db.collection('walkins').find().sort({
         "date": -1
     }).limit(100).toArray((err, result) => {
@@ -85,12 +85,20 @@ app.get('/home', cache(10),(req, res) => {
     })
 })
 
-app.get('/fresherjobs', cache(10),(req, res) => {
+/* GET One Walkin with the provided ID */
+app.get('/walkins/:location', cache(10), function(req, res) {
+    //var id = req.params.id.substring(req.params.id.lastIndexOf('-') + 1);
+    var location = req.params.location;
     db.collection('walkins').find({
         $or: [{
             "experience": /0/
         }, {
             "experience": /Fresher/
+        }],
+        $and: [{
+            "location": {
+                $regex: location
+            }
         }]
     }).sort({
         "date": -1
@@ -100,79 +108,7 @@ app.get('/fresherjobs', cache(10),(req, res) => {
             walkins: result
         })
     })
-})
-
-app.get('/hyderabadjobs', cache(10),(req, res) => {
-    db.collection('walkins').find({
-        $or: [{
-            "location": /Hyderabad/
-        }, {
-            "location": /hyderabad/
-        }]
-    }).sort({
-        "date": -1
-    }).limit(100).toArray((err, result) => {
-        if (err) return console.log(err)
-        res.render('home.ejs', {
-            walkins: result
-        })
-    })
-})
-
-app.get('/bangalorejobs', cache(10),(req, res) => {
-    db.collection('walkins').find({
-        $or: [{
-            "location": /Bangalore/
-        }, {
-            "location": /bangalore/
-        }]
-    }).sort({
-        "date": -1
-    }).limit(100).toArray((err, result) => {
-        if (err) return console.log(err)
-        res.render('home.ejs', {
-            walkins: result
-        })
-    })
-})
-
-app.get('/chennaijobs', cache(10),(req, res) => {
-    db.collection('walkins').find({
-        $or: [{
-            "location": /Chennai/
-        }, {
-            "location": /chennai/
-        }]
-    }).sort({
-        "date": -1
-    }).limit(100).toArray((err, result) => {
-        if (err) return console.log(err)
-        res.render('home.ejs', {
-            walkins: result
-        })
-    })
-})
-
-app.get('/mumbaipunejobs', cache(10),(req, res) => {
-    db.collection('walkins').find({
-        $or: [{
-            "location": /Mumbai/
-        }, {
-            "location": /mumbai/
-        }, {
-            "location": /Pune/
-        }, {
-            "location": /pune/
-        }]
-    }).sort({
-        "date": -1
-    }).limit(100).toArray((err, result) => {
-        if (err) return console.log(err)
-        res.render('home.ejs', {
-            walkins: result
-        })
-    })
-})
+});
 
 app.get('/tutorials', (req, res) => {
     db.collection('walkins').find().toArray((err, result) => {
