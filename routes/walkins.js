@@ -63,6 +63,20 @@ router.get('/walkinstoday', function(req, res,
     });
   });
 
+  router.get('/similarjobs/:location', function(req, res,
+      next) {
+        db.collection('walkins').find({
+              "location": ""+req.params.location
+        }).toArray(function(err, walkins) {
+            var obj = [];
+            if (err) {
+                res.send(err);
+            } else {
+              res.json(walkins);
+            }
+      });
+    });
+
 /* Push notifications to registered fb subscribers */
 router.get('/notifyfbsubscribers', function(req, res,
     next) {

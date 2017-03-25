@@ -9,7 +9,10 @@
         });
     </script>
     <meta charset="UTF-8">
-    <title>Walkins Hub - Fresher Walkins in <%= walkin.company %>, <%= walkin.location %></title>
+    <title>Walkins Hub - Fresher Walkins in
+        <%= walkin.company %>,
+            <%= walkin.location %>
+    </title>
     <meta name="description" content="Best Job site for Fresher walkins Fresher jobs in India. Find the best fresher jobs on walkinshub.com. Subscribe and get daily job alerts for free." />
     <meta name="keywords" content="Fresher referral,Jobs,Walkins,Fresher jobs,Fresher walkins,Software jobs, Today walkins,Backdoor jobs,Referral jobs,Today jobs, Jobs in Bangalore, Walkins in Bangalore, Fresher Jobs in Bangalore, Fresher Walkins in  Bangalore, Online Jobs in Bangalore, Today Walkins in Bangalore, Today jobs in Bangalore , Jobs in Hyderabad, Walkins in Hyderabad, Fresher Jobs in Hyderabad, Fresher Walkins in  Hyderabad, Online Jobs in Hyderabad, Today Walkins in Hyderabad, Today jobs in Hyderabad,Jobs in Chennai, Walkins in Chennai, Fresher Jobs in Chennai, Fresher Walkins in  Chennai, Online Jobs in Chennai, Today Walkins in Chennai, Today jobs in Chennai,Jobs in Noida, Walkins in Noida, Fresher Jobs in Noida, Fresher Walkins in  Noida, Online Jobs in Noida, Today Walkins in Noida, Today jobs in Noida,Jobs in Pune, Walkins in Pune, Fresher Jobs in Pune, Fresher Walkins in  Pune, Online Jobs in Pune, Today Walkins in Pune, Today jobs in Pune, Work from home jobs, networking jobs, Data entry jobs, medical coding jobs, freelancing, make money online"
     />
@@ -148,7 +151,7 @@
             </script>
         </div>
         <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" itemscope itemtype="http://schema.org/JobPosting">
+            <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8" itemscope itemtype="http://schema.org/JobPosting">
                 <h1 class="text-danger" itemprop="title"><%= walkin.title %></h1>
                 <ul class="list-group">
                     <% if (walkin.company != '') { %>
@@ -178,7 +181,7 @@
                                     <% if (walkin.location != '') { %>
                                         <li class="list-group-item list-group-item-default">
                                             <b class="list-group-item-heading">Location</b>
-                                            <p class="list-group-item-text" itemprop="jobLocation">
+                                            <p class="list-group-item-text" itemprop="jobLocation" id="location">
                                                 <%= walkin.location %>
                                             </p>
                                         </li>
@@ -302,9 +305,35 @@
                 </ul>
                 <a href="/auth/facebook" class="btn btn-primary btn-sm pull-right"><span class="fa fa-facebook"></span> Subscribe</a>
             </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                <h2 class="text-success">Similar Jobs</h2>
+                <ul class="list-group" id="jobList">
+
+                </ul>
+            </div>
+
         </div>
 
-    </div>
+        <script>
+            $(function() {
+                var location = $("#location").text().trim();
+                $.ajax({
+                    url: '/api/similarjobs/' + location,
+                    type: 'GET',
+                    success: function(data) {
+                        data.forEach(function(job, index) {
+                            var listitem = '<li class="list-group-item list-group-item-default">';
+                            listitem = listitem + '<a href="/walkin/' + job._id + '" target="_blank">' + job.company + '</a></li>';
+                            $("#jobList").append(listitem);
+                        });
+                    },
+                    error: function(d) {
+                        console.log('woops!'); //or whatever
+                    }
+                })
+            });
+        </script>
 
 </body>
 
