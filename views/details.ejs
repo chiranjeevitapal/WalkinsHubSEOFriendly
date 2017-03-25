@@ -324,7 +324,7 @@
                     success: function(data) {
                         data.forEach(function(job, index) {
                             var listitem = '<li class="list-group-item list-group-item-default">';
-                            listitem = listitem + '<a href="/walkin/' + job._id + '" target="_blank">Walk-in @ ' + job.company + '</a></li>';
+                            listitem = listitem + '<a href="/walkin/' + job._id + '" target="_blank">Walk-ins in ' + job.company + '</a></li>';
                             $("#jobList").append(listitem);
                         });
                     },
