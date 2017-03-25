@@ -67,7 +67,7 @@ router.get('/walkinstoday', function(req, res,
       next) {
         db.collection('walkins').find({
               "location": ""+req.params.location
-        }).toArray(function(err, walkins) {
+        }).sort({'date':-1}).toArray(function(err, walkins) {
             var obj = [];
             if (err) {
                 res.send(err);
