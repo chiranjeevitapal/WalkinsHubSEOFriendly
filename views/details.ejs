@@ -109,7 +109,17 @@
         <!-- /.container-fluid -->
     </nav>
     <div class="container top-buffer">
-        <div class="row">
+        <div class="row top-buffer-small">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- responsive ads -->
+                <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5482095998977489" data-ad-slot="2404350455" data-ad-format="auto"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+        </div>
+        <div class="row top-buffer-small">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <!--a href="/auth/facebook" class="btn btn-primary btn-sm pull-right"><span class="fa fa-facebook"></span> Subscribe</a-->
                 <!--button class="card-1 btn btn-danger" title="Filters" type="button" data-toggle="collapse" data-target="#collapseFilters" aria-expanded="false" aria-controls="collapseFilters">
@@ -117,7 +127,7 @@
         </button-->
                 <!--button *ngIf="showSubscribeButton" type="submit" (click)="checkLoginState()" class="card-1 btn btn-primary btn-sm"><i class="fa fa-facebook-square"></i> Subscribe</button-->
                 <!--div class="fb-follow pull-right" data-href="https://www.facebook.com/walkinshubadmin" data-layout="button_count" data-size="small" data-show-faces="false"></div-->
-                <div class="fb-like" data-layout="button_count" data-action="like" data-size="large" data-show-faces="false" data-share="true"></div>
+                <div class="fb-like" data-layout="button_count" data-action="like" data-size="large" data-show-faces="true" data-share="true"></div>
                 <!-- <a href="whatsapp://send?text=Walk-in interviews in <%= walkin.company %>, <%= walkin.location %>" data-href="" data-action="share/whatsapp/share" class=""><i class="fa fa-whatsapp" aria-hidden="true"></i> Share</a> -->
                 <a href="whatsapp://send?text=Walk-in interviews in <%= walkin.company %>, <%= walkin.location %> http://www.walkinshub.com/walkin/<%= walkin._id %>" data-action="share/whatsapp/share" data-href="" class="btn btn-sm btn-success hidden-md hidden-lg"><i class="fa fa-whatsapp" aria-hidden="true"></i> Share</a>
             </div>
@@ -144,12 +154,6 @@
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8" itemscope itemtype="http://schema.org/JobPosting">
                 <h1 class="text-danger" itemprop="title"><%= walkin.title %></h1>
-                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                <!-- responsive ads -->
-                <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5482095998977489" data-ad-slot="2404350455" data-ad-format="auto"></ins>
-                <script>
-                    (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
                 <ul class="list-group">
                     <% if (walkin.company != '') { %>
                         <li class="list-group-item list-group-item-default">
@@ -311,7 +315,7 @@
                     success: function(data) {
                         data.forEach(function(job, index) {
                             var listitem = '<li class="list-group-item list-group-item-default">';
-                            listitem = listitem + '<a href="/walkin/' + job._id + '" target="_blank">Walk-ins in ' + job.company +'</a></li>';
+                            listitem = listitem + '<a href="/walkin/' + job._id + '" target="_blank">Walk-ins in ' + job.company + '</a></li>';
                             $("#jobList").append(listitem);
                         });
                     },
