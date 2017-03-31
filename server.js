@@ -38,9 +38,10 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json())
 app.use(express.static('public'))
 app.use(express.static('node_modules'))
-
+var session = require('express-session');
 // required for passport
 //app.use(express.session({ secret: 'ilovetocode' })); // session secret
+app.use(session({ secret: 'ilovetocode' })); // session secret
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
@@ -63,25 +64,27 @@ var cache = (duration) => {
     }
 }
 
-app.get('/', cache(10), (req, res) => {
+//app.get('/', cache(10), (req, res) => {
+app.get('/', (req, res) => {
     db.collection('walkins').find({
-      $or: [{
-          "experience": /0/
-      }, {
-          "experience": /Fresher/
-      }],
+        $or: [{
+            "experience": /0/
+        }, {
+            "experience": /Fresher/
+        }],
     }).sort({
         "date": -1
     }).limit(100).toArray((err, result) => {
         if (err) return console.log(err)
         res.render('home.ejs', {
-            walkins: result
+            walkins: result,
+            user : req.user
         })
     })
 })
 
 /* GET One Walkin with the provided ID */
-app.get('/walkins/:location', cache(10), function(req, res) {
+app.get('/walkins/:location', function(req, res) {
     //var id = req.params.id.substring(req.params.id.lastIndexOf('-') + 1);
     var location = req.params.location;
     db.collection('walkins').find({
@@ -131,7 +134,7 @@ app.get('/uploadChethan', (req, res) => {
 })
 
 /* GET One Walkin with the provided ID */
-app.get('/walkin/:id', cache(10), function(req, res) {
+app.get('/walkin/:id', function(req, res) {
     //var id = req.params.id.substring(req.params.id.lastIndexOf('-') + 1);
     var id = req.params.id;
     //console.log(id);
@@ -190,7 +193,7 @@ app.get('/logout', function(req, res) {
     res.redirect('/');
 });
 
-// route middleware to make sure
+// route middleware to make sure a user is logged in
 function isLoggedIn(req, res, next) {
 
     // if user is authenticated in the session, carry on
@@ -201,7 +204,8 @@ function isLoggedIn(req, res, next) {
     res.redirect('/');
 }
 
+
 app.use('/api/', walkins);
-app.get('/**', cache(10), (req, res) => {
+app.get('/**', (req, res) => {
     res.redirect('/')
 })
