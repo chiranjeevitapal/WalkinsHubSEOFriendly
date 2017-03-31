@@ -1,0 +1,101 @@
+<html>
+
+<head>
+    <title>Feedback for walkinshub.com</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../custom.css">
+    <script src="../jquery/dist/jquery.min.js"></script>
+    <script src="../bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="../bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../font-awesome/css/font-awesome.min.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigationbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+            <div class="navbar-header">
+                <a class="navbar-brand hvr-underline-from-center" href="/" title="Home"><i class="fa fa-home" aria-hidden="true"></i> Walkins Hub</a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="navigationbar-collapse">
+                <!--ul class="nav navbar-nav">
+                      <li>
+                          <a href="/about" class="hvr-underline-from-center" title="About"><i class="fa fa-user" aria-hidden="true"></i> Tutorials</a>
+                      </li>
+                  </ul-->
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="/contact" class="hvr-underline-from-center" title="Contact"><i class="fa fa-at" aria-hidden="true"></i> Contact</a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="/about" class="hvr-underline-from-center" title="About"><i class="fa fa-question-circle" aria-hidden="true"></i> About</a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav">
+                    <li class="active">
+                        <a href="/feedback" class="hvr-underline-from-center" title="Feedback"><i class="fa fa-comment" aria-hidden="true"></i></i> Feedback</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+    <div class="container top-buffer">
+        <div class="row">
+
+          <form class="form-horizontal col-sm-12">
+              <div class="form-group"><label>Name</label><input class="form-control required" id="name" placeholder="Your name" data-placement="top" data-trigger="manual" data-content="Must be at least 3 characters long, and must only contain letters." type="text"></div>
+              <div class="form-group"><label>Message</label><textarea class="form-control" id="message" placeholder="Your message here.." data-placement="top" data-trigger="manual"></textarea></div>
+              <div class="form-group"><label>E-Mail</label><input class="form-control email" id="email" placeholder="email@you.com (so that we can contact you)" data-placement="top" data-trigger="manual" data-content="Must be a valid e-mail address (user@gmail.com)" type="text"></div>
+              <div class="form-group"><label>Phone</label><input class="form-control phone" id="phone" placeholder="9988664455" data-placement="top" data-trigger="manual" data-content="Must be a valid phone number (9988664455)" type="text"></div>
+              <div class="form-group"><button type="submit" class="btn btn-success pull-right" id="submitfeedback">Send It!</button>
+                  <p class="help-block pull-left text-danger hide" id="form-error">&nbsp; The form is not valid. </p>
+              </div>
+          </form>
+
+        </div>
+    </div>
+
+    <!-- /.container-->
+    <script src="../validator.js"></script>
+
+    <script>
+              $('#submitfeedback').click(function(e) {
+                e.preventDefault();
+                var feedback = {};
+                feedback.name = $("#name").val();
+                feedback.message = $("#message").val();
+                feedback.date = new Date();
+                feedback.email = $("#email").val();
+                feedback.phone = $("#phone").val();
+
+                console.log(feedback);
+
+                $.ajax({
+                    type: "POST",
+                    url: '/api/postfeedback',
+                    data: JSON.stringify(feedback),
+                    contentType: "application/json",
+                    dataType: "json",
+                    success: function(data) {
+                        alert("Thank you for the feedback.")
+                    }
+                });
+                return false;
+            })
+    </script>
+</body>
+
+</html>

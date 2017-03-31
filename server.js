@@ -122,6 +122,10 @@ app.get('/about', (req, res) => {
     res.render('about.ejs');
 })
 
+app.get('/feedback', (req, res) => {
+    res.render('feedback.ejs');
+})
+
 app.get('/uploadChethan', (req, res) => {
     res.render('uploadChethan.ejs');
 })
