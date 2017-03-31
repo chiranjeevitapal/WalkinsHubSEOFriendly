@@ -170,7 +170,8 @@ app.get('/walkin/:id', function(req, res) {
                 res.redirect('/')
             } else {
                 res.render('details.ejs', {
-                    walkin: result
+                    walkin: result,
+                    user: req.user
                 })
             }
         });
