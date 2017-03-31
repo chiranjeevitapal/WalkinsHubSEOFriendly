@@ -215,6 +215,19 @@ router.post('/postfeedback', (req, res) => {
     })
 })
 
+/* Read Feedback */
+router.get('/feedback', function(req, res,
+    next) {
+    db.collection('feedback').find({}).toArray(function(err, feedback) {
+        if (err) {
+            res.send(err);
+        } else {
+            res.json(feedback);
+        }
+    });
+});
+
+
 Date.prototype.yyyymmdd = function() {
     var mm = this.getMonth() + 1; // getMonth() is zero-based
     var dd = this.getDate();

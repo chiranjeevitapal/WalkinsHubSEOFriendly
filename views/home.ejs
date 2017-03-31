@@ -112,16 +112,16 @@
         <!-- /.container-fluid -->
     </nav>
     <div class="container top-buffer">
-      <div class="row">
-          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-              <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-              <!-- responsive ads -->
-              <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5482095998977489" data-ad-slot="2404350455" data-ad-format="auto"></ins>
-              <script>
-                  (adsbygoogle = window.adsbygoogle || []).push({});
-              </script>
-          </div>
-      </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- responsive ads -->
+                <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5482095998977489" data-ad-slot="2404350455" data-ad-format="auto"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+        </div>
         <div class="row top-buffer-small">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <a href="/auth/facebook" class="btn btn-primary btn-sm pull-right"><span class="fa fa-facebook"></span> Subscribe</a>
@@ -214,6 +214,30 @@
             <div class="pull-right text-success">All Rights Reserved to Walkins Hub</div>
         </div>
     </footer>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#subscribeModal").modal('show');
+        });
+    </script>
+
+    <div id="subscribeModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title">Subscribe our Newsletter</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Subscribe to our mailing list to get the latest updates straight in your inbox.</p>
+                    <div class="form-group">
+                        <a href="/auth/facebook" class="btn btn-primary btn-lg"><i class="fa fa-facebook"></i> Subscribe</a>
+                        <button type="button" class="pull-right btn btn-link" data-dismiss="modal" aria-hidden="true">skip</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
