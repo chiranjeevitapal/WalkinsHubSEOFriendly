@@ -78,6 +78,57 @@
                         <a href="/feedback" class="hvr-underline-from-center" title="Feedback"><i class="fa fa-comment" aria-hidden="true"></i></i> Feedback</a>
                     </li>
                 </ul>
+                <ul class="nav navbar-nav navbar-right">
+                  <% if (user == undefined ) { %>
+                    <li class="dropdown" id="notLoggedIn">
+                        <a href="#" class="dropdown-toggle hvr-underline-from-center" data-toggle="dropdown"><i class="fa fa-user" aria-hidden="true"></i> Login/Signup <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li class="login-dp">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                        <a href="/auth/facebook" class="btn btn-primary btn-block"><i class="fa fa-facebook"></i> Sign In</a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <% } else{ %>
+                    <li class="dropdown" id="loggedIn">
+                        <a href="#" class="dropdown-toggle hvr-underline-from-center" data-toggle="dropdown">
+                            <img src="https://avatars.io/gravatar/<%= user.facebook.email %>/140" class="profile-image img-circle">
+                            <strong id="username"><%= user.facebook.name %></strong>
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <div class="navbar-login">
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <p class="text-center">
+                                                <!--span class="glyphicon glyphicon-user icon-size"></span-->
+                                                <img src="https://avatars.io/gravatar/<%= user.facebook.email %>/140" class="icon-size img-square">
+                                            </p>
+                                        </div>
+                                        <!--div class="col-lg-6">
+                                            <p class="text-left">
+                                                <a href="/profile" title="Profile" class="btn btn-info btn-block btn-sm card-1">Profile</a>
+                                            </p>
+                                        </div-->
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="divider"></li>
+                            <li class="login-dp">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                        <a href="/logout" class="btn btn-primary btn-block"><i class="fa fa-facebook"></i> Sign Out</a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <% } %>
+                </ul>
             </div>
             <!-- /.navbar-collapse -->
         </div>

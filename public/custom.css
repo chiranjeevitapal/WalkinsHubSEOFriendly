@@ -10,3 +10,8 @@ body {
 h1 .btn {
 	font-size:30px;
 }
+
+.navbar-nav>li>a.profile-image {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}

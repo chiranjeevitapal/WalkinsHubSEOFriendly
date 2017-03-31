@@ -6,7 +6,7 @@ module.exports = {
 	'facebookAuth' : {
 		'clientID' 		: '1646263562333117', // your App ID
 		'clientSecret' 	: '91de007328f4ccfd7807b2aa1ce11a56', // your App Secret
-		'callbackURL' 	: 'http://localhost:8080/auth/facebook/callback',
+		'callbackURL' 	: 'http://www.walkinshub.com/auth/facebook/callback',
     'profileFields': ['id','email', 'displayName', 'photos', 'name', 'verified', 'gender']
 	},
 

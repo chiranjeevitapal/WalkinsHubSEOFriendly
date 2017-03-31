@@ -19,72 +19,115 @@ MongoClient.connect('mongodb://localhost:27017/jobu', (err, database) => {
 router.get('/sitemap.xml', function(req, res) {
     var xml = '<?xml version="1.0" encoding="UTF-8"?>' +
         '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" ' +
-        'xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" ' +
-        'xmlns:xhtml="http://www.w3.org/1999/xhtml" ' +
-        'xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" ' +
-        'xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" ' +
         'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ' +
-        'xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">';
+        'xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">' +
+        '<url>' +
+        '<loc>http://www.walkinshub.com/</loc>' +
+        '<changefreq>daily</changefreq>' +
+        '</url>' +
+        '<url>' +
+        '<loc>http://www.walkinshub.com/contact</loc>' +
+        '<changefreq>daily</changefreq>' +
+        '</url>' +
+        '<url>' +
+        '<loc>http://www.walkinshub.com/about</loc>' +
+        '<changefreq>daily</changefreq>' +
+        '</url>' +
+        '<url>' +
+        '<loc>http://www.walkinshub.com/feedback</loc>' +
+        '<changefreq>daily</changefreq>' +
+        '</url>' +
+        '<url>' +
+        '<loc>http://www.walkinshub.com/walkins/Hyderabad</loc>' +
+        '<changefreq>daily</changefreq>' +
+        '</url>' +
+        '<url>' +
+        '<loc>http://www.walkinshub.com/walkins/Bangalore</loc>' +
+        '<changefreq>daily</changefreq>' +
+        '</url>' +
+        '<url>' +
+        '<loc>http://www.walkinshub.com/walkins/Chennai</loc>' +
+        '<changefreq>daily</changefreq>' +
+        '</url>' +
+        '<url>' +
+        '<loc>http://www.walkinshub.com/walkins/Noida</loc>' +
+        '<changefreq>daily</changefreq>' +
+        '</url>' +
+        '<url>' +
+        '<loc>http://www.walkinshub.com/walkins/Kochi</loc>' +
+        '<changefreq>daily</changefreq>' +
+        '</url>' +
+        '<url>' +
+        '<loc>http://www.walkinshub.com/walkins/Mumbai</loc>' +
+        '<changefreq>daily</changefreq>' +
+        '</url>' +
+        '<url>' +
+        '<loc>http://www.walkinshub.com/walkins/Pune</loc>' +
+        '<changefreq>daily</changefreq>' +
+        '</url>';
 
 
-    db.collection('walkins').find({}).toArray(function(err, walkins) {
-        if (err) {
-            res.send(err);
-        } else {
-            //res.json(walkins);
-            walkins.forEach(function(walkin) {
-                //var companyName = walkin.company.replace(/[^a-zA-Z0-9_-]/g,'-');
-                xml += '<url><loc>http://www.walkinshub.com/walkin/' + walkin._id + '</loc><changefreq>daily</changefreq></url>';
-            });
-            xml += '<url><loc>http://www.walkinshub.com/contact/</loc><changefreq>daily</changefreq></url>' +
-                '<url><loc>http://www.walkinshub.com/</loc><changefreq>daily</changefreq></url></urlset>'
-            setTimeout(function() {
-                res.header('Content-Type', 'application/xml');
-                res.send(xml);
-            }, 2000);
-        }
-    });
+        db.collection('walkins').find({}).toArray(function(err, walkins) {
+            if (err) {
+                res.send(err);
+            } else {
+                //res.json(walkins);
+                walkins.forEach(function(walkin) {
+                    //var companyName = walkin.company.replace(/[^a-zA-Z0-9_-]/g,'-');
+                    xml += '<url><loc>http://www.walkinshub.com/walkin/' + walkin._id + '</loc><changefreq>daily</changefreq></url>';
+                });
+                xml += '</urlset>'
+                setTimeout(function() {
+                    res.header('Content-Type', 'application/xml');
+                    res.send(xml);
+                }, 2000);
+            }
+        });
 });
 
 router.get('/walkinstoday', function(req, res,
     next) {
-      var today = new Date();
-      var todayDateString = today.yyyymmdd();
-      db.collection('walkins').find({
-          "date": { $regex : todayDateString }
-      }).toArray(function(err, walkins) {
-          var obj = [];
+    var today = new Date();
+    var todayDateString = today.yyyymmdd();
+    db.collection('walkins').find({
+        "date": {
+            $regex: todayDateString
+        }
+    }).toArray(function(err, walkins) {
+        var obj = [];
 
-          if (err) {
-              res.send(err);
-          } else {
+        if (err) {
+            res.send(err);
+        } else {
             res.json(walkins);
-          }
+        }
     });
-  });
+});
 
-  router.get('/similarjobs/:location', function(req, res,
-      next) {
-        db.collection('walkins').find({
-          $or: [{
-              "experience": /0/
-          }, {
-              "experience": /Fresher/
-          }],
-          $and: [{
-              "location": {
-                  $regex: req.params.location
-              }
-          }]
-        }).sort({'date':-1}).toArray(function(err, walkins) {
-            var obj = [];
-            if (err) {
-                res.send(err);
-            } else {
-              res.json(walkins);
+router.get('/similarjobs/:location', function(req, res,
+    next) {
+    db.collection('walkins').find({
+        $or: [{
+            "experience": /0/
+        }, {
+            "experience": /Fresher/
+        }],
+        $and: [{
+            "location": {
+                $regex: req.params.location
             }
-      });
+        }]
+    }).sort({
+        'date': -1
+    }).toArray(function(err, walkins) {
+        var obj = [];
+        if (err) {
+            res.send(err);
+        } else {
+            res.json(walkins);
+        }
     });
+});
 
 /* Push notifications to registered fb subscribers */
 router.get('/notifyfbsubscribers', function(req, res,
@@ -101,11 +144,13 @@ router.get('/notifyfbsubscribers', function(req, res,
         '</thead>' +
         '<tbody>';
 
-        var today = new Date();
-        var todayDateString = today.yyyymmdd();
+    var today = new Date();
+    var todayDateString = today.yyyymmdd();
 
     db.collection('walkins').find({
-        "date": { $regex : todayDateString }
+        "date": {
+            $regex: todayDateString
+        }
     }).toArray(function(err, walkins) {
         var obj = [];
 
@@ -113,11 +158,11 @@ router.get('/notifyfbsubscribers', function(req, res,
             res.send(err);
         } else {
             walkins.forEach(function(walkin) {
-              html = html + '<tr><td style="border: 1px solid black;">' + walkin.company + '</td>' +
-                  '<td style="border: 1px solid black;">' + walkin.title + '</td>' +
-                  '<td style="border: 1px solid black;">' + walkin.experience + '</td>' +
-                  '<td style="border: 1px solid black;">' + walkin.location + '</td>' +
-                  '<td style="border: 1px solid black;"><a href="www.walkinshub.com/walkin/' + walkin._id + '"> Details </a></td></tr>';
+                html = html + '<tr><td style="border: 1px solid black;">' + walkin.company + '</td>' +
+                    '<td style="border: 1px solid black;">' + walkin.title + '</td>' +
+                    '<td style="border: 1px solid black;">' + walkin.experience + '</td>' +
+                    '<td style="border: 1px solid black;">' + walkin.location + '</td>' +
+                    '<td style="border: 1px solid black;"><a href="www.walkinshub.com/walkin/' + walkin._id + '"> Details </a></td></tr>';
             })
             html = html + '</tbody></table></body></html>'
             db.collection('users').find({}).toArray(function(err, subscriber) {
@@ -197,7 +242,7 @@ router.post('/postWalkin', (req, res) => {
     var today = new Date();
     var milli = today.getMilliseconds();
     var todayDateString = today.yyyymmdd();
-    req.body._id = companyName+'-'+todayDateString+'-'+milli
+    req.body._id = companyName + '-' + todayDateString + '-' + milli
     db.collection('walkins').save(req.body, (err, result) => {
         if (err) return console.log(err)
         //console.log('saved to database')

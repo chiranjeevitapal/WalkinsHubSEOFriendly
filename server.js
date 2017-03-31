@@ -41,7 +41,9 @@ app.use(express.static('node_modules'))
 var session = require('express-session');
 // required for passport
 //app.use(express.session({ secret: 'ilovetocode' })); // session secret
-app.use(session({ secret: 'ilovetocode' })); // session secret
+app.use(session({
+    secret: 'ilovetocode'
+})); // session secret
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
@@ -78,7 +80,7 @@ app.get('/', (req, res) => {
         if (err) return console.log(err)
         res.render('home.ejs', {
             walkins: result,
-            user : req.user
+            user: req.user
         })
     })
 })
@@ -103,7 +105,8 @@ app.get('/walkins/:location', function(req, res) {
     }).limit(100).toArray((err, result) => {
         if (err) return console.log(err)
         res.render('home.ejs', {
-            walkins: result
+            walkins: result,
+            user: req.user
         })
     })
 });
@@ -118,15 +121,21 @@ app.get('/tutorials', (req, res) => {
 })
 
 app.get('/contact', (req, res) => {
-    res.render('contact.ejs');
+    res.render('contact.ejs', {
+        user: req.user
+    })
 })
 
 app.get('/about', (req, res) => {
-    res.render('about.ejs');
+    res.render('about.ejs', {
+        user: req.user
+    })
 })
 
 app.get('/feedback', (req, res) => {
-    res.render('feedback.ejs');
+    res.render('feedback.ejs', {
+        user: req.user
+    })
 })
 
 app.get('/uploadChethan', (req, res) => {
@@ -147,7 +156,8 @@ app.get('/walkin/:id', function(req, res) {
                 res.redirect('/')
             } else {
                 res.render('details.ejs', {
-                    walkin: result
+                    walkin: result,
+                    user: req.user
                 })
             }
         });
