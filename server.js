@@ -88,7 +88,10 @@ app.get('/', (req, res) => {
             })
         })
     } else {
-        res.redirect(domainName);
+        res.writeHead(301, {
+            Location: 'http://www.walkinshub.com/'
+        });
+        res.end();
     }
 })
 
