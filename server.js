@@ -86,8 +86,9 @@ app.get('/', (req, res) => {
                 user: req.user
             })
         })
-    }else{
-      return;
+    } else {
+      res.status(400);
+      res.send('Bull shit :)');
     }
 })
 
