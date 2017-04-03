@@ -133,60 +133,85 @@ app.get('/tutorials', (req, res) => {
 })
 
 app.get('/contact', (req, res) => {
-    res.render('contact.ejs', {
-        user: req.user
-    })
+    if (host.toLowerCase().indexOf('walkinshub.com') != -1) {
+        res.render('contact.ejs', {
+            user: req.user
+        })
+    } else {
+        res.status(400);
+        res.send('Bull shit :)');
+    }
 })
 
 app.get('/about', (req, res) => {
-    res.render('about.ejs', {
-        user: req.user
-    })
+    if (host.toLowerCase().indexOf('walkinshub.com') != -1) {
+        res.render('about.ejs', {
+            user: req.user
+        })
+    } else {
+        res.status(400);
+        res.send('Bull shit :)');
+    }
 })
 
 app.get('/feedback', (req, res) => {
-    res.render('feedback.ejs', {
-        user: req.user
-    })
+    if (host.toLowerCase().indexOf('walkinshub.com') != -1) {
+        res.render('feedback.ejs', {
+            user: req.user
+        })
+    } else {
+        res.status(400);
+        res.send('Bull shit :)');
+    }
 })
 
 app.get('/uploadChethan', (req, res) => {
-    res.render('uploadChethan.ejs');
+    if (host.toLowerCase().indexOf('walkinshub.com') != -1) {
+        res.render('uploadChethan.ejs');
+    } else {
+        res.status(400);
+        res.send('Bull shit :)');
+    }
 })
 
 /* GET One Walkin with the provided ID */
 app.get('/walkin/:id', function(req, res) {
-    //var id = req.params.id.substring(req.params.id.lastIndexOf('-') + 1);
-    var id = req.params.id;
-    //console.log(id);
-    if (id.indexOf('-') == -1) {
-        db.collection('walkins').findOne({
-            _id: ObjectId(id)
-        }, function(err, result) {
-            if (err) return console.log(err)
-            if (result == null) {
-                res.redirect('/')
-            } else {
-                res.render('details.ejs', {
-                    walkin: result,
-                    user: req.user
-                })
-            }
-        });
+    if (host.toLowerCase().indexOf('walkinshub.com') != -1) {
+        //var id = req.params.id.substring(req.params.id.lastIndexOf('-') + 1);
+        var id = req.params.id;
+        //console.log(id);
+        if (id.indexOf('-') == -1) {
+            db.collection('walkins').findOne({
+                _id: ObjectId(id)
+            }, function(err, result) {
+                if (err) return console.log(err)
+                if (result == null) {
+                    res.redirect('/')
+                } else {
+                    res.render('details.ejs', {
+                        walkin: result,
+                        user: req.user
+                    })
+                }
+            });
+        } else {
+            db.collection('walkins').findOne({
+                _id: id
+            }, function(err, result) {
+                if (err) return console.log(err)
+                if (result == null) {
+                    res.redirect('/')
+                } else {
+                    res.render('details.ejs', {
+                        walkin: result,
+                        user: req.user
+                    })
+                }
+            });
+        }
     } else {
-        db.collection('walkins').findOne({
-            _id: id
-        }, function(err, result) {
-            if (err) return console.log(err)
-            if (result == null) {
-                res.redirect('/')
-            } else {
-                res.render('details.ejs', {
-                    walkin: result,
-                    user: req.user
-                })
-            }
-        });
+        res.status(400);
+        res.send('Bull shit :)');
     }
 
 });
