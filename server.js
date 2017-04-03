@@ -66,23 +66,33 @@ var cache = (duration) => {
     }
 }
 
+function getSubdomain(h) {
+    var parts = h.split(".");
+    if (parts.length == 2) return "www";
+    return parts[0];
+}
+
 //app.get('/', cache(10), (req, res) => {
 app.get('/', (req, res) => {
-    db.collection('walkins').find({
-        $or: [{
-            "experience": /0/
-        }, {
-            "experience": /Fresher/
-        }],
-    }).sort({
-        "date": -1
-    }).limit(100).toArray((err, result) => {
-        if (err) return console.log(err)
-        res.render('home.ejs', {
-            walkins: result,
-            user: req.user
+    var subdomain = getSubdomain(req.headers.host);
+    console.log(subdomain);
+    if (subdomain.toLowerCase() == 'walkinshub') {
+        db.collection('walkins').find({
+            $or: [{
+                "experience": /0/
+            }, {
+                "experience": /Fresher/
+            }],
+        }).sort({
+            "date": -1
+        }).limit(100).toArray((err, result) => {
+            if (err) return console.log(err)
+            res.render('home.ejs', {
+                walkins: result,
+                user: req.user
+            })
         })
-    })
+    }
 })
 
 /* GET One Walkin with the provided ID */
