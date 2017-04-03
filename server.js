@@ -123,8 +123,10 @@ app.get('/walkins/:location', function(req, res) {
             })
         })
     } else {
-        res.status(400);
-        res.send(domainName);
+        res.writeHead(301, {
+            Location: 'http://www.walkinshub.com/'
+        });
+        res.end();
     }
 });
 
@@ -136,8 +138,10 @@ app.get('/contact', (req, res) => {
             user: req.user
         })
     } else {
-        res.status(400);
-        res.send(domainName);
+        res.writeHead(301, {
+            Location: 'http://www.walkinshub.com/'
+        });
+        res.end();
     }
 })
 
@@ -149,8 +153,10 @@ app.get('/about', (req, res) => {
             user: req.user
         })
     } else {
-        res.status(400);
-        res.send(domainName);
+        res.writeHead(301, {
+            Location: 'http://www.walkinshub.com/'
+        });
+        res.end();
     }
 })
 
@@ -162,8 +168,10 @@ app.get('/feedback', (req, res) => {
             user: req.user
         })
     } else {
-        res.status(400);
-        res.send(domainName);
+        res.writeHead(301, {
+            Location: 'http://www.walkinshub.com/'
+        });
+        res.end();
     }
 })
 
@@ -173,8 +181,10 @@ app.get('/uploadChethan', (req, res) => {
     if (host.toLowerCase().indexOf(domainName) != -1) {
         res.render('uploadChethan.ejs');
     } else {
-        res.status(400);
-        res.send(domainName);
+        res.writeHead(301, {
+            Location: 'http://www.walkinshub.com/'
+        });
+        res.end();
     }
 })
 
@@ -216,8 +226,10 @@ app.get('/walkin/:id', function(req, res) {
             });
         }
     } else {
-        res.status(400);
-        res.send(domainName);
+        res.writeHead(301, {
+            Location: 'http://www.walkinshub.com/'
+        });
+        res.end();
     }
 
 });
