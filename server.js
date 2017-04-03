@@ -20,6 +20,7 @@ require('./config/passport')(passport); // pass passport for configuration
 var db
 
 var walkins = require('./routes/walkins');
+var domainName = 'walkinshub.com';
 
 MongoClient.connect('mongodb://localhost:27017/jobu', (err, database) => {
     if (err) return console.log(err)
@@ -70,7 +71,7 @@ var cache = (duration) => {
 app.get('/', (req, res) => {
     var host = req.headers.host;
     console.log(host);
-    if (host.toLowerCase().indexOf('walkinshub.com') != -1) {
+    if (host.toLowerCase().indexOf(domainName) != -1) {
         db.collection('walkins').find({
             $or: [{
                 "experience": /0/
@@ -88,7 +89,7 @@ app.get('/', (req, res) => {
         })
     } else {
         res.status(400);
-        res.send('Bull shit :)');
+        res.send(domainName);
     }
 })
 
@@ -97,7 +98,7 @@ app.get('/walkins/:location', function(req, res) {
     var host = req.headers.host;
     console.log(host);
     //var id = req.params.id.substring(req.params.id.lastIndexOf('-') + 1);
-    if (host.toLowerCase().indexOf('walkinshub.com') != -1) {
+    if (host.toLowerCase().indexOf(domainName) != -1) {
         var location = req.params.location;
         db.collection('walkins').find({
             $or: [{
@@ -121,57 +122,57 @@ app.get('/walkins/:location', function(req, res) {
         })
     } else {
         res.status(400);
-        res.send('Bull shit :)');
+        res.send(domainName);
     }
 });
 
 app.get('/contact', (req, res) => {
     var host = req.headers.host;
     console.log(host);
-    if (host.toLowerCase().indexOf('walkinshub.com') != -1) {
+    if (host.toLowerCase().indexOf(domainName) != -1) {
         res.render('contact.ejs', {
             user: req.user
         })
     } else {
         res.status(400);
-        res.send('Bull shit :)');
+        res.send(domainName);
     }
 })
 
 app.get('/about', (req, res) => {
     var host = req.headers.host;
     console.log(host);
-    if (host.toLowerCase().indexOf('walkinshub.com') != -1) {
+    if (host.toLowerCase().indexOf(domainName) != -1) {
         res.render('about.ejs', {
             user: req.user
         })
     } else {
         res.status(400);
-        res.send('Bull shit :)');
+        res.send(domainName);
     }
 })
 
 app.get('/feedback', (req, res) => {
     var host = req.headers.host;
     console.log(host);
-    if (host.toLowerCase().indexOf('walkinshub.com') != -1) {
+    if (host.toLowerCase().indexOf(domainName) != -1) {
         res.render('feedback.ejs', {
             user: req.user
         })
     } else {
         res.status(400);
-        res.send('Bull shit :)');
+        res.send(domainName);
     }
 })
 
 app.get('/uploadChethan', (req, res) => {
     var host = req.headers.host;
     console.log(host);
-    if (host.toLowerCase().indexOf('walkinshub.com') != -1) {
+    if (host.toLowerCase().indexOf(domainName) != -1) {
         res.render('uploadChethan.ejs');
     } else {
         res.status(400);
-        res.send('Bull shit :)');
+        res.send(domainName);
     }
 })
 
@@ -179,7 +180,7 @@ app.get('/uploadChethan', (req, res) => {
 app.get('/walkin/:id', function(req, res) {
     var host = req.headers.host;
     console.log(host);
-    if (host.toLowerCase().indexOf('walkinshub.com') != -1) {
+    if (host.toLowerCase().indexOf(domainName) != -1) {
         //var id = req.params.id.substring(req.params.id.lastIndexOf('-') + 1);
         var id = req.params.id;
         //console.log(id);
@@ -214,7 +215,7 @@ app.get('/walkin/:id', function(req, res) {
         }
     } else {
         res.status(400);
-        res.send('Bull shit :)');
+        res.send(domainName);
     }
 
 });
