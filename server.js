@@ -87,35 +87,40 @@ app.get('/', (req, res) => {
             })
         })
     } else {
-      res.status(400);
-      res.send('Bull shit :)');
+        res.status(400);
+        res.send('Bull shit :)');
     }
 })
 
 /* GET One Walkin with the provided ID */
 app.get('/walkins/:location', function(req, res) {
     //var id = req.params.id.substring(req.params.id.lastIndexOf('-') + 1);
-    var location = req.params.location;
-    db.collection('walkins').find({
-        $or: [{
-            "experience": /0/
-        }, {
-            "experience": /Fresher/
-        }],
-        $and: [{
-            "location": {
-                $regex: location
-            }
-        }]
-    }).sort({
-        "date": -1
-    }).limit(100).toArray((err, result) => {
-        if (err) return console.log(err)
-        res.render('home.ejs', {
-            walkins: result,
-            user: req.user
+    if (host.toLowerCase().indexOf('walkinshub.com') != -1) {
+        var location = req.params.location;
+        db.collection('walkins').find({
+            $or: [{
+                "experience": /0/
+            }, {
+                "experience": /Fresher/
+            }],
+            $and: [{
+                "location": {
+                    $regex: location
+                }
+            }]
+        }).sort({
+            "date": -1
+        }).limit(100).toArray((err, result) => {
+            if (err) return console.log(err)
+            res.render('home.ejs', {
+                walkins: result,
+                user: req.user
+            })
         })
-    })
+    } else {
+        res.status(400);
+        res.send('Bull shit :)');
+    }
 });
 
 app.get('/tutorials', (req, res) => {
