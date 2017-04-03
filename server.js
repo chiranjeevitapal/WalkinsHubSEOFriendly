@@ -66,17 +66,11 @@ var cache = (duration) => {
     }
 }
 
-function getSubdomain(h) {
-    var parts = h.split(".");
-    if (parts.length == 2) return "www";
-    return parts[0];
-}
-
 //app.get('/', cache(10), (req, res) => {
 app.get('/', (req, res) => {
-    var subdomain = getSubdomain(req.headers.host);
-    console.log(subdomain);
-    if (subdomain.toLowerCase() == 'walkinshub') {
+    var host = location.hostname;
+    console.log(host);
+    if (host.toLowerCase() == 'walkinshub.com') {
         db.collection('walkins').find({
             $or: [{
                 "experience": /0/
