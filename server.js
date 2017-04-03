@@ -86,6 +86,8 @@ app.get('/', (req, res) => {
                 user: req.user
             })
         })
+    }else{
+      return;
     }
 })
 
