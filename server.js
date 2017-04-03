@@ -70,7 +70,7 @@ var cache = (duration) => {
 app.get('/', (req, res) => {
     var host = req.headers.host;
     console.log(host);
-    if (host.toLowerCase() == 'walkinshub.com') {
+    if (host.toLowerCase().indexOf('walkinshub.com') != -1) {
         db.collection('walkins').find({
             $or: [{
                 "experience": /0/
