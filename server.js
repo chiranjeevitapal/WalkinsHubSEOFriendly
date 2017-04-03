@@ -94,6 +94,8 @@ app.get('/', (req, res) => {
 
 /* GET One Walkin with the provided ID */
 app.get('/walkins/:location', function(req, res) {
+    var host = req.headers.host;
+    console.log(host);
     //var id = req.params.id.substring(req.params.id.lastIndexOf('-') + 1);
     if (host.toLowerCase().indexOf('walkinshub.com') != -1) {
         var location = req.params.location;
@@ -123,16 +125,9 @@ app.get('/walkins/:location', function(req, res) {
     }
 });
 
-app.get('/tutorials', (req, res) => {
-    db.collection('walkins').find().toArray((err, result) => {
-        if (err) return console.log(err)
-        res.render('tutorials.ejs', {
-            walkins: result
-        })
-    })
-})
-
 app.get('/contact', (req, res) => {
+    var host = req.headers.host;
+    console.log(host);
     if (host.toLowerCase().indexOf('walkinshub.com') != -1) {
         res.render('contact.ejs', {
             user: req.user
@@ -144,6 +139,8 @@ app.get('/contact', (req, res) => {
 })
 
 app.get('/about', (req, res) => {
+    var host = req.headers.host;
+    console.log(host);
     if (host.toLowerCase().indexOf('walkinshub.com') != -1) {
         res.render('about.ejs', {
             user: req.user
@@ -155,6 +152,8 @@ app.get('/about', (req, res) => {
 })
 
 app.get('/feedback', (req, res) => {
+    var host = req.headers.host;
+    console.log(host);
     if (host.toLowerCase().indexOf('walkinshub.com') != -1) {
         res.render('feedback.ejs', {
             user: req.user
@@ -166,6 +165,8 @@ app.get('/feedback', (req, res) => {
 })
 
 app.get('/uploadChethan', (req, res) => {
+    var host = req.headers.host;
+    console.log(host);
     if (host.toLowerCase().indexOf('walkinshub.com') != -1) {
         res.render('uploadChethan.ejs');
     } else {
@@ -176,6 +177,8 @@ app.get('/uploadChethan', (req, res) => {
 
 /* GET One Walkin with the provided ID */
 app.get('/walkin/:id', function(req, res) {
+    var host = req.headers.host;
+    console.log(host);
     if (host.toLowerCase().indexOf('walkinshub.com') != -1) {
         //var id = req.params.id.substring(req.params.id.lastIndexOf('-') + 1);
         var id = req.params.id;
