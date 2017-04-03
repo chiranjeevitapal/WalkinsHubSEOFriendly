@@ -68,7 +68,7 @@ var cache = (duration) => {
 
 //app.get('/', cache(10), (req, res) => {
 app.get('/', (req, res) => {
-    var host = location.hostname;
+    var host = req.headers.host;
     console.log(host);
     if (host.toLowerCase() == 'walkinshub.com') {
         db.collection('walkins').find({
