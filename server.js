@@ -88,8 +88,7 @@ app.get('/', (req, res) => {
             })
         })
     } else {
-        res.status(400);
-        res.send(domainName);
+        res.redirect(domainName);
     }
 })
 
