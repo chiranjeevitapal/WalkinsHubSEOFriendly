@@ -20,11 +20,17 @@ require('./config/passport')(passport); // pass passport for configuration
 var db
 
 var walkins = require('./routes/walkins');
+//Prod
 var domainName = 'walkinshub.com';
+//Dev
+//var domainName = 'localhost:8080';
 
 MongoClient.connect('mongodb://localhost:27017/jobu', (err, database) => {
     if (err) return console.log(err)
     db = database
+    /*app.listen(process.env.PORT || 8080, () => {
+        console.log('listening on 8080')
+    })*/
     app.listen(process.env.PORT || 80, () => {
         console.log('listening on 80')
     })
@@ -70,7 +76,7 @@ var cache = (duration) => {
 //app.get('/', cache(10), (req, res) => {
 app.get('/', (req, res) => {
     var host = req.headers.host;
-    console.log(host);
+
     if (host.toLowerCase().indexOf(domainName) != -1) {
         db.collection('walkins').find({
             $or: [{
@@ -98,7 +104,7 @@ app.get('/', (req, res) => {
 /* GET One Walkin with the provided ID */
 app.get('/walkins/:location', function(req, res) {
     var host = req.headers.host;
-    console.log(host);
+
     //var id = req.params.id.substring(req.params.id.lastIndexOf('-') + 1);
     if (host.toLowerCase().indexOf(domainName) != -1) {
         var location = req.params.location;
@@ -132,7 +138,7 @@ app.get('/walkins/:location', function(req, res) {
 
 app.get('/contact', (req, res) => {
     var host = req.headers.host;
-    console.log(host);
+
     if (host.toLowerCase().indexOf(domainName) != -1) {
         res.render('contact.ejs', {
             user: req.user
@@ -147,7 +153,7 @@ app.get('/contact', (req, res) => {
 
 app.get('/about', (req, res) => {
     var host = req.headers.host;
-    console.log(host);
+
     if (host.toLowerCase().indexOf(domainName) != -1) {
         res.render('about.ejs', {
             user: req.user
@@ -162,7 +168,7 @@ app.get('/about', (req, res) => {
 
 app.get('/feedback', (req, res) => {
     var host = req.headers.host;
-    console.log(host);
+
     if (host.toLowerCase().indexOf(domainName) != -1) {
         res.render('feedback.ejs', {
             user: req.user
@@ -175,9 +181,29 @@ app.get('/feedback', (req, res) => {
     }
 })
 
+app.get('/profile', (req, res) => {
+    var host = req.headers.host;
+
+
+    if (host.toLowerCase().indexOf(domainName) != -1) {
+      if(req.user != undefined){
+        res.render('profile.ejs', {
+            user: req.user
+        })
+      }else{
+        res.redirect('/');
+      }
+    } else {
+        res.writeHead(301, {
+            Location: 'http://www.walkinshub.com/'
+        });
+        res.end();
+    }
+})
+
 app.get('/uploadChethan', (req, res) => {
     var host = req.headers.host;
-    console.log(host);
+
     if (host.toLowerCase().indexOf(domainName) != -1) {
         res.render('uploadChethan.ejs');
     } else {
@@ -191,7 +217,7 @@ app.get('/uploadChethan', (req, res) => {
 /* GET One Walkin with the provided ID */
 app.get('/walkin/:id', function(req, res) {
     var host = req.headers.host;
-    console.log(host);
+
     if (host.toLowerCase().indexOf(domainName) != -1) {
         //var id = req.params.id.substring(req.params.id.lastIndexOf('-') + 1);
         var id = req.params.id;
@@ -247,7 +273,7 @@ app.get('/auth/facebook', passport.authenticate('facebook', {
 // handle the callback after facebook has authenticated the user
 app.get('/auth/facebook/callback',
     passport.authenticate('facebook', {
-        successRedirect: '/',
+        successRedirect: '/profile',
         failureRedirect: '/'
     }));
 

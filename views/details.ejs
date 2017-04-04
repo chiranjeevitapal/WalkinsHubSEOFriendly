@@ -13,7 +13,7 @@
         <%= walkin.company %>,
             <%= walkin.location %>
     </title>
-    <meta name="description" content="Fresher jobs | Fresher walkins | Off Campus for freshers in <%= walkin.company %>"/>
+    <meta name="description" content="Fresher jobs | Fresher walkins | Off Campus for freshers in <%= walkin.company %>" />
     <meta name="keywords" content="Jobs for 2017 passed out, 2017 passed out, 2017 batch jobs, 2017 freshers, Jobs for 2016 passed out, 2016 passed out, 2016 batch jobs, 2016 freshers, Fresher Offcampus,Fresher referral,Jobs,Walkins,Fresher jobs, Fresher Placements, Fresher walkins,Software jobs, Today walkins,Backdoor jobs,Referral jobs,Home based jobs,Today jobs, Jobs in Bangalore, Walkins in Bangalore, Fresher Jobs in Bangalore, Fresher Walkins in  Bangalore, Online Jobs in Bangalore, Today Walkins in Bangalore, Today jobs in Bangalore , Jobs in Hyderabad, Walkins in Hyderabad, Fresher Jobs in Hyderabad, Fresher Walkins in  Hyderabad, Online Jobs in Hyderabad, Today Walkins in Hyderabad, Today jobs in Hyderabad,Jobs in Chennai, Walkins in Chennai, Fresher Jobs in Chennai, Fresher Walkins in  Chennai, Online Jobs in Chennai, Today Walkins in Chennai, Today jobs in Chennai,Work from home jobs,networking jobs, Data entry jobs, medical coding jobs, freelancing, make money online"
     />
     <meta name="application-name" content="walkinshub - Best choice for fresher jobs in India." />
@@ -109,55 +109,55 @@
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                  <% if (user == undefined ) { %>
-                    <li class="dropdown" id="notLoggedIn">
-                        <a href="#" class="dropdown-toggle hvr-underline-from-center" data-toggle="dropdown"><i class="fa fa-user" aria-hidden="true"></i> Login/Signup <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li class="login-dp">
-                                <div class="row">
-                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                        <a href="/auth/facebook" class="btn btn-primary btn-block"><i class="fa fa-facebook"></i> Sign In</a>
+                    <% if (user == undefined ) { %>
+                        <li class="dropdown" id="notLoggedIn">
+                            <a href="#" class="dropdown-toggle hvr-underline-from-center" data-toggle="dropdown"><i class="fa fa-user" aria-hidden="true"></i> Login/Signup <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li class="login-dp">
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                            <a href="/auth/facebook" class="btn btn-primary btn-block"><i class="fa fa-facebook"></i> Sign In</a>
+                                        </div>
                                     </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </li>
-                    <% } else{ %>
-                    <li class="dropdown" id="loggedIn">
-                        <a href="#" class="dropdown-toggle hvr-underline-from-center" data-toggle="dropdown">
+                                </li>
+                            </ul>
+                        </li>
+                        <% } else{ %>
+                            <li class="dropdown" id="loggedIn">
+                                <a href="#" class="dropdown-toggle hvr-underline-from-center" data-toggle="dropdown">
                             <img src="https://avatars.io/gravatar/<%= user.facebook.email %>/140" class="profile-image img-circle">
                             <strong id="username"><%= user.facebook.name %></strong>
                             <span class="caret"></span>
                         </a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <div class="navbar-login">
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <p class="text-center">
-                                                <!--span class="glyphicon glyphicon-user icon-size"></span-->
-                                                <img src="https://avatars.io/gravatar/<%= user.facebook.email %>/140" class="icon-size img-square">
-                                            </p>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <div class="navbar-login">
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <p class="text-center">
+                                                        <!--span class="glyphicon glyphicon-user icon-size"></span-->
+                                                        <img src="https://avatars.io/gravatar/<%= user.facebook.email %>/140" class="icon-size img-square">
+                                                    </p>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <p class="text-left">
+                                                        <a href="/profile" title="Profile" class="btn btn-info btn-block btn-sm card-1">Profile</a>
+                                                    </p>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <!--div class="col-lg-6">
-                                            <p class="text-left">
-                                                <a href="/profile" title="Profile" class="btn btn-info btn-block btn-sm card-1">Profile</a>
-                                            </p>
-                                        </div-->
-                                    </div>
-                                </div>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li class="login-dp">
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                                <a href="/logout" class="btn btn-primary btn-block"><i class="fa fa-facebook"></i> Sign Out</a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
                             </li>
-                            <li class="divider"></li>
-                            <li class="login-dp">
-                                <div class="row">
-                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                        <a href="/logout" class="btn btn-primary btn-block"><i class="fa fa-facebook"></i> Sign Out</a>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </li>
-                    <% } %>
+                            <% } %>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -165,11 +165,19 @@
         <!-- /.container-fluid -->
     </nav>
     <div class="container top-buffer">
-        <div class="row top-buffer-small">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 hidden-md hidden-lg">
                 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                <!-- responsive ads -->
-                <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5482095998977489" data-ad-slot="2404350455" data-ad-format="auto"></ins>
+                <!-- mobile top -->
+                <ins class="adsbygoogle" style="display:inline-block;width:300px;height:250px" data-ad-client="ca-pub-5482095998977489" data-ad-slot="9693834453"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 hidden-xs hidden-sm">
+                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- desktop top -->
+                <ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-5482095998977489" data-ad-slot="2170567659"></ins>
                 <script>
                     (adsbygoogle = window.adsbygoogle || []).push({});
                 </script>
@@ -184,7 +192,7 @@
                 <!--button *ngIf="showSubscribeButton" type="submit" (click)="checkLoginState()" class="card-1 btn btn-primary btn-sm"><i class="fa fa-facebook-square"></i> Subscribe</button-->
                 <!--div class="fb-follow pull-right" data-href="https://www.facebook.com/walkinshubadmin" data-layout="button_count" data-size="small" data-show-faces="false"></div-->
                 <!--div class="fb-like" data-layout="button_count" data-action="like" data-size="large" data-show-faces="false" data-share="true"></div-->
-                <div class="fb-like" data-href="https://www.facebook.com/walkinshubindia" data-layout="standard" data-action="like" data-size="large" data-show-faces="false" data-share="true"></div>
+                <div class="fb-like" data-href="https://www.facebook.com/walkinshubindia" data-layout="button_count" data-action="like" data-size="large" data-show-faces="false" data-share="true"></div>
                 <!-- <a href="whatsapp://send?text=Walk-in interviews in <%= walkin.company %>, <%= walkin.location %>" data-href="" data-action="share/whatsapp/share" class=""><i class="fa fa-whatsapp" aria-hidden="true"></i> Share</a> -->
                 <a href="whatsapp://send?text=Walk-in interviews in <%= walkin.company %>, <%= walkin.location %> http://www.walkinshub.com/walkin/<%= walkin._id %>" data-action="share/whatsapp/share" data-href="" class="btn btn-md btn-success hidden-md hidden-lg"><i class="fa fa-whatsapp" aria-hidden="true"></i> Share</a>
             </div>
@@ -192,18 +200,18 @@
         <div class="row top-buffer-small">
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                 <div class="dropdown">
-                    <button class="btn btn-primary dropdown-toggle form-control" id="cities" type="button" data-toggle="dropdown">Select City
+                    <button class="btn btn-success dropdown-toggle form-control" id="cities" type="button" data-toggle="dropdown">Select City
                     <span class="caret"></span></button>
                     <ul class="dropdown-menu" role="menu" aria-labelledby="cities" style="width: 350px; height: 300px; overflow: auto">
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="/walkins/Hyderabad"><h2>Hyderabad<h2></a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="/walkins/Bangalore"><h2>Bangalore<h2></a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="/walkins/Chennai"><h2>Chennai<h2></a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="/walkins/Hyderabad"><h4>Hyderabad<h4></a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="/walkins/Bangalore"><h4>Bangalore<h4></a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="/walkins/Chennai"><h4>Chennai<h4></a></li>
                         <!--li role="presentation"><a role="menuitem" tabindex="-1" href="/walkins/Chennai"><h2>Delhi<h2></a></li-->
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="/walkins/Noida"><h2>Gurgaon<h2></a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="/walkins/Kochi"><h2>Kochi<h2></a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="/walkins/Mumbai"><h2>Mumbai<h2></a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="/walkins/Noida"><h2>Noida<h2></a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="/walkins/Pune"><h2>Pune<h2></a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="/walkins/Noida"><h4>Gurgaon<h4></a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="/walkins/Kochi"><h4>Kochi<h4></a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="/walkins/Mumbai"><h4>Mumbai<h4></a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="/walkins/Noida"><h4>Noida<h4></a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="/walkins/Pune"><h4>Pune<h4></a></li>
                     </ul>
                 </div>
             </div>
@@ -354,7 +362,7 @@
                         (adsbygoogle = window.adsbygoogle || []).push({});
                     </script>
                 </div>
-                <a href="/auth/facebook" class="btn btn-primary btn-sm pull-right"><span class="fa fa-facebook"></span> Subscribe</a>
+                <!--a href="/auth/facebook" class="btn btn-primary btn-sm pull-right"><span class="fa fa-facebook"></span> Subscribe</a-->
             </div>
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                 <h2 class="text-success">Similar Jobs</h2>
@@ -385,30 +393,30 @@
         </script>
 
         <% if (user == undefined ) { %>
-        <script type="text/javascript">
-            $(document).ready(function() {
-                $("#subscribeModal").modal('show');
-            });
-        </script>
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    $("#subscribeModal").modal('show');
+                });
+            </script>
 
-        <div id="subscribeModal" class="modal fade">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                        <h4 class="modal-title">Subscribe to WalkinsHub</h4>
-                    </div>
-                    <div class="modal-body">
-                        <p>Subscribe to our mailing list to get the latest updates straight in your inbox.</p>
-                        <div class="form-group">
-                            <a href="/auth/facebook" class="btn btn-primary btn-lg"><i class="fa fa-facebook"></i> Subscribe with Facebook</a>
-                            <button type="button" class="pull-right btn btn-link" data-dismiss="modal" aria-hidden="true">skip</button>
+            <div id="subscribeModal" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h4 class="modal-title">Subscribe to WalkinsHub</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>Subscribe to our mailing list to get the latest updates straight in your inbox.</p>
+                            <div class="form-group">
+                                <a href="/auth/facebook" class="btn btn-primary btn-lg"><i class="fa fa-facebook-official "></i> Continue with Facebook</a>
+                                <button type="button" class="pull-right btn btn-link" data-dismiss="modal" aria-hidden="true">skip</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <% } %>
+            <% } %>
 
 </body>
 
