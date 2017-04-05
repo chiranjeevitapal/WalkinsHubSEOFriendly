@@ -177,13 +177,17 @@
                         <% } %>-->
         <div class="row top-buffer-small">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                <!--a href="/auth/facebook" class="btn btn-primary btn-sm pull-right"><span class="fa fa-facebook"></span> Subscribe</a-->
-                <!--button class="card-1 btn btn-danger" title="Filters" type="button" data-toggle="collapse" data-target="#collapseFilters" aria-expanded="false" aria-controls="collapseFilters">
-            <i class="fa fa-filter" aria-hidden="true"></i> Filter
-          </button-->
-                <!--button *ngIf="showSubscribeButton" type="submit" (click)="checkLoginState()" class="card-1 btn btn-primary btn-sm"><i class="fa fa-facebook-square"></i> Subscribe</button-->
-                <!--div class="fb-follow pull-right" data-href="https://www.facebook.com/walkinshubadmin" data-layout="button_count" data-size="small" data-show-faces="false"></div-->
-                <!--div class="fb-like" data-layout="button_count" data-action="like" data-size="large" data-show-faces="false" data-share="true"></div-->
+                <div id="fb-root"></div>
+                <script>
+                    (function(d, s, id) {
+                        var js, fjs = d.getElementsByTagName(s)[0];
+                        if (d.getElementById(id)) return;
+                        js = d.createElement(s);
+                        js.id = id;
+                        js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.8";
+                        fjs.parentNode.insertBefore(js, fjs);
+                    }(document, 'script', 'facebook-jssdk'));
+                </script>
                 <div class="fb-like" data-href="https://www.facebook.com/walkinshubindia" data-layout="button_count" data-action="like" data-size="large" data-show-faces="false" data-share="true"></div>
             </div>
         </div>
