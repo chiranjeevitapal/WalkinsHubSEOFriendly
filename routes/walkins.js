@@ -5,6 +5,7 @@ var cheerio = require('cheerio');
 var request = require('request');
 var fs = require('fs');
 var todaywalkinsScraper = require('../utils/todaywalkinsScraper.js');
+var prepareinterviewScraper = require('../utils/prepareinterviewScraper.js');
 var mailSender = require('../utils/mailSender.js');
 var capture = require('../utils/capture.js');
 var passport = require('passport');
@@ -226,13 +227,23 @@ router.get('/scrapeTodayUrls', function(req, res) {
     todaywalkinsScraper.scrapeTodayUrls(res);
 })
 
+router.get('/scrapeTodayUrls2', function(req, res) {
+    prepareinterviewScraper.scrapeTodayUrls(res);
+})
+
 //scrape each url from today walkins
 router.get('/scrape/:website/:link', function(req, res) {
+
     var website = req.params.website;
     var link = req.params.link;
     //console.log(website + " / "+ link );
     if (website == 'todaywalkins') {
         todaywalkinsScraper.scrape(res, link);
+        //console.log("scraped : "+link);
+    }
+
+    if (website == 'prepareinterview') {
+        prepareinterviewScraper.scrape(res, link);
         //console.log("scraped : "+link);
     }
 })

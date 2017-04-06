@@ -2,13 +2,58 @@
 <link rel="stylesheet" href="bootstrap/dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="styles.css">
 <script>
-    function scrapeAll() {
+    function scrapeAll1() {
         $.ajax({
             url: '/api/scrapeTodayUrls',
             type: 'GET',
             success: function(data) {
                 //console.log(data);
                 var website = "todaywalkins";
+                //var time = 500;
+                data.forEach(function(url, i) {
+                    setTimeout(function() {
+                        $.ajax({
+                            url: '/api/scrape/' + website + '/' + url,
+                            type: 'GET',
+                            success: function(walkin) {
+                                //console.log(walkin);
+                                var companyName = walkin.company.replace(/[^a-zA-Z0-9_-]/g, '-');
+                                //var today = new Date();
+                                //var todayDateString = today.yyyymmdd();
+                                //  walkin._id=companyName+'';
+                                $.ajax({
+                                    url: "/api/postWalkin",
+                                    type: "POST",
+                                    data: JSON.stringify(walkin),
+                                    contentType: "application/json",
+                                    dataType: "json",
+                                    success: function() {
+                                        console.log("data uploaded");
+                                    }
+                                });
+                                console.log("data uploaded !!!");
+                            },
+                            error: function(d) {
+                                console.log('woops!'); //or whatever
+                            }
+
+                        });
+                    }, (i + 1) * 50);
+                })
+            },
+            error: function(data) {
+                console.log('woops!'); //or whatever
+            }
+        });
+    }
+
+    function scrapeAll2() {
+        $.ajax({
+            url: '/api/scrapeTodayUrls2',
+            type: 'GET',
+            success: function(data) {
+                //console.log(data);
+                var website = "prepareinterview";
                 //var time = 500;
                 data.forEach(function(url, i) {
                     setTimeout(function() {
@@ -114,11 +159,14 @@
 </script>
 <div class="container top-buffer">
     <div class="row">
-        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-            <button class="btn btn-md btn-danger" onclick="scrapeAll()">Scrape All </button>
+        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+            <button class="btn btn-lg btn-danger" onclick="scrapeAll1()">Scrape All 1 </button>
         </div>
-        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-            <button class="btn btn-md btn-danger" onclick="notify()">Notify FB</button>
+        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+            <button class="btn btn-lg btn-danger" onclick="scrapeAll2()">Scrape All 2 </button>
+        </div>
+        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+            <button class="btn btn-lg btn-danger" onclick="notify()">Notify FB</button>
         </div>
     </div>
 

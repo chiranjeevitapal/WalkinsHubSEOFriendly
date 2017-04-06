@@ -86,7 +86,7 @@ app.get('/', (req, res) => {
             }],
         }).sort({
             "date": -1
-        }).limit(100).toArray((err, result) => {
+        }).limit(200).toArray((err, result) => {
             if (err) return console.log(err)
             res.render('home.ejs', {
                 walkins: result,
@@ -121,7 +121,7 @@ app.get('/walkins/:location', function(req, res) {
             }]
         }).sort({
             "date": -1
-        }).limit(100).toArray((err, result) => {
+        }).limit(200).toArray((err, result) => {
             if (err) return console.log(err)
             res.render('home.ejs', {
                 walkins: result,
