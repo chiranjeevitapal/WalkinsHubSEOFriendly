@@ -32,7 +32,9 @@ function scrapeTodayUrls(res) {
                     if (today == date) {
                         url = url.substring(url.indexOf('.com/') + 5, url.indexOf('.html'));
                         url = url.substring(url.indexOf(mm) + 3);
-                        urlsArray.push(url.trim());
+                        if (urlsArray.indexOf(url) == -1) {
+                          urlsArray.push(url.trim());
+                        }
                     }
                 })
             });
