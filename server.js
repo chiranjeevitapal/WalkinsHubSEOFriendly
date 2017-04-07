@@ -83,6 +83,8 @@ app.get('/', (req, res) => {
                 "experience": /0/
             }, {
                 "experience": /Fresher/
+            }, {
+                "experience": /Freshers/
             }],
         }).sort({
             "date": -1
@@ -113,6 +115,8 @@ app.get('/walkins/:location', function(req, res) {
                 "experience": /0/
             }, {
                 "experience": /Fresher/
+            }, {
+                "experience": /Freshers/
             }],
             $and: [{
                 "location": {
@@ -186,13 +190,13 @@ app.get('/profile', (req, res) => {
 
 
     if (host.toLowerCase().indexOf(domainName) != -1) {
-      if(req.user != undefined){
-        res.render('profile.ejs', {
-            user: req.user
-        })
-      }else{
-        res.redirect('/');
-      }
+        if (req.user != undefined) {
+            res.render('profile.ejs', {
+                user: req.user
+            })
+        } else {
+            res.redirect('/');
+        }
     } else {
         res.writeHead(301, {
             Location: 'http://www.walkinshub.com/'
