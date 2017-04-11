@@ -1,17 +1,1 @@
-body {
-	background: url('/assets/example/bg_6.jpg') no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-  	background-color:#333;
-}
-
-h1 .btn {
-	font-size:30px;
-}
-
-.navbar-nav>li>a.profile-image {
-    padding-top: 10px;
-    padding-bottom: 10px;
-}
+body{background:url(/assets/example/bg_6.jpg) center center no-repeat fixed #333;-webkit-background-size:cover;-moz-background-size:cover;-o-background-size:cover;background-size:cover}h1 .btn{font-size:30px}.navbar-nav>li>a.profile-image{padding-top:10px;padding-bottom:10px}

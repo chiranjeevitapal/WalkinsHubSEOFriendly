@@ -78,20 +78,69 @@ app.get('/', (req, res) => {
     var host = req.headers.host;
 
     if (host.toLowerCase().indexOf(domainName) != -1) {
+        db.collection('walkins').find({}).sort({
+            "date": -1
+        }).limit(200).toArray((err, result) => {
+            if (err) return console.log(err)
+            res.render('home.ejs', {
+                walkins: result,
+                jobsType: 'Fresher/Experienced Jobs',
+                user: req.user
+            })
+        })
+    } else {
+        res.writeHead(301, {
+            Location: 'http://www.walkinshub.com/'
+        });
+        res.end();
+    }
+})
+
+//app.get('/', cache(10), (req, res) => {
+app.get('/jobs/fresher', (req, res) => {
+    var host = req.headers.host;
+    if (host.toLowerCase().indexOf(domainName) != -1) {
         db.collection('walkins').find({
             $or: [{
-                "experience": /0/
+                "experience": /0 -/
             }, {
                 "experience": /Fresher/
-            }, {
-                "experience": /Freshers/
-            }],
+            }]
         }).sort({
             "date": -1
         }).limit(200).toArray((err, result) => {
             if (err) return console.log(err)
             res.render('home.ejs', {
                 walkins: result,
+                jobsType:'Fresher Jobs',
+                user: req.user
+            })
+        })
+    } else {
+        res.writeHead(301, {
+            Location: 'http://www.walkinshub.com/'
+        });
+        res.end();
+    }
+})
+
+//app.get('/', cache(10), (req, res) => {
+app.get('/jobs/experienced', (req, res) => {
+    var host = req.headers.host;
+    if (host.toLowerCase().indexOf(domainName) != -1) {
+        db.collection('walkins').find({
+            $and: [{
+                "experience": {$not: /0 -/}
+            }, {
+                "experience": {$not: /Fresher/}
+            }]
+        }).sort({
+            "date": -1
+        }).limit(200).toArray((err, result) => {
+            if (err) return console.log(err)
+            res.render('home.ejs', {
+                walkins: result,
+                jobsType:'Experienced Jobs',
                 user: req.user
             })
         })
@@ -111,24 +160,16 @@ app.get('/walkins/:location', function(req, res) {
     if (host.toLowerCase().indexOf(domainName) != -1) {
         var location = req.params.location;
         db.collection('walkins').find({
-            $or: [{
-                "experience": /0/
-            }, {
-                "experience": /Fresher/
-            }, {
-                "experience": /Freshers/
-            }],
-            $and: [{
-                "location": {
-                    $regex: location
-                }
-            }]
+            "location": {
+                $regex: location
+            }
         }).sort({
             "date": -1
         }).limit(200).toArray((err, result) => {
             if (err) return console.log(err)
             res.render('home.ejs', {
                 walkins: result,
+                jobsType:location+' Jobs',
                 user: req.user
             })
         })

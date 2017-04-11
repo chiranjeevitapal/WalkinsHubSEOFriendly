@@ -65,6 +65,14 @@ router.get('/sitemap.xml', function(req, res) {
         '<url>' +
         '<loc>http://www.walkinshub.com/walkins/Pune</loc>' +
         '<changefreq>daily</changefreq>' +
+        '</url>'+
+        '<url>' +
+        '<loc>http://www.walkinshub.com/jobs/Fresher</loc>' +
+        '<changefreq>daily</changefreq>' +
+        '</url>'+
+        '<url>' +
+        '<loc>http://www.walkinshub.com/jobs/Experienced</loc>' +
+        '<changefreq>daily</changefreq>' +
         '</url>';
 
 
