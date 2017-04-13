@@ -67,11 +67,11 @@ router.get('/sitemap.xml', function(req, res) {
         '<changefreq>daily</changefreq>' +
         '</url>'+
         '<url>' +
-        '<loc>http://www.walkinshub.com/jobs/Fresher</loc>' +
+        '<loc>http://www.walkinshub.com/jobs/fresher</loc>' +
         '<changefreq>daily</changefreq>' +
         '</url>'+
         '<url>' +
-        '<loc>http://www.walkinshub.com/jobs/Experienced</loc>' +
+        '<loc>http://www.walkinshub.com/jobs/experienced</loc>' +
         '<changefreq>daily</changefreq>' +
         '</url>';
 
