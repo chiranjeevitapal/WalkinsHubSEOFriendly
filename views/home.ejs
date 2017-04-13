@@ -248,7 +248,7 @@
                 </div>
                 <% } %>
                     <% for(var i=0; i<walkins.length; i++) {%>
-                        <% if( i==3){%>
+                        <% if( i==1){%>
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 hidden-md hidden-lg">
                                 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                                 <!-- responsive ads -->
@@ -256,15 +256,10 @@
                                 <script>
                                     (adsbygoogle = window.adsbygoogle || []).push({});
                                 </script>
-                                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                                <ins class="adsbygoogle" style="display:block" data-ad-format="autorelaxed" data-ad-client="ca-pub-5482095998977489" data-ad-slot="6218344059"></ins>
-                                <script>
-                                    (adsbygoogle = window.adsbygoogle || []).push({});
-                                </script>
                             </div>
-                            <% } %>
-                                <% if( i==8){%>
-                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 hidden-xs hidden-sm">
+                            <% }%>
+                                <% if( i==3){%>
+                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 hidden-md hidden-lg">
                                         <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                                         <!-- responsive ads -->
                                         <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5482095998977489" data-ad-slot="2404350455" data-ad-format="auto"></ins>
@@ -278,36 +273,51 @@
                                         </script>
                                     </div>
                                     <% } %>
-                                        <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
-                                            <div class="panel panel-warning effect3">
-                                                <div class="panel-heading" itemscope itemtype="http://schema.org/JobPosting">
-                                                    <p><b class="small">Posted On:</b> <b class="small text-danger" itemprop="datePosted"> <%= walkins[i].date.substring(0,10) %> </b></p>
-                                                    <%if (walkins[i].walkinDate == '') { %>
-                                                        <p><b class="small">Interview Date:</b> <b class="small text-danger">Check Details</b></p>
-                                                        <% } else {%>
-                                                            <p><b class="small">Interview Date:</b> <b class="small text-danger"><%= walkins[i].walkinDate.substring(0,22) %></b></p>
-                                                            <% } %>
-                                                                <p><b class="small" itemprop="hiringOrganization"><%= walkins[i].company.substring(0,18) %></b></p>
-                                                                <p class="small" itemprop="title">
-                                                                    <%= walkins[i].position.substring(0,35) %>
-                                                                </p>
-                                                                <p><b class="small" itemprop="jobLocation"><%= walkins[i].location.substring(0,25) %></b> <i class="pull-right small" itemprop="experienceRequirements"><%= walkins[i].experience %></i></p>
-                                                                <!--a class="card-1 btn btn-primary btn-md pull-right" itemprop="url" href="/walkin/<%= walkins[i]._id %>">Job Details</a-->
-                                                                <a href="whatsapp://send?text=Walk-in interviews in <%= walkins[i].company %>, <%= walkins[i].location %> http://www.walkinshub.com/walkin/<%= walkins[i]._id %>" data-action="share/whatsapp/share" data-href="" class="btn btn-lg btn-success hidden-md hidden-lg"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
-                                                                <!--div class="fb-like" data-layout="button_count" data-action="like" data-href='http://www.walkinshub.com/walkin/<%= walkins[i]._id %>' data-size="small" data-show-faces="false" data-share="true"></div-->
-                                                                <div class="clearfix"></div>
-                                                </div>
-                                                <a href="/walkin/<%= walkins[i]._id %>">
-                                                    <div class="panel-footer">
-                                                        <span class="pull-left">Job Details</span>
-                                                        <span class="pull-right"><i class="fa fa-arrow-circle-right fa-2x"></i></span>
-                                                        <div class="clearfix"></div>
-                                                    </div>
-                                                </a>
+                                        <% if( i==8){%>
+                                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 hidden-xs hidden-sm">
+                                                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                                                <!-- responsive ads -->
+                                                <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5482095998977489" data-ad-slot="2404350455" data-ad-format="auto"></ins>
+                                                <script>
+                                                    (adsbygoogle = window.adsbygoogle || []).push({});
+                                                </script>
+                                                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                                                <ins class="adsbygoogle" style="display:block" data-ad-format="autorelaxed" data-ad-client="ca-pub-5482095998977489" data-ad-slot="6218344059"></ins>
+                                                <script>
+                                                    (adsbygoogle = window.adsbygoogle || []).push({});
+                                                </script>
                                             </div>
-                                        </div>
+                                            <% } %>
+                                                <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 top-buffer-small">
+                                                    <div class="panel panel-warning effect3">
+                                                        <div class="panel-heading" itemscope itemtype="http://schema.org/JobPosting">
+                                                            <p><b class="small">Posted On:</b> <b class="small text-danger" itemprop="datePosted"> <%= walkins[i].date.substring(0,10) %> </b></p>
+                                                            <%if (walkins[i].walkinDate == '') { %>
+                                                                <p><b class="small">Interview Date:</b> <b class="small text-danger">Check Details</b></p>
+                                                                <% } else {%>
+                                                                    <p><b class="small">Interview Date:</b> <b class="small text-danger"><%= walkins[i].walkinDate.substring(0,22) %></b></p>
+                                                                    <% } %>
+                                                                        <p><b class="small" itemprop="hiringOrganization"><%= walkins[i].company.substring(0,18) %></b></p>
+                                                                        <p class="small" itemprop="title">
+                                                                            <%= walkins[i].position.substring(0,35) %>
+                                                                        </p>
+                                                                        <p><b class="small" itemprop="jobLocation"><%= walkins[i].location.substring(0,25) %></b> <i class="pull-right small" itemprop="experienceRequirements"><%= walkins[i].experience %></i></p>
+                                                                        <!--a class="card-1 btn btn-primary btn-md pull-right" itemprop="url" href="/walkin/<%= walkins[i]._id %>">Job Details</a-->
+                                                                        <a href="whatsapp://send?text=Walk-in interviews in <%= walkins[i].company %>, <%= walkins[i].location %> http://www.walkinshub.com/walkin/<%= walkins[i]._id %>" data-action="share/whatsapp/share" data-href="" class="btn btn-lg btn-success hidden-md hidden-lg"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+                                                                        <!--div class="fb-like" data-layout="button_count" data-action="like" data-href='http://www.walkinshub.com/walkin/<%= walkins[i]._id %>' data-size="small" data-show-faces="false" data-share="true"></div-->
+                                                                        <div class="clearfix"></div>
+                                                        </div>
+                                                        <a href="/walkin/<%= walkins[i]._id %>">
+                                                            <div class="panel-footer">
+                                                                <span class="pull-left">Job Details</span>
+                                                                <span class="pull-right"><i class="fa fa-arrow-circle-right fa-2x"></i></span>
+                                                                <div class="clearfix"></div>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                </div>
 
-                                        <% } %>
+                                                <% } %>
         </div>
     </div>
 
