@@ -9,6 +9,32 @@ var minify = require('express-minify');
 var mongoose = require('mongoose');
 var flash = require('connect-flash');
 var mcache = require('memory-cache');
+var multer = require('multer');
+var path = require('path');
+var storage = multer.diskStorage({
+    destination: function(req, file, callback) {
+        callback(null, '../resumes');
+    },
+    filename: function(req, file, callback) {
+        callback(null, req.user.facebook.id + '.docx');
+    }
+});
+var upload = multer({
+    storage: storage,
+    fileFilter: function(req, file, callback) {
+        var ext = path.extname(file.originalname);
+        if (ext !== '.doc' && ext !== '.docx') {
+            return callback(new Error('Only doc/docx files are allowed.'))
+        }
+        callback(null, true)
+    },
+    limits: {
+        fileSize: 50 * 1024, //50Kb
+        files: 1
+    }
+}).single('resume');
+
+
 
 // configuration ===============================================================
 mongoose.connect('mongodb://localhost:27017/jobu'); // connect to our database
@@ -96,6 +122,28 @@ app.get('/', (req, res) => {
     }
 })
 
+app.post('/api/resume', function(req, res) {
+  console.log(req.user);
+    upload(req, res, function(err) {
+        if (err) {
+            return res.end('' + err);
+        } {
+            db.collection('users').update({
+                _id: ObjectId(req.user.id)
+            }, {
+                $set: {
+                    resume: req.user.facebook.id + '.docx'
+                }
+            }, function(err, result) {
+                if (err)
+                    return res.end('' + err);
+                    res.end("File is uploaded");
+            });
+        }
+
+    });
+});
+
 //app.get('/', cache(10), (req, res) => {
 app.get('/jobs/fresher', (req, res) => {
     var host = req.headers.host;
@@ -112,7 +160,7 @@ app.get('/jobs/fresher', (req, res) => {
             if (err) return console.log(err)
             res.render('home.ejs', {
                 walkins: result,
-                jobsType:'Fresher Jobs',
+                jobsType: 'Fresher Jobs',
                 user: req.user
             })
         })
@@ -130,9 +178,13 @@ app.get('/jobs/experienced', (req, res) => {
     if (host.toLowerCase().indexOf(domainName) != -1) {
         db.collection('walkins').find({
             $and: [{
-                "experience": {$not: /0 -/}
+                "experience": {
+                    $not: /0 -/
+                }
             }, {
-                "experience": {$not: /Fresher/}
+                "experience": {
+                    $not: /Fresher/
+                }
             }]
         }).sort({
             "date": -1
@@ -140,7 +192,7 @@ app.get('/jobs/experienced', (req, res) => {
             if (err) return console.log(err)
             res.render('home.ejs', {
                 walkins: result,
-                jobsType:'Experienced Jobs',
+                jobsType: 'Experienced Jobs',
                 user: req.user
             })
         })
@@ -169,7 +221,7 @@ app.get('/walkins/:location', function(req, res) {
             if (err) return console.log(err)
             res.render('home.ejs', {
                 walkins: result,
-                jobsType:location+' Jobs',
+                jobsType: location + ' Jobs',
                 user: req.user
             })
         })
