@@ -107,7 +107,7 @@
         <div class="row">
             <div class="panel panel-info">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><%= user.facebook.name %></h3>
+                    <h3 class="panel-title">Welcome, <b><%= user.facebook.name %></b></h3>
                 </div>
                 <div class="panel-body">
                     <div class="row">
@@ -121,21 +121,24 @@
                         <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                             <ul class="list-group">
                                 <li class="list-group-item list-group-item-default">Email<span class="pull-right"><%= user.facebook.email %></span></li>
-                                <li class="list-group-item list-group-item-default">Resume<span class="pull-right"><%= user.resume %></span></li>
-                                </li>
+                                <%if (user.get('resume') != undefined && user.get('resume') != '' && user.get('resume') !='undefined') { %>
+                                    <li class="list-group-item list-group-item-default">Resume<span class="pull-right"><a href="download/<%= user.get('resume')%>">Your Resume</a></span></li>
+                                    <% } else{ %>
+                                        <li class="list-group-item list-group-item-default">Resume<span class="pull-right">Not Available</span></li>
+                                        <% } %>
                             </ul>
                         </div>
                     </div>
                     <div class="row">
-                        <h3 class="text-center">Upload Resume </h3>
+                        <h3 class="text-center">Upload/Update Resume </h3>
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                             <form id="uploadForm" class="well" enctype="multipart/form-data" action="/api/resume %>" method="post">
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2 col-md-offset-3 col-lg-offset-3">
-                                        <input type="file" name="resume" />
+                                        <input type="file" name="resume" id="fileupload" />
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2 col-md-offset-3 col-lg-offset-3 top-buffer-small">
-                                        <input type="submit" class="btn btn-md btn-primary" value="Upload Resume" name="submit">
+                                        <input type="submit" class="btn btn-md btn-primary" value="Upload Resume" name="submit" id="submit">
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2 col-md-offset-3 col-lg-offset-3">
                                         <span id="status"></span>
@@ -161,9 +164,21 @@
                     success: function(response) {
                         console.log(response)
                         $("#status").empty().text(response);
+                        setTimeout(function(){
+                          location.reload();
+                        }, 1000);
                     }
                 });
                 return false;
+            });
+        });
+        $(document).ready(function() {
+            $('#submit').bind("click", function() {
+                var fileVal = $('#fileupload').val();
+                if (fileVal == '') {
+                    alert("Please select a file.");
+                    return false;
+                }
             });
         });
     </script>

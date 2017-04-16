@@ -123,7 +123,6 @@ app.get('/', (req, res) => {
 })
 
 app.post('/api/resume', function(req, res) {
-  console.log(req.user);
     upload(req, res, function(err) {
         if (err) {
             return res.end('' + err);
@@ -137,11 +136,16 @@ app.post('/api/resume', function(req, res) {
             }, function(err, result) {
                 if (err)
                     return res.end('' + err);
-                    res.end("File is uploaded");
+                res.end("File is uploaded");
             });
         }
 
     });
+});
+
+app.get('/download/:id', function(req, res) {
+    var file = '../resumes/' + req.params.id;
+    res.download(file); // Set disposition and send it.
 });
 
 //app.get('/', cache(10), (req, res) => {
