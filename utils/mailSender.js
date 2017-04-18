@@ -1,5 +1,5 @@
 var nodemailer = require('nodemailer');
-var transporter = nodemailer.createTransport('smtps://walkinshubindia%40gmail.com:Chinna@*27@smtp.gmail.com');
+var transporter = nodemailer.createTransport('smtps://walkinshubindia%40gmail.com:Generic@29@smtp.gmail.com');
 
 function sendMail(fromEmail, toEmail, subject, text, html) {
   var mailOptions = {
