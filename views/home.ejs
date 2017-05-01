@@ -333,16 +333,43 @@
 
     <footer class="navbar-inverse navbar-fixed-bottom">
         <div class="container-fluid">
-            <div class="pull-right text-success">All Rights Reserved to Walkins Hub</div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <b class="text-success text-center"> <i class="fa fa-share" aria-hidden="true"></i> Share</b>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="share-buttons">
+                    <!-- Facebook -->
+                    <a href="http://www.facebook.com/sharer.php?u=http://walkinshub.com" target="_blank">
+                        <img src="https://simplesharebuttons.com/images/somacro/facebook.png" alt="Facebook" />
+                    </a>
+
+                    <!-- Google+ -->
+                    <a href="https://plus.google.com/share?url=http://walkinshub.com" target="_blank">
+                        <img src="https://simplesharebuttons.com/images/somacro/google.png" alt="Google" />
+                    </a>
+
+                    <!-- LinkedIn -->
+                    <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=http://walkinshub.com" target="_blank">
+                        <img src="https://simplesharebuttons.com/images/somacro/linkedin.png" alt="LinkedIn" />
+                    </a>
+
+                    <!-- Twitter -->
+                    <a href="https://twitter.com/share?url=http://walkinshub.com&amp;text=Walkins%20Hub&amp;hashtags=walkinshub" target="_blank">
+                        <img src="https://simplesharebuttons.com/images/somacro/twitter.png" alt="Twitter" />
+                    </a>
+                </div>
+            </div>
         </div>
     </footer>
     <% if (user == undefined ) { %>
         <script type="text/javascript">
-          /*  $(document).ready(function() {
-              setTimeout(function(){
-                $("#subscribeModal").modal('show');
-              },6000);
-            });*/
+            /*  $(document).ready(function() {
+                                                              setTimeout(function(){
+                                                                $("#subscribeModal").modal('show');
+                                                              },6000);
+                                                            });*/
         </script>
 
         <div id="subscribeModal" class="modal fade">
