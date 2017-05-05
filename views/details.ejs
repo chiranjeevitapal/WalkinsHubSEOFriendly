@@ -163,11 +163,11 @@
         <!-- /.container-fluid -->
     </nav>
     <div class="container top-buffer">
-        <div class="row top-buffer-small">
-            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-lg-offset-9">
+        <<div class="row top-buffer-small">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 top-buffer-small">
                 <div class="dropdown">
                     <button class="btn btn-primary dropdown-toggle form-control" id="cities" type="button" data-toggle="dropdown">Search By City
-                  <span class="caret"></span></button>
+                    <span class="caret"></span></button>
                     <ul class="dropdown-menu" role="menu" aria-labelledby="cities" style="width: 350px; height: 300px; overflow: auto">
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="/walkins/Hyderabad"><h4>Hyderabad<h4></a></li>
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="/walkins/Bangalore"><h4>Bangalore<h4></a></li>
@@ -185,12 +185,10 @@
                     </ul>
                 </div>
             </div>
-        </div>
-        <div class="row top-buffer-small">
-            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-lg-offset-9">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 top-buffer-small">
                 <div class="dropdown">
                     <button class="btn btn-primary dropdown-toggle form-control" id="cities" type="button" data-toggle="dropdown">Search By Experience
-                  <span class="caret"></span></button>
+                    <span class="caret"></span></button>
                     <ul class="dropdown-menu" role="menu" aria-labelledby="cities" style="width: 350px; height: 300px; overflow: auto">
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="/jobs/fresher"><h4>Fresher<h4></a></li>
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="/jobs/experienced"><h4>Experienced<h4></a></li>
@@ -199,25 +197,25 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8" itemscope itemtype="http://schema.org/JobPosting">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" itemscope itemtype="http://schema.org/JobPosting">
                 <h1 class="text-primary" itemprop="title"><%= walkin.title %></h1>
-                <ul class="list-group">
+                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- responsive ads -->
+                <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5482095998977489" data-ad-slot="2404350455" data-ad-format="auto"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+                <ul class="list-group borderless">
                     <% if (walkin.company != '') { %>
-                        <li class="list-group-item list-group-item-default">
+                        <li class="list-group-item list-group-item-default borderless">
                             <b class="list-group-item-heading">Company</b>
                             <h2 class="list-group-item-text" itemprop="hiringOrganization">
                                 <%= walkin.company %>
                             </h2>
                         </li>
                         <% } %>
-                            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                            <!-- responsive ads -->
-                            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5482095998977489" data-ad-slot="2404350455" data-ad-format="auto"></ins>
-                            <script>
-                                (adsbygoogle = window.adsbygoogle || []).push({});
-                            </script>
                             <% if (walkin.position != '') { %>
-                                <li class="list-group-item list-group-item-default">
+                                <li class="list-group-item list-group-item-default borderless">
                                     <b class="list-group-item-heading">Position</b>
                                     <h3 class="list-group-item-text" itemprop="occupationalCategory">
                                         <%= walkin.position %>
@@ -225,7 +223,7 @@
                                 </li>
                                 <% } %>
                                     <% if (walkin.location != '') { %>
-                                        <li class="list-group-item list-group-item-default">
+                                        <li class="list-group-item list-group-item-default borderless">
                                             <b class="list-group-item-heading">Location</b>
                                             <h4 class="list-group-item-text" itemprop="jobLocation" id="location">
                                                 <%= walkin.location %>
@@ -234,7 +232,7 @@
                                         <% } %>
 
                                             <% if (walkin.eligibility != '') { %>
-                                                <li class="list-group-item list-group-item-default">
+                                                <li class="list-group-item list-group-item-default borderless">
                                                     <b class="list-group-item-heading">Eligibility</b>
                                                     <h5 class="list-group-item-text" itemprop="educationRequirements">
                                                         <%= walkin.eligibility %>
@@ -242,7 +240,7 @@
                                                 </li>
                                                 <% } %>
                                                     <% if (walkin.experience != '') { %>
-                                                        <li class="list-group-item list-group-item-default">
+                                                        <li class="list-group-item list-group-item-default borderless">
                                                             <b class="list-group-item-heading">Experience</b>
                                                             <h6 class="list-group-item-text" itemprop="experienceRequirements">
                                                                 <%= walkin.experience %>
@@ -250,7 +248,7 @@
                                                         </li>
                                                         <% } %>
                                                             <% if (walkin.jobDescription != '') { %>
-                                                                <li class="list-group-item list-group-item-default">
+                                                                <li class="list-group-item list-group-item-default borderless">
                                                                     <b class="list-group-item-heading">Job Description</b>
                                                                     <p class="list-group-item-text" itemprop="description">
                                                                         <%= walkin.jobDescription %>
@@ -264,7 +262,7 @@
                                                                         (adsbygoogle = window.adsbygoogle || []).push({});
                                                                     </script>
                                                                     <% if (walkin.jobRequirements != '') { %>
-                                                                        <li class="list-group-item list-group-item-default">
+                                                                        <li class="list-group-item list-group-item-default borderless">
                                                                             <b class="list-group-item-heading">Job Requirements</b>
                                                                             <p class="list-group-item-text" itemprop="qualifications">
                                                                                 <%= walkin.jobRequirements %>
@@ -272,7 +270,7 @@
                                                                         </li>
                                                                         <% } %>
                                                                             <% if (walkin.candidateProfile != '') { %>
-                                                                                <li class="list-group-item list-group-item-default">
+                                                                                <li class="list-group-item list-group-item-default borderless">
                                                                                     <b class="list-group-item-heading">Candidate Profile</b>
                                                                                     <p class="list-group-item-text" itemprop="responsibilities">
                                                                                         <%= walkin.candidateProfile %>
@@ -280,7 +278,7 @@
                                                                                 </li>
                                                                                 <% } %>
                                                                                     <% if (walkin.salary != '') { %>
-                                                                                        <li class="list-group-item list-group-item-default">
+                                                                                        <li class="list-group-item list-group-item-default borderless">
                                                                                             <b class="list-group-item-heading">Salary</b>
                                                                                             <p class="list-group-item-text" itemprop="incentiveCompensation">
                                                                                                 <%= walkin.salary %>
@@ -288,7 +286,7 @@
                                                                                         </li>
                                                                                         <% } %>
                                                                                             <% if (walkin.lastDate != '') { %>
-                                                                                                <li class="list-group-item list-group-item-default">
+                                                                                                <li class="list-group-item list-group-item-default borderless">
                                                                                                     <b class="list-group-item-heading">Last Date</b>
                                                                                                     <p class="list-group-item-text">
                                                                                                         <%= walkin.lastDate %>
@@ -296,7 +294,7 @@
                                                                                                 </li>
                                                                                                 <% } %>
                                                                                                     <% if (walkin.walkinDate != '') { %>
-                                                                                                        <li class="list-group-item list-group-item-default">
+                                                                                                        <li class="list-group-item list-group-item-default borderless">
                                                                                                             <b class="list-group-item-heading">Walkin Date</b>
                                                                                                             <p class="list-group-item-text">
                                                                                                                 <%= walkin.walkinDate %>
@@ -304,7 +302,7 @@
                                                                                                         </li>
                                                                                                         <% } %>
                                                                                                             <% if (walkin.walkinTime != '') { %>
-                                                                                                                <li class="list-group-item list-group-item-default">
+                                                                                                                <li class="list-group-item list-group-item-default borderless">
                                                                                                                     <b class="list-group-item-heading">Walkin Time</b>
                                                                                                                     <p class="list-group-item-text">
                                                                                                                         <%= walkin.walkinTime %>
@@ -312,7 +310,7 @@
                                                                                                                 </li>
                                                                                                                 <% } %>
                                                                                                                     <% if (walkin.companyProfile != '') { %>
-                                                                                                                        <li class="list-group-item list-group-item-default">
+                                                                                                                        <li class="list-group-item list-group-item-default borderless">
                                                                                                                             <b class="list-group-item-heading">Company Profile</b>
                                                                                                                             <p class="list-group-item-text">
                                                                                                                                 <%= walkin.companyProfile %>
@@ -320,7 +318,7 @@
                                                                                                                         </li>
                                                                                                                         <% } %>
                                                                                                                             <% if (walkin.howToApply != '') { %>
-                                                                                                                                <li class="list-group-item list-group-item-default">
+                                                                                                                                <li class="list-group-item list-group-item-default borderless">
                                                                                                                                     <b class="list-group-item-heading">How To Apply</b>
                                                                                                                                     <% if (walkin.howToApply.indexOf("http")!= -1) { %>
                                                                                                                                         <p><a href="<%= walkin.howToApply %>" target="_blank">Click to Apply</a></p>
@@ -332,53 +330,46 @@
                                                                                                                                 </li>
                                                                                                                                 <% } %>
                                                                                                                                     <% if (walkin.website != '') { %>
-                                                                                                                                        <li class="list-group-item list-group-item-default">
+                                                                                                                                        <li class="list-group-item list-group-item-default borderless">
                                                                                                                                             <b class="list-group-item-heading">Website</b>
                                                                                                                                             <p class="list-group-item-text"><button class="btn btn-link" (click)="openWebsite(walkin.website)"><%= walkin.website %></button></p>
                                                                                                                                         </li>
                                                                                                                                         <% } %>
                                                                                                                                             <% if (walkin.contactDetails != '') { %>
-                                                                                                                                                <li class="list-group-item list-group-item-default">
+                                                                                                                                                <li class="list-group-item list-group-item-default borderless">
                                                                                                                                                     <b class="list-group-item-heading">Contact Details</b>
                                                                                                                                                     <p><b class="list-group-item-text text-danger">
                                                                                                                                                         <%= walkin.contactDetails %>
                                                                                                                                                     </b></p>
-                                                                                                                                                    <a href="whatsapp://send?text=Walk-in interviews in <%= walkin.company %>, <%= walkin.location %> http://www.walkinshub.com/walkin/<%= walkin._id %>" data-action="share/whatsapp/share" data-href="" class="btn btn-md btn-success hidden-md hidden-lg"><i class="fa fa-whatsapp" aria-hidden="true"></i> Share</a>
-                                                                                                                                                </li>
-                                                                                                                                                <% } %>
                                                                                                                                                     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                                                                                                                                                     <!-- responsive ads -->
                                                                                                                                                     <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5482095998977489" data-ad-slot="2404350455" data-ad-format="auto"></ins>
                                                                                                                                                     <script>
                                                                                                                                                         (adsbygoogle = window.adsbygoogle || []).push({});
                                                                                                                                                     </script>
+                                                                                                                                                    <!--a href="whatsapp://send?text=Walk-in interviews in <%= walkin.company %>, <%= walkin.location %> http://www.walkinshub.com/walkin/<%= walkin._id %>" data-action="share/whatsapp/share" data-href="" class="btn btn-md btn-success hidden-md hidden-lg"><i class="fa fa-whatsapp" aria-hidden="true"></i> Share</a-->
+                                                                                                                                                </li>
+                                                                                                                                                <% } %>
+
+                                                                                                                                                <li class="list-group-item list-group-item-default borderless list-inline social-media-icons">
+                                                                                                                                                    <a href="http://www.facebook.com/sharer.php?u=http://www.walkinshub.com/walkin/<%= walkin._id %>" target="_blank" title="Zuck It"><i class="fa fa-facebook-square fa-3x"></i></a>
+                                                                                                                                                    <a href="https://plus.google.com/share?url=http://www.walkinshub.com/walkin/<%= walkin._id %>" target="_blank" title="Google It"><i class="fa fa-google-plus-square fa-3x"></i></a>
+                                                                                                                                                    <a href="https://twitter.com/share?url=http://www.walkinshub.com/&amp;text=Walkins%20Hub&amp;hashtags=walkinshub" target="_blank" title="Chirp Chirp"><i class="fa fa-twitter-square fa-3x"></i></a>
+                                                                                                                                                    <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=http://www.walkinshub.com/walkin/<%= walkin._id %>" target="_blank" title="Link It"><i class="fa fa-linkedin-square fa-3x"></i></a>
+                                                                                                                                                    <a href="whatsapp://send?text=Walk-in interviews in <%= walkin.company %>, <%= walkin.location %> http://www.walkinshub.com/walkin/<%= walkin._id %>" data-action="share/whatsapp/share" data-href="" class="hidden-md hidden-lg" title="Wassup">
+                                                                                                                                                        <i class="fa fa-whatsapp fa-3x"></i>
+                                                                                                                                                    </a>
+                                                                                                                                                </li>
 
                 </ul>
-
-                <div class="row top-buffer-small">
-                    <!--div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        <div id="fb-root"></div>
-                        <script>
-                            (function(d, s, id) {
-                                var js, fjs = d.getElementsByTagName(s)[0];
-                                if (d.getElementById(id)) return;
-                                js = d.createElement(s);
-                                js.id = id;
-                                js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.8";
-                                fjs.parentNode.insertBefore(js, fjs);
-                            }(document, 'script', 'facebook-jssdk'));
-                        </script>
-                        <div class="fb-like" data-href="https://www.facebook.com/walkinshubindia" data-layout="button_count" data-action="like" data-size="large" data-show-faces="false" data-share="true"></div>
-                        <a href="whatsapp://send?text=Walk-in interviews in <%= walkin.company %>, <%= walkin.location %> http://www.walkinshub.com/walkin/<%= walkin._id %>" data-action="share/whatsapp/share" data-href="" class="btn btn-md btn-success hidden-md hidden-lg"><i class="fa fa-whatsapp" aria-hidden="true"></i> Share</a>
-                    </div-->
-                </div>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+            <!--div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                 <h2 class="text-success">Similar Jobs</h2>
                 <ul class="list-group" id="jobList">
                 </ul>
-            </div>
+            </div-->
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <h2 class="text-success">Suggested Jobs</h2>
                 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                 <ins class="adsbygoogle" style="display:block" data-ad-format="autorelaxed" data-ad-client="ca-pub-5482095998977489" data-ad-slot="6218344059"></ins>
                 <script>
@@ -408,39 +399,21 @@
             });
         </script>
 
-        <footer class="navbar-inverse navbar-fixed-bottom">
+        <footer class="navbar-default navbar-fixed-bottom">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        <b class="text-success text-center"> <i class="fa fa-share" aria-hidden="true"></i> Share</b>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="share-buttons">
-                        <!-- Facebook -->
-                        <a href="http://www.facebook.com/sharer.php?u=http://walkinshub.com/walkin/<%= walkin._id %>" target="_blank">
-                            <img src="https://simplesharebuttons.com/images/somacro/facebook.png" alt="Facebook" />
-                        </a>
-
-                        <!-- Google+ -->
-                        <a href="https://plus.google.com/share?url=http://walkinshub.com/walkin/<%= walkin._id %>" target="_blank">
-                            <img src="https://simplesharebuttons.com/images/somacro/google.png" alt="Google" />
-                        </a>
-
-                        <!-- LinkedIn -->
-                        <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=http://walkinshub.com/walkin/<%= walkin._id %>" target="_blank">
-                            <img src="https://simplesharebuttons.com/images/somacro/linkedin.png" alt="LinkedIn" />
-                        </a>
-
-                        <!-- Twitter -->
-                        <a href="https://twitter.com/share?url=http://walkinshub.com/walkin/<%= walkin._id %>&amp;text=Walkins%20Hub&amp;hashtags=walkinshub" target="_blank">
-                            <img src="https://simplesharebuttons.com/images/somacro/twitter.png" alt="Twitter" />
-                        </a>
-
-						<!-- Watsapp-->
-						<a href="whatsapp://send?text=Walk-in interviews in <%= walkin.company %>, <%= walkin.location %> http://www.walkinshub.com/walkin/<%= walkin._id %>" data-action="share/whatsapp/share" data-href="" class="hidden-md hidden-lg">
-							<img src="http://icons.iconarchive.com/icons/martz90/circle/64/whatsapp-icon.png" alt="Watsapp" />
-						</a>
+                        <div class="social-media-icons col-xs-12">
+                            <ul class="list-inline col-xs-12">
+                                <a href="http://www.facebook.com/sharer.php?u=http://www.walkinshub.com/walkin/<%= walkin._id %>" target="_blank" title="Zuck It"><i class="fa fa-facebook-square fa-3x"></i></a>
+                                <a href="https://plus.google.com/share?url=http://www.walkinshub.com/walkin/<%= walkin._id %>" target="_blank" title="Google It"><i class="fa fa-google-plus-square fa-3x"></i></a>
+                                <a href="https://twitter.com/share?url=http://www.walkinshub.com/&amp;text=Walkins%20Hub&amp;hashtags=walkinshub" target="_blank" title="Chirp Chirp"><i class="fa fa-twitter-square fa-3x"></i></a>
+                                <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=http://www.walkinshub.com/walkin/<%= walkin._id %>" target="_blank" title="Link It"><i class="fa fa-linkedin-square fa-3x"></i></a>
+                                <a href="whatsapp://send?text=Walk-in interviews in <%= walkin.company %>, <%= walkin.location %> http://www.walkinshub.com/walkin/<%= walkin._id %>" data-action="share/whatsapp/share" data-href="" class="hidden-md hidden-lg" title="Wassup">
+                                    <i class="fa fa-whatsapp fa-3x"></i>
+                                </a>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>

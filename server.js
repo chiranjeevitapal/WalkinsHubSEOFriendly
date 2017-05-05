@@ -110,7 +110,7 @@ app.get('/', cache(10), (req, res) => {
             if (err) return console.log(err)
             res.render('home.ejs', {
                 walkins: result,
-                jobsType: 'Fresher/Experienced Jobs',
+                jobsType: 'Walk-in Interviews',
                 user: req.user
             })
         })
@@ -121,6 +121,52 @@ app.get('/', cache(10), (req, res) => {
         res.end();
     }
 })
+
+/* GET One Walkin with the provided ID */
+app.get('/walkin/:id', cache(10), (req, res) => {
+//app.get('/walkin/:id', function(req, res) {
+    var host = req.headers.host;
+
+    if (host.toLowerCase().indexOf(domainName) != -1) {
+        //var id = req.params.id.substring(req.params.id.lastIndexOf('-') + 1);
+        var id = req.params.id;
+        //console.log(id);
+        if (id.indexOf('-') == -1) {
+            db.collection('walkins').findOne({
+                _id: ObjectId(id)
+            }, function(err, result) {
+                if (err) return console.log(err)
+                if (result == null) {
+                    res.redirect('/')
+                } else {
+                    res.render('details.ejs', {
+                        walkin: result,
+                        user: req.user
+                    })
+                }
+            });
+        } else {
+            db.collection('walkins').findOne({
+                _id: id
+            }, function(err, result) {
+                if (err) return console.log(err)
+                if (result == null) {
+                    res.redirect('/')
+                } else {
+                    res.render('details.ejs', {
+                        walkin: result,
+                        user: req.user
+                    })
+                }
+            });
+        }
+    } else {
+        res.writeHead(301, {
+            Location: 'http://www.walkinshub.com/'
+        });
+        res.end();
+    }
+});
 
 app.post('/api/resume', function(req, res) {
     upload(req, res, function(err) {
@@ -317,52 +363,6 @@ app.get('/uploadChethan', (req, res) => {
     }
 })
 
-/* GET One Walkin with the provided ID */
-app.get('/walkin/:id', cache(10), (req, res) => {
-//app.get('/walkin/:id', function(req, res) {
-    var host = req.headers.host;
-
-    if (host.toLowerCase().indexOf(domainName) != -1) {
-        //var id = req.params.id.substring(req.params.id.lastIndexOf('-') + 1);
-        var id = req.params.id;
-        //console.log(id);
-        if (id.indexOf('-') == -1) {
-            db.collection('walkins').findOne({
-                _id: ObjectId(id)
-            }, function(err, result) {
-                if (err) return console.log(err)
-                if (result == null) {
-                    res.redirect('/')
-                } else {
-                    res.render('details.ejs', {
-                        walkin: result,
-                        user: req.user
-                    })
-                }
-            });
-        } else {
-            db.collection('walkins').findOne({
-                _id: id
-            }, function(err, result) {
-                if (err) return console.log(err)
-                if (result == null) {
-                    res.redirect('/')
-                } else {
-                    res.render('details.ejs', {
-                        walkin: result,
-                        user: req.user
-                    })
-                }
-            });
-        }
-    } else {
-        res.writeHead(301, {
-            Location: 'http://www.walkinshub.com/'
-        });
-        res.end();
-    }
-
-});
 
 
 // =====================================
