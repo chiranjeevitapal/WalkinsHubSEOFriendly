@@ -99,8 +99,8 @@ var cache = (duration) => {
     }
 }
 
-//app.get('/', cache(10), (req, res) => {
-app.get('/', (req, res) => {
+app.get('/', cache(10), (req, res) => {
+//app.get('/', (req, res) => {
     var host = req.headers.host;
 
     if (host.toLowerCase().indexOf(domainName) != -1) {
@@ -148,8 +148,8 @@ app.get('/download/:id', function(req, res) {
     res.download(file); // Set disposition and send it.
 });
 
-//app.get('/', cache(10), (req, res) => {
-app.get('/jobs/fresher', (req, res) => {
+app.get('/jobs/fresher', cache(10), (req, res) => {
+//app.get('/jobs/fresher', (req, res) => {
     var host = req.headers.host;
     if (host.toLowerCase().indexOf(domainName) != -1) {
         db.collection('walkins').find({
@@ -176,8 +176,8 @@ app.get('/jobs/fresher', (req, res) => {
     }
 })
 
-//app.get('/', cache(10), (req, res) => {
-app.get('/jobs/experienced', (req, res) => {
+app.get('/jobs/experienced', cache(10), (req, res) => {
+//app.get('/jobs/experienced', (req, res) => {
     var host = req.headers.host;
     if (host.toLowerCase().indexOf(domainName) != -1) {
         db.collection('walkins').find({
@@ -209,7 +209,8 @@ app.get('/jobs/experienced', (req, res) => {
 })
 
 /* GET One Walkin with the provided ID */
-app.get('/walkins/:location', function(req, res) {
+app.get('/walkins/:location', cache(10), (req, res) => {
+//app.get('/walkins/:location', function(req, res) {
     var host = req.headers.host;
 
     //var id = req.params.id.substring(req.params.id.lastIndexOf('-') + 1);
@@ -252,7 +253,8 @@ app.get('/contact', (req, res) => {
     }
 })
 
-app.get('/about', (req, res) => {
+app.get('/about', cache(10), (req, res) => {
+//app.get('/about', (req, res) => {
     var host = req.headers.host;
 
     if (host.toLowerCase().indexOf(domainName) != -1) {
@@ -316,7 +318,8 @@ app.get('/uploadChethan', (req, res) => {
 })
 
 /* GET One Walkin with the provided ID */
-app.get('/walkin/:id', function(req, res) {
+app.get('/walkin/:id', cache(10), (req, res) => {
+//app.get('/walkin/:id', function(req, res) {
     var host = req.headers.host;
 
     if (host.toLowerCase().indexOf(domainName) != -1) {
