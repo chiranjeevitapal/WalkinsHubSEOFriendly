@@ -194,8 +194,8 @@ app.get('/download/:id', function(req, res) {
     res.download(file); // Set disposition and send it.
 });
 
-app.get('/jobs/fresher', cache(10), (req, res) => {
-//app.get('/jobs/fresher', (req, res) => {
+//app.get('/jobs/fresher', cache(10), (req, res) => {
+app.get('/jobs/fresher', (req, res) => {
     var host = req.headers.host;
     if (host.toLowerCase().indexOf(domainName) != -1) {
         db.collection('walkins').find({
@@ -222,8 +222,8 @@ app.get('/jobs/fresher', cache(10), (req, res) => {
     }
 })
 
-app.get('/jobs/experienced', cache(10), (req, res) => {
-//app.get('/jobs/experienced', (req, res) => {
+//app.get('/jobs/experienced', cache(10), (req, res) => {
+app.get('/jobs/experienced', (req, res) => {
     var host = req.headers.host;
     if (host.toLowerCase().indexOf(domainName) != -1) {
         db.collection('walkins').find({
@@ -255,17 +255,15 @@ app.get('/jobs/experienced', cache(10), (req, res) => {
 })
 
 /* GET One Walkin with the provided ID */
-app.get('/walkins/:location', cache(10), (req, res) => {
-//app.get('/walkins/:location', function(req, res) {
+app.get('/jobs/:location', cache(10), (req, res) => {
+//app.get('/jobs/:location', function(req, res) {
     var host = req.headers.host;
 
     //var id = req.params.id.substring(req.params.id.lastIndexOf('-') + 1);
     if (host.toLowerCase().indexOf(domainName) != -1) {
-        var location = req.params.location;
+        var location = req.params.location.toLowerCase();
         db.collection('walkins').find({
-            "location": {
-                $regex: location
-            }
+            location: new RegExp('^' +location + '$', 'i')
         }).sort({
             "date": -1
         }).limit(200).toArray((err, result) => {
