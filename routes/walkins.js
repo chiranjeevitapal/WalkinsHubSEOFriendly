@@ -39,31 +39,55 @@ router.get('/sitemap.xml', function(req, res) {
         '<changefreq>daily</changefreq>' +
         '</url>' +
         '<url>' +
-        '<loc>http://www.walkinshub.com/walkins/Hyderabad</loc>' +
+        '<loc>http://www.walkinshub.com/jobs/hyderabad</loc>' +
         '<changefreq>daily</changefreq>' +
         '</url>' +
         '<url>' +
-        '<loc>http://www.walkinshub.com/walkins/Bangalore</loc>' +
+        '<loc>http://www.walkinshub.com/jobs/bangalore</loc>' +
         '<changefreq>daily</changefreq>' +
         '</url>' +
         '<url>' +
-        '<loc>http://www.walkinshub.com/walkins/Chennai</loc>' +
+        '<loc>http://www.walkinshub.com/jobs/chandigarh</loc>' +
         '<changefreq>daily</changefreq>' +
         '</url>' +
         '<url>' +
-        '<loc>http://www.walkinshub.com/walkins/Noida</loc>' +
+        '<loc>http://www.walkinshub.com/jobs/chennai</loc>' +
         '<changefreq>daily</changefreq>' +
         '</url>' +
         '<url>' +
-        '<loc>http://www.walkinshub.com/walkins/Kochi</loc>' +
+        '<loc>http://www.walkinshub.com/jobs/coimbatore</loc>' +
         '<changefreq>daily</changefreq>' +
         '</url>' +
         '<url>' +
-        '<loc>http://www.walkinshub.com/walkins/Mumbai</loc>' +
+        '<loc>http://www.walkinshub.com/jobs/delhi</loc>' +
         '<changefreq>daily</changefreq>' +
         '</url>' +
         '<url>' +
-        '<loc>http://www.walkinshub.com/walkins/Pune</loc>' +
+        '<loc>http://www.walkinshub.com/jobs/gurgaon</loc>' +
+        '<changefreq>daily</changefreq>' +
+        '</url>' +
+        '<url>' +
+        '<loc>http://www.walkinshub.com/jobs/jaipur</loc>' +
+        '<changefreq>daily</changefreq>' +
+        '</url>' +
+        '<url>' +
+        '<loc>http://www.walkinshub.com/jobs/kochi</loc>' +
+        '<changefreq>daily</changefreq>' +
+        '</url>' +
+        '<url>' +
+        '<loc>http://www.walkinshub.com/jobs/mumbai</loc>' +
+        '<changefreq>daily</changefreq>' +
+        '</url>' +
+        '<url>' +
+        '<loc>http://www.walkinshub.com/jobs/noida</loc>' +
+        '<changefreq>daily</changefreq>' +
+        '</url>' +
+        '<url>' +
+        '<loc>http://www.walkinshub.com/jobs/pune</loc>' +
+        '<changefreq>daily</changefreq>' +
+        '</url>'+
+        '<url>' +
+        '<loc>http://www.walkinshub.com/jobs/trivandrum</loc>' +
         '<changefreq>daily</changefreq>' +
         '</url>'+
         '<url>' +
