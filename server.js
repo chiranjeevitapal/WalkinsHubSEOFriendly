@@ -99,8 +99,8 @@ var cache = (duration) => {
     }
 }
 
-app.get('/', cache(10), (req, res) => {
-//app.get('/', (req, res) => {
+//app.get('/', cache(10), (req, res) => {
+app.get('/', (req, res) => {
     var host = req.headers.host;
 
     if (host.toLowerCase().indexOf(domainName) != -1) {
@@ -123,8 +123,8 @@ app.get('/', cache(10), (req, res) => {
 })
 
 /* GET One Walkin with the provided ID */
-app.get('/walkin/:id', cache(10), (req, res) => {
-//app.get('/walkin/:id', function(req, res) {
+//app.get('/walkin/:id', cache(10), (req, res) => {
+app.get('/walkin/:id', function(req, res) {
     var host = req.headers.host;
 
     if (host.toLowerCase().indexOf(domainName) != -1) {
@@ -255,8 +255,8 @@ app.get('/jobs/experienced', (req, res) => {
 })
 
 /* GET One Walkin with the provided ID */
-app.get('/jobs/:location', cache(10), (req, res) => {
-//app.get('/jobs/:location', function(req, res) {
+//app.get('/jobs/:location', cache(10), (req, res) => {
+app.get('/jobs/:location', function(req, res) {
     var host = req.headers.host;
 
     //var id = req.params.id.substring(req.params.id.lastIndexOf('-') + 1);
@@ -297,8 +297,8 @@ app.get('/contact', (req, res) => {
     }
 })
 
-app.get('/about', cache(10), (req, res) => {
-//app.get('/about', (req, res) => {
+//app.get('/about', cache(10), (req, res) => {
+app.get('/about', (req, res) => {
     var host = req.headers.host;
 
     if (host.toLowerCase().indexOf(domainName) != -1) {
