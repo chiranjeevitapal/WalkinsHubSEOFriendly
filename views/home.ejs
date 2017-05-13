@@ -128,8 +128,8 @@
             </div>
             <% } %>
                 <% for(var i=0; i<walkins.length; i++) {%>
-                    <% if( i==1){%>
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 hidden-md hidden-lg top-buffer-small">
+                    <% if( i==4){%>
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                             <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                             <!-- responsive ads -->
                             <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5482095998977489" data-ad-slot="2404350455" data-ad-format="auto"></ins>
@@ -137,8 +137,14 @@
                                 (adsbygoogle = window.adsbygoogle || []).push({});
                             </script>
                         </div>
-                        <% }%>
-                            <% if( i==4){%>
+                        <br/>
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="pagelikediv">
+                            <div class="fb-page" data-href="https://www.facebook.com/walkinshubindia" data-tabs="timeline" data-height="300" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
+                                <blockquote cite="https://www.facebook.com/walkinshubindia" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/walkinshubindia">Facebook</a></blockquote>
+                            </div>
+                        </div>
+                        <% } %>
+                            <% if( i==8){%>
                                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                                     <!-- responsive ads -->
@@ -147,49 +153,34 @@
                                         (adsbygoogle = window.adsbygoogle || []).push({});
                                     </script>
                                 </div>
-                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="pagelikediv">
-                                    <div class="fb-page" data-href="https://www.facebook.com/walkinshubindia" data-tabs="timeline" data-height="300" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
-                                        <blockquote cite="https://www.facebook.com/walkinshubindia" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/walkinshubindia">Facebook</a></blockquote>
-                                    </div>
-                                </div>
                                 <% } %>
-                                    <% if( i==8){%>
-                                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                                            <!-- responsive ads -->
-                                            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5482095998977489" data-ad-slot="2404350455" data-ad-format="auto"></ins>
-                                            <script>
-                                                (adsbygoogle = window.adsbygoogle || []).push({});
-                                            </script>
-                                        </div>
-                                        <% } %>
-                                            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 top-buffer-small">
-                                                <div class="panel panel-default">
-                                                    <div class="panel-heading" itemscope itemtype="http://schema.org/JobPosting">
-                                                        <p><b class="small">Posted On:</b> <b class="small text-danger" itemprop="datePosted"> <%= walkins[i].date.substring(0,10) %> </b></p>
-                                                        <%if (walkins[i].walkinDate == '') { %>
-                                                            <p><b class="small">Interview Date:</b> <b class="small small text-danger">Check Details</b></p>
-                                                            <% } else {%>
-                                                                <p><b class="small">Interview Date:</b> <b class="small text-danger"><%= walkins[i].walkinDate.substring(0,22) %></b></p>
-                                                                <% } %>
-                                                                    <h2><b class="small" itemprop="hiringOrganization"><%= walkins[i].company.substring(0,18) %></b></h2>
-                                                                    <p class="small" itemprop="title">
-                                                                        <%= walkins[i].position.substring(0,35) %>
-                                                                    </p>
-                                                                    <p><b class="small" itemprop="jobLocation"><%= walkins[i].location.substring(0,25) %></b> <i class="pull-right" itemprop="experienceRequirements"><%= walkins[i].experience %></i></p>
-                                                                    <div class="clearfix"></div>
-                                                    </div>
-                                                    <a href="/walkin/<%= walkins[i]._id %>" target="_blank">
-                                                        <div class="panel-footer">
-                                                            <span class="pull-left"><b>Job Details</b></span>
-                                                            <span class="pull-right text-default"><i class="fa fa-arrow-circle-right fa-2x"></i></span>
+                                    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 top-buffer-small">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading" itemscope itemtype="http://schema.org/JobPosting">
+                                                <p><b class="small">Posted On:</b> <b class="small text-danger" itemprop="datePosted"> <%= walkins[i].date.substring(0,10) %> </b></p>
+                                                <%if (walkins[i].walkinDate == '') { %>
+                                                    <p><b class="small">Interview Date:</b> <b class="small small text-danger">Check Details</b></p>
+                                                    <% } else {%>
+                                                        <p><b class="small">Interview Date:</b> <b class="small text-danger"><%= walkins[i].walkinDate.substring(0,22) %></b></p>
+                                                        <% } %>
+                                                            <h2><b class="small" itemprop="hiringOrganization"><%= walkins[i].company.substring(0,18) %></b></h2>
+                                                            <p class="small" itemprop="title">
+                                                                <%= walkins[i].position.substring(0,35) %>
+                                                            </p>
+                                                            <p><b class="small" itemprop="jobLocation"><%= walkins[i].location.substring(0,25) %></b> <i class="pull-right" itemprop="experienceRequirements"><%= walkins[i].experience %></i></p>
                                                             <div class="clearfix"></div>
-                                                        </div>
-                                                    </a>
-                                                </div>
                                             </div>
+                                            <a href="/walkin/<%= walkins[i]._id %>" target="_blank">
+                                                <div class="panel-footer">
+                                                    <span class="pull-left"><b>Job Details</b></span>
+                                                    <span class="pull-right text-default"><i class="fa fa-arrow-circle-right fa-2x"></i></span>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
 
-                                            <% } %>
+                                    <% } %>
     </div>
     </div>
 
@@ -244,9 +235,9 @@
     <script type="text/javascript">
         $(document).ready(function() {
             setTimeout(function() {
-                  //$("#subscribeModal").modal('show');
-                  $("#pagelikediv").show();
-              }, 3000); 
+                //$("#subscribeModal").modal('show');
+                $("#pagelikediv").show();
+            }, 3000);
         });
     </script>
 
