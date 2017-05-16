@@ -114,7 +114,6 @@ function scrape(res, link) {
                         image
                     }) => {
                         walkin.logo = filename;
-                        console.log("inside : " + walkin.logo)
                     }).catch((err) => {
                         throw err
                     })
