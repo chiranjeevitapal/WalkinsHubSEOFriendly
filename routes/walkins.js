@@ -85,37 +85,37 @@ router.get('/sitemap.xml', function(req, res) {
         '<url>' +
         '<loc>http://www.walkinshub.com/jobs/pune</loc>' +
         '<changefreq>daily</changefreq>' +
-        '</url>'+
+        '</url>' +
         '<url>' +
         '<loc>http://www.walkinshub.com/jobs/trivandrum</loc>' +
         '<changefreq>daily</changefreq>' +
-        '</url>'+
+        '</url>' +
         '<url>' +
         '<loc>http://www.walkinshub.com/jobs/fresher</loc>' +
         '<changefreq>daily</changefreq>' +
-        '</url>'+
+        '</url>' +
         '<url>' +
         '<loc>http://www.walkinshub.com/jobs/experienced</loc>' +
         '<changefreq>daily</changefreq>' +
         '</url>';
 
 
-        db.collection('walkins').find({}).toArray(function(err, walkins) {
-            if (err) {
-                res.send(err);
-            } else {
-                //res.json(walkins);
-                walkins.forEach(function(walkin) {
-                    //var companyName = walkin.company.replace(/[^a-zA-Z0-9_-]/g,'-');
-                    xml += '<url><loc>http://www.walkinshub.com/walkin/' + walkin._id + '</loc><changefreq>daily</changefreq></url>';
-                });
-                xml += '</urlset>'
-                setTimeout(function() {
-                    res.header('Content-Type', 'application/xml');
-                    res.send(xml);
-                }, 2000);
-            }
-        });
+    db.collection('walkins').find({}).toArray(function(err, walkins) {
+        if (err) {
+            res.send(err);
+        } else {
+            //res.json(walkins);
+            walkins.forEach(function(walkin) {
+                //var companyName = walkin.company.replace(/[^a-zA-Z0-9_-]/g,'-');
+                xml += '<url><loc>http://www.walkinshub.com/walkin/' + walkin._id + '</loc><changefreq>daily</changefreq></url>';
+            });
+            xml += '</urlset>'
+            setTimeout(function() {
+                res.header('Content-Type', 'application/xml');
+                res.send(xml);
+            }, 2000);
+        }
+    });
 });
 
 router.get('/walkinstoday', function(req, res,
@@ -287,7 +287,7 @@ router.post('/postWalkin', (req, res) => {
     var today = new Date();
     var milli = today.getMilliseconds();
     var todayDateString = today.yyyymmdd();
-    req.body._id = title + '-in-' + location + '-' +todayDateString
+    req.body._id = title + '-in-' + location + '-' + todayDateString
     db.collection('walkins').save(req.body, (err, result) => {
         if (err) return console.log(err)
         res.json(result);

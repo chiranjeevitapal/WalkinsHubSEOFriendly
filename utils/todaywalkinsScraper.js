@@ -1,5 +1,6 @@
 var request = require('request');
 var cheerio = require('cheerio');
+var download = require('image-downloader')
 
 function scrapeTodayUrls(res) {
     var urlsArray = [];
@@ -63,6 +64,7 @@ function scrape(res, link) {
             var $ = cheerio.load(html);
             var walkin = {
                 title: "",
+                logo: "dummy",
                 company: "",
                 website: "",
                 position: "",
@@ -96,6 +98,27 @@ function scrape(res, link) {
             var today = dd + '/' + mm + '/' + yyyy;*/
 
             walkin.date = today;
+            $('.comp-logo').filter(function() {
+                var data = $(this).find('img').attr("src");
+                var logo = 'http://www.todaywalkins.com/' + data;
+                var logolocal = '';
+                //var logoName = logo.substring(logo.lastIndexOf('/')+1);
+                // Download to a directory and save with the original filename
+                var options = {
+                    url: logo,
+                    dest: './logos/' // Save to /path/to/dest/image.jpg
+                }
+                download.image(options)
+                    .then(({
+                        filename,
+                        image
+                    }) => {
+                        walkin.logo = filename;
+                        console.log("inside : " + walkin.logo)
+                    }).catch((err) => {
+                        throw err
+                    })
+            })
             $('.job-title').filter(function() {
                 var data = $(this);
                 title = data.text();
@@ -172,7 +195,10 @@ function scrape(res, link) {
             $('#apply01').filter(function() {
                 walkin.howToApply = $(this).find('a').attr('href');
             })
-            res.json(walkin);
+            setTimeout(function() {
+                res.json(walkin);
+            }, 500);
+
         }
     });
 }

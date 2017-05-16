@@ -67,10 +67,11 @@ app.use(compression());
 app.use(minify());
 app.use(bodyParser.urlencoded({
     extended: true
-}))
-app.use(bodyParser.json())
-app.use(express.static('public'))
-app.use(express.static('node_modules'))
+}));
+app.use(bodyParser.json());
+app.use(express.static('public'));
+app.use(express.static('logos'));
+app.use(express.static('node_modules'));
 var session = require('express-session');
 // required for passport
 //app.use(express.session({ secret: 'ilovetocode' })); // session secret
@@ -263,7 +264,7 @@ app.get('/jobs/:location', function(req, res) {
     if (host.toLowerCase().indexOf(domainName) != -1) {
         var location = req.params.location.toLowerCase();
         db.collection('walkins').find({
-            location: new RegExp('^' +location + '$', 'i')
+            location: new RegExp('^' + location + '$', 'i')
         }).sort({
             "date": -1
         }).limit(200).toArray((err, result) => {
@@ -399,6 +400,17 @@ function isLoggedIn(req, res, next) {
 }
 
 
+app.get('/logos/:img', function(req, res) {
+    var host = req.headers.host;
+    if (host.toLowerCase().indexOf(domainName) != -1) {
+        res.sendFile(__dirname + '/logos/' + req.params.img);
+    }else {
+        res.writeHead(301, {
+            Location: 'http://www.walkinshub.com/'
+        });
+        res.end();
+    }
+});
 app.use('/api/', walkins);
 app.get('/**', (req, res) => {
     res.redirect('/')

@@ -16,7 +16,7 @@
                             url: '/api/scrape/' + website + '/' + url,
                             type: 'GET',
                             success: function(walkin) {
-                                //console.log(walkin);
+                                console.log(walkin.logo);
                                 var companyName = walkin.company.replace(/[^a-zA-Z0-9_-]/g, '-');
                                 //var today = new Date();
                                 //var todayDateString = today.yyyymmdd();
@@ -31,7 +31,6 @@
                                         console.log("data uploaded");
                                     }
                                 });
-                                console.log("data uploaded !!!");
                             },
                             error: function(d) {
                                 console.log('woops!'); //or whatever
@@ -76,7 +75,6 @@
                                         console.log("data uploaded");
                                     }
                                 });
-                                console.log("data uploaded !!!");
                             },
                             error: function(d) {
                                 console.log('woops!'); //or whatever
