@@ -85,13 +85,14 @@
                     <button class="btn btn-primary dropdown-toggle form-control" id="cities" type="button" data-toggle="dropdown">Where are you?
                     <span class="caret"></span></button>
                     <ul class="dropdown-menu" role="menu" aria-labelledby="cities" style="width: 350px; height: 300px; overflow: auto">
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="/jobs/hyderabad"><h4>Hyderabad<h4></a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="/jobs/ahmedabad"><h4>Ahmedabad<h4></a></li>
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="/jobs/bangalore"><h4>Bangalore<h4></a></li>
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="/jobs/chandigarh"><h4>Chandigarh<h4></a></li>
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="/jobs/chennai"><h4>Chennai<h4></a></li>
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="/jobs/coimbatore"><h4>Coimbatore<h4></a></li>
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="/jobs/delhi"><h4>Delhi<h4></a></li>
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="/jobs/gurgaon"><h4>Gurgaon<h4></a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="/jobs/hyderabad"><h4>Hyderabad<h4></a></li>
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="/jobs/jaipur"><h4>Jaipur<h4></a></li>
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="/jobs/kochi"><h4>Kochi<h4></a></li>
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="/jobs/mumbai"><h4>Mumbai<h4></a></li>
@@ -121,13 +122,13 @@
         <div class="row bottom-buffer">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" itemscope itemtype="http://schema.org/JobPosting">
                 <h1 class="text-primary" itemprop="title"><%= walkin.title %></h1>
+                <img src="../<%= walkin.logo %>" class="img-responsive" alt="Logo" id="company_logo">
                 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                 <!-- responsive ads -->
                 <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5482095998977489" data-ad-slot="2404350455" data-ad-format="auto"></ins>
                 <script>
                     (adsbygoogle = window.adsbygoogle || []).push({});
                 </script>
-                <img src="../<%= walkin.logo %>" class="img-responsive" alt="Logo" id="company_logo">
                 <ul class="list-group borderless">
                     <% if (walkin.company != '') { %>
                         <li class="list-group-item list-group-item-default borderless">

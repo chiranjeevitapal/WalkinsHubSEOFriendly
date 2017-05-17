@@ -43,6 +43,10 @@ router.get('/sitemap.xml', function(req, res) {
         '<changefreq>daily</changefreq>' +
         '</url>' +
         '<url>' +
+        '<loc>http://www.walkinshub.com/jobs/ahmedabad</loc>' +
+        '<changefreq>daily</changefreq>' +
+        '</url>' +
+        '<url>' +
         '<loc>http://www.walkinshub.com/jobs/bangalore</loc>' +
         '<changefreq>daily</changefreq>' +
         '</url>' +
