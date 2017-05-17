@@ -146,41 +146,39 @@
                                 <blockquote cite="https://www.facebook.com/walkinshubindia" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/walkinshubindia">WalkinsHub.com</a></blockquote>
                             </div>
                         </div>
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="pagelikediv">
-                            <% } %>
-                                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 top-buffer-small">
-                                    <div class="panel panel-success">
-                                        <div class="panel-heading" itemscope itemtype="http://schema.org/JobPosting">
-                                            <p><b class="small">Posted On:</b> <b class="small text-danger" itemprop="datePosted"> <%= walkins[i].date.substring(0,10) %> </b></p>
-                                            <%if (walkins[i].walkinDate == '') { %>
-                                                <p><b class="small">Interview Date:</b> <b class="small text-danger">Check Details</b></p>
-                                                <% } else {%>
-                                                    <p><b class="small">Interview Date:</b> <b class="small text-danger"><%= walkins[i].walkinDate.substring(0,21) %></b></p>
-                                                    <% } %>
-                                                        <div class="well">
-                                                            <p>Company</p>
-                                                            <h2 itemprop="hiringOrganization"><%= walkins[i].company.substring(0,15) %></h2>
-                                                        </div>
-                                                        <!--img src="../<%= walkins[i].logo %>" class="img-responsive" alt="Logo" id="company_logo" style="height: 100px;width: 100%;"-->
-                                                        <h3 class="small text-danger" itemprop="title">
+                        <% } %>
+                            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 top-buffer-small">
+                                <div class="panel panel-success">
+                                    <div class="panel-heading" itemscope itemtype="http://schema.org/JobPosting">
+                                        <p><b class="small">Posted On:</b> <b class="small text-danger" itemprop="datePosted"> <%= walkins[i].date.substring(0,10) %> </b></p>
+                                        <%if (walkins[i].walkinDate == '') { %>
+                                            <p><b class="small">Interview Date:</b> <b class="small text-danger">Check Details</b></p>
+                                            <% } else {%>
+                                                <p><b class="small">Interview Date:</b> <b class="small text-danger"><%= walkins[i].walkinDate.substring(0,21) %></b></p>
+                                                <% } %>
+                                                    <div class="well">
+                                                        <p>Company</p>
+                                                        <h2 itemprop="hiringOrganization"><%= walkins[i].company.substring(0,15) %></h2>
+                                                    </div>
+                                                    <!--img src="../<%= walkins[i].logo %>" class="img-responsive" alt="Logo" id="company_logo" style="height: 100px;width: 100%;"-->
+                                                    <h3 class="small text-danger" itemprop="title">
                                                                 <b><%= walkins[i].position.substring(0,35) %></b>
                                                             </h3>
-                                                        <h4><b class="text-danger" itemprop="jobLocation"><%= walkins[i].location.substring(0,25) %></b></h4>
-                                                        <h5>Experience: <i itemprop="experienceRequirements"><%= walkins[i].experience.substring(0,12) %></i></h5>
-                                                        <div class="clearfix"></div>
-                                        </div>
-                                        <a href="/walkin/<%= walkins[i]._id %>" target="_blank">
-                                            <div class="panel-footer">
-                                                <span class="pull-left"><b>Job Details</b></span>
-                                                <span class="pull-right text-default"><i class="fa fa-arrow-circle-right fa-2x"></i></span>
-                                                <div class="clearfix"></div>
-                                            </div>
-                                        </a>
+                                                    <h4><b class="text-danger" itemprop="jobLocation"><%= walkins[i].location.substring(0,25) %></b></h4>
+                                                    <h5>Experience: <i itemprop="experienceRequirements"><%= walkins[i].experience.substring(0,12) %></i></h5>
+                                                    <div class="clearfix"></div>
                                     </div>
+                                    <a href="/walkin/<%= walkins[i]._id %>" target="_blank">
+                                        <div class="panel-footer">
+                                            <span class="pull-left"><b>Job Details</b></span>
+                                            <span class="pull-right text-default"><i class="fa fa-arrow-circle-right fa-2x"></i></span>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </a>
                                 </div>
+                            </div>
 
-                                <% } %>
-                        </div>
+                            <% } %>
     </div>
 
     <footer class="navbar-default navbar-fixed-bottom">
