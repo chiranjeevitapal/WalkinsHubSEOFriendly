@@ -167,7 +167,7 @@
                                                     <%if (walkins[i].walkinDate == '') { %>
                                                         <p><b class="small">Interview Date:</b> <b class="small text-danger">Check Details</b></p>
                                                         <% } else {%>
-                                                            <p><b class="small">Interview Date:</b> <b class="small text-danger"><%= walkins[i].walkinDate.substring(0,22) %></b></p>
+                                                            <p><b class="small">Interview Date:</b> <b class="small text-danger"><%= walkins[i].walkinDate.substring(0,21) %></b></p>
                                                             <% } %>
                                                                 <h2><b class="small" itemprop="hiringOrganization"><%= walkins[i].company.substring(0,18) %></b></h2>
                                                                 <img src="../<%= walkins[i].logo %>" class="img-responsive" alt="Logo" id="company_logo" style="height: 100px;width: 100%;">
