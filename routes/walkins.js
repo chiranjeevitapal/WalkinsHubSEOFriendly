@@ -156,7 +156,7 @@ router.get('/similarjobs/:location', function(req, res,
         }]
     }).sort({
         'date': -1
-    }).toArray(function(err, walkins) {
+    }).limit(5).toArray(function(err, walkins) {
         var obj = [];
         if (err) {
             res.send(err);

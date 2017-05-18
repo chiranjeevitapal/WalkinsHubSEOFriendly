@@ -107,11 +107,11 @@ app.get('/', (req, res) => {
     if (host.toLowerCase().indexOf(domainName) != -1) {
         db.collection('walkins').find({}).sort({
             "date": -1
-        }).limit(200).toArray((err, result) => {
+        }).limit(300).toArray((err, result) => {
             if (err) return console.log(err)
             res.render('home.ejs', {
                 walkins: result,
-                jobsType: 'Walk-in Interviews',
+                jobsType: 'Walk-ins',
                 user: req.user
             })
         })
@@ -207,7 +207,7 @@ app.get('/jobs/fresher', (req, res) => {
             }]
         }).sort({
             "date": -1
-        }).limit(200).toArray((err, result) => {
+        }).limit(300).toArray((err, result) => {
             if (err) return console.log(err)
             res.render('home.ejs', {
                 walkins: result,
