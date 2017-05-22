@@ -122,21 +122,21 @@
             <% } %>
                 <div class="list-group">
                     <% for(var i=0; i<walkins.length; i++) { %>
-                      <%  if(i==8) { %>
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 .hidden-md hidden-lg" id="pagelikediv">
-                            <div class="fb-page" data-href="https://www.facebook.com/walkinshubindia" data-tabs="timeline" data-height="300" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
-                                <blockquote cite="https://www.facebook.com/walkinshubindia" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/walkinshubindia">Facebook</a></blockquote>
+                      <!-- <%  if(i==8) { %>
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 .hidden-md hidden-lg" id="pagelikediv">
+                                <div class="fb-page" data-href="https://www.facebook.com/walkinshubindia" data-tabs="timeline" data-height="300" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
+                                    <blockquote cite="https://www.facebook.com/walkinshubindia" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/walkinshubindia">Facebook</a></blockquote>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 .hidden-sm hidden-xs" id="pagelikediv">
-                            <div class="fb-page" data-href="https://www.facebook.com/walkinshubindia" data-tabs="timeline" data-width="500" data-height="300" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
-                                <blockquote cite="https://www.facebook.com/walkinshubindia" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/walkinshubindia">WalkinsHub.com</a></blockquote>
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 .hidden-sm hidden-xs" id="pagelikediv">
+                                <div class="fb-page" data-href="https://www.facebook.com/walkinshubindia" data-tabs="timeline" data-width="500" data-height="300" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
+                                    <blockquote cite="https://www.facebook.com/walkinshubindia" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/walkinshubindia">WalkinsHub.com</a></blockquote>
+                                </div>
                             </div>
-                        </div>
-                        <% } %>
+                            <% } %> -->
 
-                      <%  if(i==1 || i==3 || i== 5) { %>
-                        <button class="list-group-item">
+                                <%  if(i==1 || i==3 || i== 5) { %>
+                                    <button class="list-group-item">
                             <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                             <!-- responsive ads -->
                             <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5482095998977489" data-ad-slot="2404350455" data-ad-format="auto"></ins>
@@ -144,9 +144,9 @@
                                 (adsbygoogle = window.adsbygoogle || []).push({});
                             </script>
                         </button>
-                      <% } %>
+                                    <% } %>
 
-                    <button onclick="location.href = '/walkin/<%= walkins[i]._id %>';" type="button" class="list-group-item" itemscope itemtype="http://schema.org/JobPosting">
+                                        <button onclick="location.href = '/walkin/<%= walkins[i]._id %>';" type="button" class="list-group-item" itemscope itemtype="http://schema.org/JobPosting">
                       <h2 itemprop="datePosted" style="font-size: 0.8em;" class="col-xs-12 col-sm-12 col-md-1 col-lg-1 text-success"><%=  walkins[i].date.substring(0,10) %></h2>
                       <h3 itemprop="hiringOrganization" class="col-xs-12 col-sm-12 col-md-3 col-lg-3 text-danger">
                         <%= walkins[i].company %>
@@ -157,7 +157,7 @@
                       <h6 itemprop="experienceRequirements" class="col-xs-12 col-sm-12 col-md-1 col-lg-1"><%= walkins[i].experience %></h6>
                       <h6 class="col-xs-12 col-sm-12 col-md-1 col-lg-1 text-success"><i class="fa fa-arrow-circle-right fa-2x" aria-hidden="true"></i></h6>
                     </button>
-                        <% } %>
+                                        <% } %>
                 </div>
 
                 <style>
@@ -184,15 +184,18 @@
     <footer class="navbar-default navbar-fixed-bottom">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                  <div class="fb-like" data-href="https://www.facebook.com/walkinshubindia" data-layout="box_count" data-action="like" data-size="large" data-show-faces="false" data-share="false"></div>
+                </div>
+                <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
                     <div class="social-media-icons col-xs-12">
                         <ul class="list-inline col-xs-12">
-                            <a href="http://www.facebook.com/sharer.php?u=http://www.walkinshub.com/" target="_blank" title="Zuck It"><i class="fa fa-facebook-square fa-3x"></i></a>
-                            <a href="https://plus.google.com/share?url=http://www.walkinshub.com/" target="_blank" title="Google It"><i class="fa fa-google-plus-square fa-3x"></i></a>
-                            <a href="https://twitter.com/share?url=http://www.walkinshub.com/&amp;text=Walkins%20Hub&amp;hashtags=walkinshub" title="Chirp Chirp"><i class="fa fa-twitter-square fa-3x"></i></a>
-                            <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=http://www.walkinshub.com/" target="_blank" title="Link It"><i class="fa fa-linkedin-square fa-3x"></i></a>
+                            <a href="http://www.facebook.com/sharer.php?u=http://www.walkinshub.com/" target="_blank" title="Zuck It"><i class="fa fa-facebook-square fa-2x"></i></a>
+                            <a href="https://plus.google.com/share?url=http://www.walkinshub.com/" target="_blank" title="Google It"><i class="fa fa-google-plus-square fa-2x"></i></a>
+                            <a href="https://twitter.com/share?url=http://www.walkinshub.com/&amp;text=Walkins%20Hub&amp;hashtags=walkinshub" title="Chirp Chirp"><i class="fa fa-twitter-square fa-2x"></i></a>
+                            <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=http://www.walkinshub.com/" target="_blank" title="Link It"><i class="fa fa-linkedin-square fa-2x"></i></a>
                             <a href="whatsapp://send?text=Walk-in interviews,  http://www.walkinshub.com/" data-action="share/whatsapp/share" data-href="" class="hidden-md hidden-lg" title="Wassup">
-                                <i class="fa fa-whatsapp fa-3x"></i>
+                                <i class="fa fa-whatsapp fa-2x"></i>
                             </a>
                             <p><b>Help us reach needy.</b></p>
                         </ul>
@@ -231,10 +234,10 @@
 
     <script type="text/javascript">
         $(document).ready(function() {
-            setTimeout(function() {
+            //setTimeout(function() {
                 //$("#subscribeModal").modal('show');
-                $("#pagelikediv").show();
-            }, 6000);
+                //$("#pagelikediv").show();
+            //}, 6000);
         });
     </script>
 
