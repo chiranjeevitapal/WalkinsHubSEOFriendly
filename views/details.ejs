@@ -397,10 +397,10 @@
                 $.each(data, function(i, obj) {
                     console.log(obj.position)
                     $('#suggestedJobsList').append(
-                        '<li class="list-group-item">' +
+                        '<li class="list-group-item"><a href="/walkin/<%= obj._id %>">' +
                         '<img src="../' + obj.logo + '" class="img-responsive" style="height: 100px;width: 100px; alt="Logo">' +
                         '<b>' + obj.location + '</b> <b>(' + obj.experience + ') - (' + obj.eligibility + ')</b>' +
-                        '</li>'
+                        '</a></li>'
                     );
                 });
             },
