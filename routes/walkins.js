@@ -91,7 +91,15 @@ router.get('/sitemap.xml', function(req, res) {
         '<changefreq>daily</changefreq>' +
         '</url>' +
         '<url>' +
+        '<loc>http://www.walkinshub.com/jobs/trichy</loc>' +
+        '<changefreq>daily</changefreq>' +
+        '</url>' +
+        '<url>' +
         '<loc>http://www.walkinshub.com/jobs/trivandrum</loc>' +
+        '<changefreq>daily</changefreq>' +
+        '</url>' +
+        '<url>' +
+        '<loc>http://www.walkinshub.com/jobs/visakhapatnam</loc>' +
         '<changefreq>daily</changefreq>' +
         '</url>' +
         '<url>' +
