@@ -11,7 +11,7 @@ function scrapeTodayUrls(res) {
         } else {
 
             var today = new Date();
-            today.setDate(today.getDate() - 1);
+            today.setDate(today.getDate() - 3);
             var dd = today.getDate();
             var mm = today.getMonth() + 1; //January is 0!
             var yyyy = today.getFullYear();
@@ -85,8 +85,8 @@ function scrape(res, link) {
                 contactDetails: ""
             }
             var today = new Date();
-            today.setDate(today.getDate() - 1);
-            var dd = today.getDate();
+            today.setDate(today.getDate() - 3);
+            /*var dd = today.getDate();
             var mm = today.getMonth() + 1; //January is 0!
             var yyyy = today.getFullYear();
             if (dd < 10) {
@@ -95,7 +95,7 @@ function scrape(res, link) {
             if (mm < 10) {
                 mm = '0' + mm;
             }
-            var today = dd + '/' + mm + '/' + yyyy;
+            var today = dd + '/' + mm + '/' + yyyy;*/
 
             walkin.date = today;
             $('.comp-logo').filter(function() {
