@@ -299,7 +299,7 @@ router.post('/postWalkin', (req, res) => {
     var today = new Date();
     var milli = today.getMilliseconds();
     var todayDateString = today.yyyymmdd();
-    req.body._id = title + '-in-' + location + '-' + todayDateString
+    req.body._id = title + '-in-' + location + '-' + req.body.date.yyyymmdd();
     db.collection('walkins').save(req.body, (err, result) => {
         if (err) return console.log(err)
         res.json(result);

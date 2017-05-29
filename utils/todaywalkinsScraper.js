@@ -23,8 +23,8 @@ function scrapeTodayUrls(res) {
             }
             var today = dd + '/' + mm;
             //console.log(today);
-            today = '27/05'
-            console.log(today);
+            //today = '26/05'
+            //console.log(today);
             var tableHtml = html.substring(html.indexOf('</thead>') + 8, html.indexOf('</table>'));
             html = '<div class="myLinks">' + tableHtml + '</div>'
             var $ = cheerio.load(html);
