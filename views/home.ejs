@@ -41,6 +41,9 @@
     <link rel="stylesheet" href="../styles.css">
     <link rel="stylesheet" href="../bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../font-awesome/css/font-awesome.min.css">
+    <style>
+    h2,h3,h4,h5,h6{display:block;font-size:1em;font-weight:700;margin:1.33em 0}
+    </style>
 </head>
 
 <body>
@@ -113,14 +116,8 @@
                     </ul>
                 </div>
             </div>
-            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-            <!-- responsive ads -->
-            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5482095998977489" data-ad-slot="2404350455" data-ad-format="auto"></ins>
-            <script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
         </div>
-        <h1 class="text-center top-buffer-lg"><%= jobsType.toUpperCase() %></h1>
+        <h1 class="text-center"><%= jobsType.toUpperCase() %></h1>
         <% if( walkins.length == 0){ %>
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <div class="alert alert-info text-center">
@@ -130,7 +127,7 @@
             <% } %>
                 <div class="list-group">
                     <% for(var i=0; i<walkins.length; i++) { %>
-                      <!-- <%  if(i==8) { %>
+                        <!-- <%  if(i==8) { %>
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 .hidden-md hidden-lg" id="pagelikediv">
                                 <div class="fb-page" data-href="https://www.facebook.com/walkinshubindia" data-tabs="timeline" data-height="300" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
                                     <blockquote cite="https://www.facebook.com/walkinshubindia" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/walkinshubindia">Facebook</a></blockquote>
@@ -143,8 +140,8 @@
                             </div>
                             <% } %> -->
 
-                                <%  if(i==0 || i==2) { %>
-                                    <button class="list-group-item">
+                        <%  if(i==0 || i==1 || i==2) { %>
+                            <button class="list-group-item  list-group-item-info">
                             <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                             <!-- responsive ads -->
                             <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5482095998977489" data-ad-slot="2404350455" data-ad-format="auto"></ins>
@@ -152,40 +149,21 @@
                                 (adsbygoogle = window.adsbygoogle || []).push({});
                             </script>
                         </button>
-                                    <% } %>
+                            <% } %>
 
-                                        <button onclick="location.href = '/walkin/<%= walkins[i]._id %>';" type="button" class="list-group-item" itemscope itemtype="http://schema.org/JobPosting">
+                                <button onclick="location.href = '/walkin/<%= walkins[i]._id %>';" type="button" class="list-group-item  list-group-item-info" itemscope itemtype="http://schema.org/JobPosting">
                       <h2 itemprop="datePosted" style="font-size: 0.8em;" class="col-xs-12 col-sm-12 col-md-1 col-lg-1 text-success"><%=  walkins[i].date.substring(0,10) %></h2>
-                      <h3 itemprop="hiringOrganization" class="col-xs-12 col-sm-12 col-md-3 col-lg-3 text-danger">
+                      <h2 itemprop="hiringOrganization" class="col-xs-12 col-sm-12 col-md-3 col-lg-3 text-danger">
                         <%= walkins[i].company %>
-                      </h3>
-                      <h4 itemprop="title" class="col-xs-12 col-sm-12 col-md-2 col-lg-2"><%= walkins[i].position %></h3>
-                      <h4 itemprop="jobLocation" class="col-xs-12 col-sm-12 col-md-2 col-lg-2"><%= walkins[i].location %></h4>
-                      <h5 itemprop="educationRequirements" class="col-xs-12 col-sm-12 col-md-2 col-lg-2"><%= walkins[i].eligibility %></h5>
-                      <h6 itemprop="experienceRequirements" class="col-xs-12 col-sm-12 col-md-1 col-lg-1"><%= walkins[i].experience %></h6>
-                      <h6 class="col-xs-12 col-sm-12 col-md-1 col-lg-1 text-success"><i class="fa fa-arrow-circle-right fa-2x" aria-hidden="true"></i></h6>
+                      </h2>
+                      <h2 itemprop="title" class="col-xs-12 col-sm-12 col-md-2 col-lg-2"><%= walkins[i].position %></h2>
+                      <h2 itemprop="jobLocation" class="col-xs-12 col-sm-12 col-md-2 col-lg-2"><%= walkins[i].location %></h2>
+                      <h3 itemprop="educationRequirements" class="col-xs-12 col-sm-12 col-md-2 col-lg-2"><%= walkins[i].eligibility %></h3>
+                      <h3 itemprop="experienceRequirements" class="col-xs-12 col-sm-12 col-md-1 col-lg-1"><%= walkins[i].experience %></h3>
+                      <h3 class="col-xs-12 col-sm-12 col-md-1 col-lg-1 text-success"><i class="fa fa-arrow-circle-right fa-2x" aria-hidden="true"></i></h3>
                     </button>
-                                        <% } %>
+                                <% } %>
                 </div>
-
-                <style>
-                    h2,
-                    h3,
-                    h4,
-                    h5,
-                    h6 {
-                        display: block;
-                        font-size: 1em;
-                        margin-top: 1.33em;
-                        margin-bottom: 1.33em;
-                        margin-left: 0;
-                        margin-right: 0;
-                        font-weight: bold;
-                    }
-                </style>
-
-
-
 
     </div>
 
@@ -193,7 +171,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-                  <div class="fb-like" data-href="https://www.facebook.com/walkinshubindia" data-layout="box_count" data-action="like" data-size="large" data-show-faces="false" data-share="false"></div>
+                    <div class="fb-like" data-href="https://www.facebook.com/walkinshubindia" data-layout="box_count" data-action="like" data-size="large" data-show-faces="false" data-share="false"></div>
                 </div>
                 <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
                     <div class="social-media-icons col-xs-12">
@@ -205,7 +183,7 @@
                             <a href="whatsapp://send?text=Walk-in interviews,  http://www.walkinshub.com/" data-action="share/whatsapp/share" data-href="" class="hidden-md hidden-lg" title="Wassup">
                                 <i class="fa fa-whatsapp fa-2x"></i>
                             </a>
-                            <p><b>Help us reach needy.</b></p>
+                            <p><b>Share</b></p>
                         </ul>
                     </div>
                 </div>
@@ -243,8 +221,8 @@
     <script type="text/javascript">
         $(document).ready(function() {
             //setTimeout(function() {
-                //$("#subscribeModal").modal('show');
-                //$("#pagelikediv").show();
+            //$("#subscribeModal").modal('show');
+            //$("#pagelikediv").show();
             //}, 6000);
         });
     </script>
