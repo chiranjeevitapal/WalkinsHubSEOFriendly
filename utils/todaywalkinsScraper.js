@@ -11,8 +11,8 @@ function scrapeTodayUrls(res) {
         } else {
 
             var today = new Date();
-            //today.setDate(today.getDate() - 1);
-            var dd = today.getDate()-1;
+            today.setDate(today.getDate() - 1);
+            var dd = today.getDate();
             var mm = today.getMonth() + 1; //January is 0!
             var yyyy = today.getFullYear();
             if (dd < 10) {
@@ -23,7 +23,7 @@ function scrapeTodayUrls(res) {
             }
             var today = dd + '/' + mm;
             //console.log(today);
-
+            console.log(today);
             var tableHtml = html.substring(html.indexOf('</thead>') + 8, html.indexOf('</table>'));
             html = '<div class="myLinks">' + tableHtml + '</div>'
             var $ = cheerio.load(html);
