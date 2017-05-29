@@ -165,7 +165,11 @@ function scrape(res, link) {
                     var p = $(".detail-container p")[count];
                     var textDetail = $(p).find('strong').text();
                     var textNode = p.nextSibling;
-                    var text = textNode.nodeValue;
+                    var text = '';
+                    if(textNode == null)
+                      text = '';
+                    else
+                      text = textNode.nodeValue;
                     if (textDetail.indexOf('Company Profile') != -1) {
                         walkin.companyProfile = text.trim();
                     }
