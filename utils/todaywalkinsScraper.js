@@ -12,7 +12,7 @@ function scrapeTodayUrls(res) {
 
             var today = new Date();
             //today.setDate(today.getDate() - 1);
-            var dd = today.getDate();
+            var dd = today.getDate()-1;
             var mm = today.getMonth() + 1; //January is 0!
             var yyyy = today.getFullYear();
             if (dd < 10) {
