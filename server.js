@@ -37,7 +37,7 @@ var upload = multer({
 
 
 // configuration ===============================================================
-mongoose.connect('mongodb://localhost:27017/jobu'); // connect to our database
+mongoose.connect('mongodb://localhost:27113/jobu'); // connect to our database
 
 require('./config/passport')(passport); // pass passport for configuration
 
