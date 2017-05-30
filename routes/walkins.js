@@ -12,7 +12,7 @@ var passport = require('passport');
 var MongoClient = require('mongodb').MongoClient
 
 var db
-MongoClient.connect('mongodb://localhost:27017/jobu', (err, database) => {
+MongoClient.connect('mongodb://localhost:27113/jobu', (err, database) => {
     if (err) return console.log(err)
     db = database
 })
