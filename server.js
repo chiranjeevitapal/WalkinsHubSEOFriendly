@@ -51,7 +51,7 @@ var domainName = 'walkinshub.com';
 //Dev
 //var domainName = 'localhost:8080';
 
-MongoClient.connect('mongodb://localhost:27017/jobu', (err, database) => {
+MongoClient.connect('mongodb://localhost:27113/jobu', (err, database) => {
     if (err) return console.log(err)
     db = database
     /*app.listen(process.env.PORT || 8080, () => {
