@@ -54,6 +54,8 @@ router.get('/similarjobs/:location', function(req, res,
         if (err) {
             res.send(err);
         } else {
+            res.setHeader("Cache-Control", "public, max-age=86400");
+            res.setHeader("Expires", new Date(Date.now() + 86400000).toUTCString());
             res.json(walkins);
         }
     });
