@@ -5,7 +5,7 @@ var path = require('path');
 var walkins = require('./walkins');
 
 //Prod
-var domainName = 'walkinshub.com';
+var domainName = 'www.walkinshub.com';
 //Dev
 //var domainName = 'localhost:8080';
 
@@ -18,7 +18,7 @@ MongoClient.connect(dburl.url, (err, database) => {
     db = database
 })
 
-module.exports = function(app) {
+module.exports = function (app) {
     app.use(express.static('public'));
     app.use(express.static('logos'));
     app.use(express.static('node_modules'));
@@ -48,7 +48,7 @@ module.exports = function(app) {
     })
 
     /* GET One Walkin with the provided ID */
-    app.get('/walkin/:id', function(req, res) {
+    app.get('/walkin/:id/', function (req, res) {
         var host = req.headers.host;
 
         if (host.toLowerCase().indexOf(domainName) != -1) {
@@ -58,7 +58,7 @@ module.exports = function(app) {
             if (id.indexOf('-') == -1) {
                 db.collection('walkins').findOne({
                     _id: ObjectId(id)
-                }, function(err, result) {
+                }, function (err, result) {
                     if (err) return console.log(err)
                     if (result == null) {
                         res.redirect('/')
@@ -72,7 +72,7 @@ module.exports = function(app) {
             } else {
                 db.collection('walkins').findOne({
                     _id: id
-                }, function(err, result) {
+                }, function (err, result) {
                     if (err) return console.log(err)
                     if (result == null) {
                         res.redirect('/')
@@ -92,7 +92,7 @@ module.exports = function(app) {
         }
     });
 
-    app.get('/jobs/fresher', (req, res) => {
+    app.get('/jobs/fresher/', (req, res) => {
         var host = req.headers.host;
         if (host.toLowerCase().indexOf(domainName) != -1) {
             db.collection('walkins').find({
@@ -119,7 +119,7 @@ module.exports = function(app) {
         }
     })
 
-    app.get('/jobs/experienced', (req, res) => {
+    app.get('/jobs/experienced/', (req, res) => {
         var host = req.headers.host;
         if (host.toLowerCase().indexOf(domainName) != -1) {
             db.collection('walkins').find({
@@ -150,7 +150,7 @@ module.exports = function(app) {
         }
     })
 
-    app.get('/jobs/:location', function(req, res) {
+    app.get('/jobs/:location/', function (req, res) {
         var host = req.headers.host;
 
         //var id = req.params.id.substring(req.params.id.lastIndexOf('-') + 1);
@@ -176,7 +176,7 @@ module.exports = function(app) {
         }
     });
 
-    app.get('/contact', (req, res) => {
+    app.get('/contact/', (req, res) => {
         var host = req.headers.host;
 
         if (host.toLowerCase().indexOf(domainName) != -1) {
@@ -191,7 +191,7 @@ module.exports = function(app) {
         }
     })
 
-    app.get('/about', (req, res) => {
+    app.get('/about/', (req, res) => {
         var host = req.headers.host;
 
         if (host.toLowerCase().indexOf(domainName) != -1) {
@@ -206,7 +206,7 @@ module.exports = function(app) {
         }
     })
 
-    app.get('/feedback', (req, res) => {
+    app.get('/feedback/', (req, res) => {
         var host = req.headers.host;
 
         if (host.toLowerCase().indexOf(domainName) != -1) {
@@ -221,7 +221,7 @@ module.exports = function(app) {
         }
     })
 
-    app.get('/profile', (req, res) => {
+    app.get('/profile/', (req, res) => {
         var host = req.headers.host;
         if (host.toLowerCase().indexOf(domainName) != -1) {
             if (req.user != undefined) {
@@ -239,7 +239,7 @@ module.exports = function(app) {
         }
     })
 
-    app.get('/uploadChethan', (req, res) => {
+    app.get('/uploadChethan/', (req, res) => {
         var host = req.headers.host;
 
         if (host.toLowerCase().indexOf(domainName) != -1) {
@@ -252,7 +252,7 @@ module.exports = function(app) {
         }
     })
 
-    app.get('/logos/:img', function(req, res) {
+    app.get('/logos/:img/', function (req, res) {
         var host = req.headers.host;
         if (host.toLowerCase().indexOf(domainName) != -1) {
             res.sendFile(path.join(__dirname, '../logos', req.params.img));
@@ -262,6 +262,119 @@ module.exports = function(app) {
             });
             res.end();
         }
+    });
+
+    app.get('/sitemap.xml', function (req, res) {
+        var xml = '<?xml version="1.0" encoding="UTF-8"?>' +
+            '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" ' +
+            'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ' +
+            'xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">' +
+            '<url>' +
+            '<loc>http://www.walkinshub.com/</loc>' +
+            '<changefreq>daily</changefreq>' +
+            '</url>' +
+            '<url>' +
+            '<loc>http://www.walkinshub.com/contact</loc>' +
+            '<changefreq>daily</changefreq>' +
+            '</url>' +
+            '<url>' +
+            '<loc>http://www.walkinshub.com/about</loc>' +
+            '<changefreq>daily</changefreq>' +
+            '</url>' +
+            '<url>' +
+            '<loc>http://www.walkinshub.com/feedback</loc>' +
+            '<changefreq>daily</changefreq>' +
+            '</url>' +
+            '<url>' +
+            '<loc>http://www.walkinshub.com/jobs/hyderabad</loc>' +
+            '<changefreq>daily</changefreq>' +
+            '</url>' +
+            '<url>' +
+            '<loc>http://www.walkinshub.com/jobs/ahmedabad</loc>' +
+            '<changefreq>daily</changefreq>' +
+            '</url>' +
+            '<url>' +
+            '<loc>http://www.walkinshub.com/jobs/bangalore</loc>' +
+            '<changefreq>daily</changefreq>' +
+            '</url>' +
+            '<url>' +
+            '<loc>http://www.walkinshub.com/jobs/chandigarh</loc>' +
+            '<changefreq>daily</changefreq>' +
+            '</url>' +
+            '<url>' +
+            '<loc>http://www.walkinshub.com/jobs/chennai</loc>' +
+            '<changefreq>daily</changefreq>' +
+            '</url>' +
+            '<url>' +
+            '<loc>http://www.walkinshub.com/jobs/coimbatore</loc>' +
+            '<changefreq>daily</changefreq>' +
+            '</url>' +
+            '<url>' +
+            '<loc>http://www.walkinshub.com/jobs/delhi</loc>' +
+            '<changefreq>daily</changefreq>' +
+            '</url>' +
+            '<url>' +
+            '<loc>http://www.walkinshub.com/jobs/gurgaon</loc>' +
+            '<changefreq>daily</changefreq>' +
+            '</url>' +
+            '<url>' +
+            '<loc>http://www.walkinshub.com/jobs/jaipur</loc>' +
+            '<changefreq>daily</changefreq>' +
+            '</url>' +
+            '<url>' +
+            '<loc>http://www.walkinshub.com/jobs/kochi</loc>' +
+            '<changefreq>daily</changefreq>' +
+            '</url>' +
+            '<url>' +
+            '<loc>http://www.walkinshub.com/jobs/mumbai</loc>' +
+            '<changefreq>daily</changefreq>' +
+            '</url>' +
+            '<url>' +
+            '<loc>http://www.walkinshub.com/jobs/noida</loc>' +
+            '<changefreq>daily</changefreq>' +
+            '</url>' +
+            '<url>' +
+            '<loc>http://www.walkinshub.com/jobs/pune</loc>' +
+            '<changefreq>daily</changefreq>' +
+            '</url>' +
+            '<url>' +
+            '<loc>http://www.walkinshub.com/jobs/trichy</loc>' +
+            '<changefreq>daily</changefreq>' +
+            '</url>' +
+            '<url>' +
+            '<loc>http://www.walkinshub.com/jobs/trivandrum</loc>' +
+            '<changefreq>daily</changefreq>' +
+            '</url>' +
+            '<url>' +
+            '<loc>http://www.walkinshub.com/jobs/visakhapatnam</loc>' +
+            '<changefreq>daily</changefreq>' +
+            '</url>' +
+            '<url>' +
+            '<loc>http://www.walkinshub.com/jobs/fresher</loc>' +
+            '<changefreq>daily</changefreq>' +
+            '</url>' +
+            '<url>' +
+            '<loc>http://www.walkinshub.com/jobs/experienced</loc>' +
+            '<changefreq>daily</changefreq>' +
+            '</url>';
+
+
+        db.collection('walkins').find({}).toArray(function (err, walkins) {
+            if (err) {
+                res.send(err);
+            } else {
+                //res.json(walkins);
+                walkins.forEach(function (walkin) {
+                    //var companyName = walkin.company.replace(/[^a-zA-Z0-9_-]/g,'-');
+                    xml += '<url><loc>http://www.walkinshub.com/walkin/' + walkin._id + '</loc><changefreq>daily</changefreq></url>';
+                });
+                xml += '</urlset>'
+                setTimeout(function () {
+                    res.header('Content-Type', 'application/xml');
+                    res.send(xml);
+                }, 2000);
+            }
+        });
     });
 
     app.get('/**', (req, res) => {
