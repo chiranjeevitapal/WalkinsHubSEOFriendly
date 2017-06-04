@@ -28,7 +28,7 @@ module.exports = function (app) {
 
     app.get('/', (req, res) => {
         var host = req.headers.host;
-        if (host.toLowerCase().indexOf(domainName) != -1) {
+        if (domainName.indexOf(host.toLowerCase()) != -1) {
             db.collection('walkins').find({}).sort({
                 "date": -1
             }).limit(300).toArray((err, result) => {
@@ -53,7 +53,7 @@ module.exports = function (app) {
     app.get('/walkin/:id/', function (req, res) {
         var host = req.headers.host;
 
-        if (host.toLowerCase().indexOf(domainName) != -1) {
+       if (domainName.indexOf(host.toLowerCase()) != -1) {
             //var id = req.params.id.substring(req.params.id.lastIndexOf('-') + 1);
             var id = req.params.id;
             //console.log(id);
@@ -100,7 +100,7 @@ module.exports = function (app) {
 
     app.get('/jobs/fresher/', (req, res) => {
         var host = req.headers.host;
-        if (host.toLowerCase().indexOf(domainName) != -1) {
+        if (domainName.indexOf(host.toLowerCase()) != -1) {
             db.collection('walkins').find({
                 $or: [{
                     "experience": /0 -/
@@ -129,7 +129,7 @@ module.exports = function (app) {
 
     app.get('/jobs/experienced/', (req, res) => {
         var host = req.headers.host;
-        if (host.toLowerCase().indexOf(domainName) != -1) {
+        if (domainName.indexOf(host.toLowerCase()) != -1) {
             db.collection('walkins').find({
                 $and: [{
                     "experience": {
@@ -164,7 +164,7 @@ module.exports = function (app) {
         var host = req.headers.host;
 
         //var id = req.params.id.substring(req.params.id.lastIndexOf('-') + 1);
-        if (host.toLowerCase().indexOf(domainName) != -1) {
+        if (domainName.indexOf(host.toLowerCase()) != -1) {
             var location = req.params.location.toLowerCase();
             db.collection('walkins').find({
                 location: new RegExp('^' + location + '$', 'i')
@@ -191,7 +191,7 @@ module.exports = function (app) {
     app.get('/contact/', (req, res) => {
         var host = req.headers.host;
 
-        if (host.toLowerCase().indexOf(domainName) != -1) {
+        if (domainName.indexOf(host.toLowerCase()) != -1) {
             res.render('contact.ejs', {
                 user: req.user
             })
@@ -206,7 +206,7 @@ module.exports = function (app) {
     app.get('/about/', (req, res) => {
         var host = req.headers.host;
 
-        if (host.toLowerCase().indexOf(domainName) != -1) {
+        if (domainName.indexOf(host.toLowerCase()) != -1) {
             res.render('about.ejs', {
                 user: req.user
             })
@@ -221,7 +221,7 @@ module.exports = function (app) {
     app.get('/feedback/', (req, res) => {
         var host = req.headers.host;
 
-        if (host.toLowerCase().indexOf(domainName) != -1) {
+        if (domainName.indexOf(host.toLowerCase()) != -1) {
             res.render('feedback.ejs', {
                 user: req.user
             })
@@ -235,7 +235,7 @@ module.exports = function (app) {
 
     app.get('/profile/', (req, res) => {
         var host = req.headers.host;
-        if (host.toLowerCase().indexOf(domainName) != -1) {
+        if (domainName.indexOf(host.toLowerCase()) != -1) {
             if (req.user != undefined) {
                 res.render('profile.ejs', {
                     user: req.user
@@ -254,7 +254,7 @@ module.exports = function (app) {
     app.get('/uploadChethan/', (req, res) => {
         var host = req.headers.host;
 
-        if (host.toLowerCase().indexOf(domainName) != -1) {
+        if (domainName.indexOf(host.toLowerCase()) != -1) {
             res.render('uploadChethan.ejs');
         } else {
             res.writeHead(301, {
@@ -266,7 +266,7 @@ module.exports = function (app) {
 
     app.get('/logos/:img/', function (req, res) {
         var host = req.headers.host;
-        if (host.toLowerCase().indexOf(domainName) != -1) {
+        if (domainName.indexOf(host.toLowerCase()) != -1) {
             res.setHeader("Cache-Control", "public, max-age=86400");
             res.setHeader("Expires", new Date(Date.now() + 86400000).toUTCString());
             res.sendFile(path.join(__dirname, '../logos', req.params.img));
