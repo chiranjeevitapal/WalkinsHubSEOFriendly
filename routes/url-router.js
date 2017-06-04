@@ -26,15 +26,6 @@ module.exports = function (app) {
     //REST API
     app.use('/api/', walkins);
 
-    app.get('/**', function (req, res, next) {
-        if (host.toLowerCase().indexOf(domainName) != -1) {
-            if (req.headers.host.match(/^www/) == null) res.redirect('http://www.' + req.headers.host + req.url, 301);
-            else next();
-        }else{
-            res.redirect('www.walkinshub.com');
-        }
-    });
-
     app.get('/', (req, res) => {
         var host = req.headers.host;
         if (host.toLowerCase().indexOf(domainName) != -1) {
@@ -401,6 +392,13 @@ module.exports = function (app) {
     });
 
     
+    app.get('/**', function (req, res) {
+        if (host.toLowerCase().indexOf(domainName) != -1) {
+            if (req.headers.host.match(/^www/) == null) res.redirect('http://www.' + req.headers.host + req.url, 301);
+        }else{
+            res.redirect('www.walkinshub.com');
+        }
+    });
 
     /*app.get('/**', (req, res) => {
         res.redirect('/')
