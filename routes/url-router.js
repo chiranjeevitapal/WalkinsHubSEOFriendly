@@ -28,6 +28,7 @@ module.exports = function (app) {
 
     app.get('/', (req, res) => {
         var host = req.headers.host;
+        console.log(host);
         if (host.toLowerCase().indexOf(domainName) != -1) {
             db.collection('walkins').find({}).sort({
                 "date": -1
@@ -52,7 +53,7 @@ module.exports = function (app) {
     /* GET One Walkin with the provided ID */
     app.get('/walkin/:id/', function (req, res) {
         var host = req.headers.host;
-
+        console.log(host);
         if (host.toLowerCase().indexOf(domainName) != -1) {
             //var id = req.params.id.substring(req.params.id.lastIndexOf('-') + 1);
             var id = req.params.id;
