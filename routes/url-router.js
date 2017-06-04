@@ -28,7 +28,7 @@ module.exports = function (app) {
     app.get('/*', (req, res, next) => {
         if (!req.headers.host.match(/^www\./)) {
             res.writeHead(301, {
-                'Location': 'http://www.'+req.url;
+                'Location': 'http://www.'+req.url
             });
         } else {
             return next();
