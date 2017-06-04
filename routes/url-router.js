@@ -384,6 +384,10 @@ module.exports = function (app) {
     });
 
     app.get('/**', (req, res) => {
-        res.redirect('/')
+        if (req.headers.host.match(/^www/) == null ) {
+            res.redirect('http://www.'+ req.url);
+        } else {
+            next();     
+        }
     })
 }
