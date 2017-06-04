@@ -29,20 +29,17 @@ module.exports = function (app) {
     app.get('/', (req, res) => {
         var host = req.headers.host;
         if (host.toLowerCase().indexOf(domainName) != -1) {
-            if (!req.headers.host.match(/^www\./)) {
-                res.writeHead(301, {
-                    'Location': 'http://www.walkinshub.com'
-                });
-            } else {
-                return next();
-            }
-
             db.collection('walkins').find({}).sort({
                 "date": -1
             }).limit(300).toArray((err, result) => {
                 if (err) return console.log(err)
                 res.setHeader("Cache-Control", "public, max-age=86400");
                 res.setHeader("Expires", new Date(Date.now() + 86400000).toUTCString());
+                if (!req.headers.host.match(/^www\./)) {
+                    res.writeHead(301, {
+                        'Location': 'http://www.walkinshub.com'
+                    });
+                }
                 res.render('home.ejs', {
                     walkins: result,
                     jobsType: 'Walk-ins',
