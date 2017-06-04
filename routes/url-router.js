@@ -99,13 +99,6 @@ module.exports = function (app) {
     app.get('/jobs/fresher/', (req, res) => {
         var host = req.headers.host;
         if (host.toLowerCase().indexOf(domainName) != -1) {
-            if (!req.headers.host.match(/^www\./)) {
-                res.writeHead(301, {
-                    'Location': 'http://www.walkinshub.com'
-                });
-            } else {
-                return next();
-            }
             db.collection('walkins').find({
                 $or: [{
                     "experience": /0 -/
@@ -135,13 +128,6 @@ module.exports = function (app) {
     app.get('/jobs/experienced/', (req, res) => {
         var host = req.headers.host;
         if (host.toLowerCase().indexOf(domainName) != -1) {
-            if (!req.headers.host.match(/^www\./)) {
-                res.writeHead(301, {
-                    'Location': 'http://www.walkinshub.com'
-                });
-            } else {
-                return next();
-            }
             db.collection('walkins').find({
                 $and: [{
                     "experience": {
@@ -177,13 +163,6 @@ module.exports = function (app) {
 
         //var id = req.params.id.substring(req.params.id.lastIndexOf('-') + 1);
         if (host.toLowerCase().indexOf(domainName) != -1) {
-            if (!req.headers.host.match(/^www\./)) {
-                res.writeHead(301, {
-                    'Location': 'http://www.walkinshub.com'
-                });
-            } else {
-                return next();
-            }
             var location = req.params.location.toLowerCase();
             db.collection('walkins').find({
                 location: new RegExp('^' + location + '$', 'i')
@@ -211,13 +190,6 @@ module.exports = function (app) {
         var host = req.headers.host;
 
         if (host.toLowerCase().indexOf(domainName) != -1) {
-            if (!req.headers.host.match(/^www\./)) {
-                res.writeHead(301, {
-                    'Location': 'http://www.walkinshub.com'
-                });
-            } else {
-                return next();
-            }
             res.render('contact.ejs', {
                 user: req.user
             })
@@ -233,13 +205,6 @@ module.exports = function (app) {
         var host = req.headers.host;
 
         if (host.toLowerCase().indexOf(domainName) != -1) {
-            if (!req.headers.host.match(/^www\./)) {
-                res.writeHead(301, {
-                    'Location': 'http://www.walkinshub.com'
-                });
-            } else {
-                return next();
-            }
             res.render('about.ejs', {
                 user: req.user
             })
@@ -255,13 +220,6 @@ module.exports = function (app) {
         var host = req.headers.host;
 
         if (host.toLowerCase().indexOf(domainName) != -1) {
-            if (!req.headers.host.match(/^www\./)) {
-                res.writeHead(301, {
-                    'Location': 'http://www.walkinshub.com'
-                });
-            } else {
-                return next();
-            }
             res.render('uploadChethan.ejs');
         } else {
             res.writeHead(301, {
@@ -274,13 +232,6 @@ module.exports = function (app) {
     app.get('/logos/:img/', function (req, res) {
         var host = req.headers.host;
         if (host.toLowerCase().indexOf(domainName) != -1) {
-            if (!req.headers.host.match(/^www\./)) {
-                res.writeHead(301, {
-                    'Location': 'http://www.walkinshub.com'
-                });
-            } else {
-                return next();
-            }
             res.setHeader("Cache-Control", "public, max-age=86400");
             res.setHeader("Expires", new Date(Date.now() + 86400000).toUTCString());
             res.sendFile(path.join(__dirname, '../logos', req.params.img));
