@@ -384,10 +384,14 @@ module.exports = function (app) {
     });
 
     app.get('/**', (req, res) => {
-        if (req.headers.host.match(/^www/) == null ) {
-            res.redirect('http://www.'+ req.url);
-        } else {
-            next();     
+        if (req.headers.host == 'www.walkinshub.com' || req.headers.host == 'walkinshub.com') {
+            if (req.headers.host.match(/^www/) == null) {
+                res.redirect('http://www.' + req.url);
+            } else {
+                next();
+            }
+        } else{
+            res.redirect("www.walkinshub.com");
         }
     })
 }
