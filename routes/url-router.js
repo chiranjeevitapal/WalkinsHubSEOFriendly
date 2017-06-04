@@ -5,7 +5,7 @@ var path = require('path');
 var walkins = require('./walkins');
 
 //Prod
-var domainName = 'walkinshub.com';
+var domainName = 'www.walkinshub.com';
 //Dev
 //var domainName = 'localhost:8080';
 
@@ -391,16 +391,7 @@ module.exports = function (app) {
         });
     });
 
-    
-    app.get('/**', function (req, res) {
-        if (host.toLowerCase().indexOf(domainName) != -1) {
-            if (req.headers.host.match(/^www/) == null) res.redirect('http://www.' + req.headers.host + req.url, 301);
-        }else{
-            res.redirect('www.walkinshub.com');
-        }
-    });
-
-    /*app.get('/**', (req, res) => {
+    app.get('/**', (req, res) => {
         res.redirect('/')
-    })*/
+    })
 }
