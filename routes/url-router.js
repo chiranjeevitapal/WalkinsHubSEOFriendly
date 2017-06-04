@@ -25,13 +25,6 @@ module.exports = function (app) {
 
     //REST API
     app.use('/api/', walkins);
-    app.get('/*', (req, res) => {
-        if (!req.headers.host.match(/^www\./)) {
-            res.writeHead(301, {
-                'Location': 'http://www.'+req.url
-            });
-        } 
-    })
     app.get('/', (req, res) => {
         var host = req.headers.host;
         if (host.toLowerCase().indexOf(domainName) != -1) {
