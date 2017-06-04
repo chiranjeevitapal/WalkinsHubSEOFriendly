@@ -52,13 +52,6 @@ module.exports = function (app) {
     app.get('/walkin/:id/', function (req, res) {
         var host = req.headers.host;
         if (host.toLowerCase().indexOf(domainName) != -1) {
-            if (!req.headers.host.match(/^www\./)) {
-                res.writeHead(301, {
-                    'Location': 'http://www.walkinshub.com'
-                });
-            } else {
-                return next();
-            }
             //var id = req.params.id.substring(req.params.id.lastIndexOf('-') + 1);
             var id = req.params.id;
             //console.log(id);
