@@ -25,7 +25,7 @@ module.exports = function (app) {
 
     //REST API
     app.use('/api/', walkins);
-    app.get('/*', (req, res) => {
+    app.get('/*', (req, res, next) => {
         if (!req.headers.host.match(/^www\./)) {
             res.writeHead(301, {
                 'Location': 'http://www.walkinshub.com'
