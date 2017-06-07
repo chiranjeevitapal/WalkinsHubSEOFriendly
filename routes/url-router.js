@@ -32,7 +32,7 @@ module.exports = function (app) {
                 "date": -1
             }).limit(300).toArray((err, result) => {
                 if (err) return console.log(err)
-                res.setHeader("Cache-Control", "public, max-age=86400");
+                res.setHeader("Cache-Control", "public, max-age=86400, no-cache");
                 res.setHeader("Expires", new Date(Date.now() + 86400000).toUTCString());
                 res.render('home.ejs', {
                     walkins: result,
