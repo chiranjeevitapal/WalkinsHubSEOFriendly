@@ -21,8 +21,8 @@ require('./routes/url-router')(app);
     console.log('listening on 8080')
 })*/
 
-app.listen(process.env.PORT || 80, () => {
-    console.log('listening on 80')
+app.listen(process.env.PORT || 8713, () => {
+    console.log('listening on 8713')
 })
 
 exports = module.exports = app;
