@@ -41,9 +41,7 @@
     <link rel="stylesheet" href="../styles.css">
     <link rel="stylesheet" href="../bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../font-awesome/css/font-awesome.min.css">
-    <style>
-    h2,h3,h4,h5,h6{display:block;font-size:1em;font-weight:700;margin:1.33em 0}
-    </style>
+   
 </head>
 
 <body>
@@ -92,107 +90,108 @@
                     <button class="btn btn-primary dropdown-toggle form-control" id="cities" type="button" data-toggle="dropdown">Where are you?
                     <span class="caret"></span></button>
                     <ul class="dropdown-menu" role="menu" aria-labelledby="cities" style="width: 350px; height: 300px; overflow: auto">
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="/jobs/ahmedabad"><h4>Ahmedabad<h4></a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="/jobs/bangalore"><h4>Bangalore<h4></a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="/jobs/chandigarh"><h4>Chandigarh<h4></a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="/jobs/chennai"><h4>Chennai<h4></a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="/jobs/coimbatore"><h4>Coimbatore<h4></a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="/jobs/delhi"><h4>Delhi<h4></a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="/jobs/gurgaon"><h4>Gurgaon<h4></a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="/jobs/hyderabad"><h4>Hyderabad<h4></a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="/jobs/jaipur"><h4>Jaipur<h4></a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="/jobs/kochi"><h4>Kochi<h4></a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="/jobs/mumbai"><h4>Mumbai<h4></a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="/jobs/noida"><h4>Noida<h4></a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="/jobs/pune"><h4>Pune<h4></a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="/jobs/trichy"><h4>Trichy<h4></a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="/jobs/trivandrum"><h4>Trivandrum<h4></a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="/jobs/visakhapatnam"><h4>Visakhapatnam<h4></a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="/jobs/ahmedabad"><h2>Ahmedabad<h2></a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="/jobs/bangalore"><h2>Bangalore<h2></a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="/jobs/chandigarh"><h2>Chandigarh<h2></a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="/jobs/chennai"><h2>Chennai<h2></a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="/jobs/coimbatore"><h2>Coimbatore<h2></a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="/jobs/delhi"><h2>Delhi<h2></a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="/jobs/gurgaon"><h2>Gurgaon<h2></a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="/jobs/hyderabad"><h2>Hyderabad<h2></a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="/jobs/jaipur"><h2>Jaipur<h2></a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="/jobs/kochi"><h2>Kochi<h2></a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="/jobs/mumbai"><h2>Mumbai<h2></a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="/jobs/noida"><h2>Noida<h2></a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="/jobs/pune"><h2>Pune<h2></a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="/jobs/trichy"><h2>Trichy<h2></a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="/jobs/trivandrum"><h2>Trivandrum<h2></a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="/jobs/visakhapatnam"><h2>Visakhapatnam<h2></a></li>
                     </ul>
                 </div>
             </div>
         </div>
-        <h1 class="text-center"><%= jobsType.toUpperCase() %></h1>
+        
         <% if( walkins.length == 0){ %>
+        <div class="row top-buffer-small">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <div class="alert alert-info text-center">
                     No job information is available right now. Please check back later.
                 </div>
             </div>
+            </div>
             <% } %>
-                <div class="list-group">
-                    <% for(var i=0; i<walkins.length; i++) { %>
-                        <!-- <%  if(i==8) { %>
-                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 .hidden-md hidden-lg" id="pagelikediv">
-                                <div class="fb-page" data-href="https://www.facebook.com/walkinshubindia" data-tabs="timeline" data-height="300" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
-                                    <blockquote cite="https://www.facebook.com/walkinshubindia" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/walkinshubindia">Facebook</a></blockquote>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 .hidden-sm hidden-xs" id="pagelikediv">
-                                <div class="fb-page" data-href="https://www.facebook.com/walkinshubindia" data-tabs="timeline" data-width="500" data-height="300" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
-                                    <blockquote cite="https://www.facebook.com/walkinshubindia" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/walkinshubindia">WalkinsHub.com</a></blockquote>
-                                </div>
-                            </div>
-                            <% } %> -->
-
-                        <%  if(i==1) { %>
-                            <button class="list-group-item  list-group-item-info">
-                                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                                <!-- Main page - Top Responsive -->
-                                <ins class="adsbygoogle"
-                                    style="display:block"
-                                    data-ad-client="ca-pub-5482095998977489"
-                                    data-ad-slot="6520894053"
-                                    data-ad-format="auto"></ins>
-                                <script>
-                                (adsbygoogle = window.adsbygoogle || []).push({});
-                                </script>
-                            </button>
-                            <% } %>
-
-                            <%  if(i==3) { %>
-                            <button class="list-group-item  list-group-item-info">
-                                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                                <!-- Main Page - Middle Responsive -->
-                                <ins class="adsbygoogle"
-                                    style="display:block"
-                                    data-ad-client="ca-pub-5482095998977489"
-                                    data-ad-slot="7997627254"
-                                    data-ad-format="auto"></ins>
-                                <script>
-                                (adsbygoogle = window.adsbygoogle || []).push({});
-                                </script>
-                            </button>
-                            <% } %>
-
-                            <%  if(i==5) { %>
-                            <button class="list-group-item  list-group-item-info">
-                                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                                <!-- Main Page - Bottom Responsive -->
-                                <ins class="adsbygoogle"
-                                    style="display:block"
-                                    data-ad-client="ca-pub-5482095998977489"
-                                    data-ad-slot="9474360456"
-                                    data-ad-format="auto"></ins>
-                                <script>
-                                (adsbygoogle = window.adsbygoogle || []).push({});
-                                </script>
-                            </button>
-                            <% } %>
-
-                                <button onclick="location.href = '/walkin/<%= walkins[i]._id %>';" formtarget="_blank" type="button" class="list-group-item  list-group-item-info" itemscope itemtype="http://schema.org/JobPosting">
-                      <h2 itemprop="datePosted" style="font-size: 0.8em;" class="col-xs-12 col-sm-12 col-md-1 col-lg-1 text-success"><%=  walkins[i].date.substring(0,10) %></h2>
-                      <h2 itemprop="hiringOrganization" class="col-xs-12 col-sm-12 col-md-3 col-lg-3 text-danger">
-                        <%= walkins[i].company %>
-                      </h2>
-                      <h2 itemprop="title" class="col-xs-12 col-sm-12 col-md-2 col-lg-2"><%= walkins[i].position %></h2>
-                      <h2 itemprop="jobLocation" class="col-xs-12 col-sm-12 col-md-2 col-lg-2"><%= walkins[i].location %></h2>
-                      <h3 itemprop="educationRequirements" class="col-xs-12 col-sm-12 col-md-2 col-lg-2"><%= walkins[i].eligibility %></h3>
-                      <h3 itemprop="experienceRequirements" class="col-xs-12 col-sm-12 col-md-1 col-lg-1"><%= walkins[i].experience %></h3>
-                      <h3 class="col-xs-12 col-sm-12 col-md-1 col-lg-1 text-success"><i class="fa fa-arrow-circle-right fa-2x" aria-hidden="true"></i></h3>
-                    </button>
-                                <% } %>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <h1 class="text-center">
+                            <i class="fa fa-briefcase"></i> <%= jobsType.toUpperCase() %>
+                        </h1>
+                    </div>
                 </div>
+                <% for(var i=0; i<walkins.length; i++) { %>
+                <%  if(i==1) { %>
+                <div class="row job-listing-row clearfix">
+                    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                    <!-- Main page - Top Responsive -->
+                    <ins class="adsbygoogle"
+                        style="display:block"
+                        data-ad-client="ca-pub-5482095998977489"
+                        data-ad-slot="6520894053"
+                        data-ad-format="auto"></ins>
+                    <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
+                <% } %>
+                <%  if(i==3) { %>
+                <div class="row job-listing-row clearfix">
+                    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                    <!-- Main Page - Middle Responsive -->
+                    <ins class="adsbygoogle"
+                        style="display:block"
+                        data-ad-client="ca-pub-5482095998977489"
+                        data-ad-slot="7997627254"
+                        data-ad-format="auto"></ins>
+                    <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
+                <% } %>
+                <%  if(i==5) { %>
+                <div class="row job-listing-row clearfix">
+                    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                    <!-- Main Page - Bottom Responsive -->
+                    <ins class="adsbygoogle"
+                        style="display:block"
+                        data-ad-client="ca-pub-5482095998977489"
+                        data-ad-slot="9474360456"
+                        data-ad-format="auto"></ins>
+                    <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
+                <% } %>
+                <div class="row job-listing-row clearfix" itemscope itemtype="http://schema.org/JobPosting">
+                    <div class="col-xs-12 col-sm-12 col-md-1 col-lg-1 job-listing-date pull-left" itemprop="datePosted">
+                        <h3 class="text-danger"><%=  walkins[i].date.substring(0,10) %></h3>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 job-listing-company pull-left" itemprop="hiringOrganization">
+                        <h3 class="wrap-text"><%= walkins[i].company %></h3>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 job-listing-position">
+                        <h3 itemprop="title"><%= walkins[i].position %></h3>
+                        <p class="job-listing-education wrap-text" itemprop="educationRequirements"><%= walkins[i].eligibility %></p>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-2 col-lg-2 job-listing-location" itemprop="jobLocation">
+                        <h3><i class="fa fa-fw fa-map-marker"></i><%= walkins[i].location %></h3>	
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-2 col-lg-2 job-listing-experience" itemprop="experienceRequirements">
+                        <h3><i class="fa fa-fw fa-user"></i><%= walkins[i].experience %></h3>			
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-1 col-lg-1 job-listing-view pull-right">
+                        <a href="/walkin/<%= walkins[i]._id %>" target="_blank" class="btn btn-default">View Job</a>
+                    </div>
+                </div>
+                <% } %>
 
     </div>
 

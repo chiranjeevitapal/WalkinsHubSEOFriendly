@@ -4,11 +4,6 @@ var MongoClient = require('mongodb').MongoClient
 var path = require('path');
 var walkins = require('./walkins');
 
-//Prod
-//var domainName = 'walkinshub.com';
-//Dev
-//var domainName = 'localhost:8080';
-
 //DB configuration
 var dburl = require('../config/database.js');
 var db;
