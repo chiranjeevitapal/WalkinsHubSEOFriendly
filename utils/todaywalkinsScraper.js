@@ -64,7 +64,7 @@ function scrape(res, link) {
             var $ = cheerio.load(html);
             var walkin = {
                 title: "",
-                logo: "dummy",
+                logo: "logos\\walkinshub.png",
                 company: "",
                 website: "",
                 position: "",
@@ -82,7 +82,10 @@ function scrape(res, link) {
                 lastDate: "",
                 companyProfile: "",
                 howToApply: "",
-                contactDetails: ""
+                contactDetails: "",
+                functionalArea: "",
+                industry: "",
+                openings: ""
             }
             var today = new Date();
             //today.setDate(today.getDate() - 3);

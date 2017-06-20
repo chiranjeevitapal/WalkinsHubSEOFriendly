@@ -6,6 +6,7 @@ var request = require('request');
 var fs = require('fs');
 var todaywalkinsScraper = require('../utils/todaywalkinsScraper.js');
 var prepareinterviewScraper = require('../utils/prepareinterviewScraper.js');
+var walkinsAlertScraper = require('../utils/walkinsAlertScraper.js');
 var dburl = require('../config/database.js');
 var MongoClient = require('mongodb').MongoClient
 
@@ -15,7 +16,7 @@ MongoClient.connect(dburl.url, (err, database) => {
     db = database
 })
 
-router.get('/walkinstoday', function(req, res,
+router.get('/walkinstoday', function (req, res,
     next) {
     var today = new Date();
     var todayDateString = today.yyyymmdd();
@@ -23,7 +24,7 @@ router.get('/walkinstoday', function(req, res,
         "date": {
             $regex: todayDateString
         }
-    }).toArray(function(err, walkins) {
+    }).toArray(function (err, walkins) {
         var obj = [];
 
         if (err) {
@@ -34,7 +35,7 @@ router.get('/walkinstoday', function(req, res,
     });
 });
 
-router.get('/similarjobs/:location', function(req, res,
+router.get('/similarjobs/:location', function (req, res,
     next) {
     db.collection('walkins').find({
         $or: [{
@@ -49,7 +50,7 @@ router.get('/similarjobs/:location', function(req, res,
         }]
     }).sort({
         'date': -1
-    }).limit(10).toArray(function(err, walkins) {
+    }).limit(10).toArray(function (err, walkins) {
         var obj = [];
         if (err) {
             res.send(err);
@@ -63,28 +64,34 @@ router.get('/similarjobs/:location', function(req, res,
 
 
 //get all the latest urls from today walkins
-router.get('/scrapeTodayUrls', function(req, res) {
+router.get('/scrapeTodayUrls', function (req, res) {
     todaywalkinsScraper.scrapeTodayUrls(res);
 })
 
-router.get('/scrapeTodayUrls2', function(req, res) {
+router.get('/scrapeTodayUrls2', function (req, res) {
     prepareinterviewScraper.scrapeTodayUrls(res);
 })
 
+router.get('/watodaylinks', function (req, res) {
+    walkinsAlertScraper.scrapeUrls(res);
+})
+
+router.post('/wacontent', function (req, res) {
+    var url = req.body.url;
+    var imageUrl = req.body.image;
+    walkinsAlertScraper.scrapeContent(res, url, imageUrl);
+})
+
 //scrape each url from today walkins
-router.get('/scrape/:website/:link', function(req, res) {
+router.get('/scrape/:website/:link', function (req, res) {
 
     var website = req.params.website;
     var link = req.params.link;
-    //console.log(website + " / "+ link );
     if (website == 'todaywalkins') {
         todaywalkinsScraper.scrape(res, link);
-        //console.log("scraped : "+link);
     }
-
     if (website == 'prepareinterview') {
         prepareinterviewScraper.scrape(res, link);
-        //console.log("scraped : "+link);
     }
 })
 
@@ -95,7 +102,7 @@ router.post('/postWalkin', (req, res) => {
     var today = new Date();
     var milli = today.getMilliseconds();
     var todayDateString = today.yyyymmdd();
-    req.body._id = title + '-in-' + location + '-' + req.body.date.substring(0,10);
+    req.body._id = title + '-in-' + location + '-' + req.body.date.substring(0, 10);
     db.collection('walkins').save(req.body, (err, result) => {
         if (err) return console.log(err)
         res.json(result);
@@ -103,7 +110,7 @@ router.post('/postWalkin', (req, res) => {
 })
 
 
-Date.prototype.yyyymmdd = function() {
+Date.prototype.yyyymmdd = function () {
     var mm = this.getMonth() + 1; // getMonth() is zero-based
     var dd = this.getDate();
 
