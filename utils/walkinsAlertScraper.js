@@ -72,10 +72,11 @@ function scrapeContent(res, url, imageUrl) {
             contentDiv = contentDiv.replace(/<\/em>/g, '');
             //html = contentDiv;
             var $ = cheerio.load(html);
-            var company = $('footer').find('a').eq(1).text();
+            $(".entry-tags" ).remove();
+            var company = $('footer').find('a').eq(0).text();
             var education = "Any Graduate";
-            if($('footer').find('a').eq(2).text() != undefined){
-                education = $('footer').find('a').eq(2).text();
+            if($('footer').find('a').eq(1).text() != undefined){
+                education = $('footer').find('a').eq(1).text();
             }
             var title = $("meta[property='og:title']").attr("content");
             html = contentDiv;
@@ -132,31 +133,32 @@ function scrapeContent(res, url, imageUrl) {
                 textDetail.startsWith('Functional Area') || textDetail.startsWith('Role Category') 
                 || textDetail.startsWith('Role') || textDetail.startsWith('Experience')) {
                     var lines = textDetail.split('\n');
-                    console.log(lines);
                     lines.forEach(function (line) {
-                        if (line.startsWith('Salary:')) {
-                            walkin.salary = line.substring(line.indexOf('Salary:') + 7).trim();
+                        line = line.replace(":","");
+                        line = line.trim();
+                        if (line.startsWith('Salary')) {
+                            walkin.salary = line.substring(line.indexOf('Salary') + 6).trim();
                         }
-                        if (line.startsWith('Industry:')) {
-                            walkin.industry = line.substring(line.indexOf('Industry:') + 9).trim();
+                        if (line.startsWith('Industry')) {
+                            walkin.industry = line.substring(line.indexOf('Industry') + 8).trim();
                         }
                         if (line.startsWith('Functional Area')) {
-                            walkin.functionalArea = line.substring(line.indexOf('Functional Area:') + 16).trim();
+                            walkin.functionalArea = line.substring(line.indexOf('Functional Area') + 15).trim();
                         }
                         if (line.startsWith('Role Category')) {
-                            walkin.jobRequirements = line.substring(line.indexOf('Role Category:') + 14).trim();
+                            walkin.jobRequirements = line.substring(line.indexOf('Role Category') + 13).trim();
                         }
-                        if (line.startsWith('Role:')) {
-                            walkin.position = line.substring(line.indexOf('Role:') + 5).trim();
+                        if (line.startsWith('Role')) {
+                            walkin.position = line.substring(line.indexOf('Role') + 4).trim();
                         }
-                        if (line.startsWith('Experience:')) {
-                            walkin.experience = line.substring(line.indexOf('Experience:') + 11).trim();
+                        if (line.startsWith('Experience')) {
+                            walkin.experience = line.substring(line.indexOf('Experience') + 10).trim();
                         }
-                        if (line.startsWith('Location:')) {
-                            walkin.location = line.substring(line.indexOf('Location:') + 9).trim();
+                        if (line.startsWith('Location')) {
+                            walkin.location = line.substring(line.indexOf('Location') + 8).trim();
                         }
-                        if (line.startsWith('Openings:')) {
-                            walkin.openings = line.substring(line.indexOf('Openings:') + 9).trim();
+                        if (line.startsWith('Openings')) {
+                            walkin.openings = line.substring(line.indexOf('Openings') + 8).trim();
                         }
                     })
                 }
