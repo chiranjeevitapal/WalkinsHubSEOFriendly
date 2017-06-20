@@ -84,6 +84,10 @@ module.exports = function (app) {
                 "experience": /0 -/
             }, {
                 "experience": /Fresher/
+            },{
+                "experience": /0 – /
+            },{
+                "experience": /0-/
             }]
         }).sort({
             "date": -1
