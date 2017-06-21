@@ -35,7 +35,8 @@ function scrapeUrls(res) {
         }
         console.log(recursiveCount);
         recursiveCount++;
-        if (recursiveCount == 3) {
+        if (recursiveCount >= 4) {
+            recursiveCount = 0;
             res.json(urlsArray);
         } else {
             scrapeUrls(res);
