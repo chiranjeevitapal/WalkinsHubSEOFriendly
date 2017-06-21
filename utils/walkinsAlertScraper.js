@@ -28,6 +28,9 @@ function scrapeUrls(res) {
                         }
                         details.image = image;
                         //console.log($(this).find('.updated').attr("href"));
+                        if(recursiveCount == 1){
+                            urlsArray = [];
+                        }
                         urlsArray.push(details);
                     }
                 })
@@ -36,7 +39,7 @@ function scrapeUrls(res) {
         console.log(recursiveCount);
         recursiveCount++;
         if (recursiveCount >= 4) {
-            recursiveCount = 0;
+            recursiveCount = 1;
             res.json(urlsArray);
         } else {
             scrapeUrls(res);
