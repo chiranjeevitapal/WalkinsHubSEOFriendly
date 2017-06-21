@@ -5,6 +5,9 @@ var recursiveCount = 1;
 var urlsArray = [];
 
 function scrapeUrls(res) {
+    if (recursiveCount == 1) {
+        urlsArray = [];
+    }
     url = 'http://www.walkinsalert.com/page/' + recursiveCount + '/';
     request(url, function (error, response, html) {
         if (error) {
@@ -28,9 +31,6 @@ function scrapeUrls(res) {
                         }
                         details.image = image;
                         //console.log($(this).find('.updated').attr("href"));
-                        if(recursiveCount == 1){
-                            urlsArray = [];
-                        }
                         urlsArray.push(details);
                     }
                 })
@@ -76,10 +76,10 @@ function scrapeContent(res, url, imageUrl) {
             contentDiv = contentDiv.replace(/<\/em>/g, '');
             //html = contentDiv;
             var $ = cheerio.load(html);
-            $(".entry-tags" ).remove();
+            $(".entry-tags").remove();
             var company = $('footer').find('a').eq(0).text();
             var education = "Any Graduate";
-            if($('footer').find('a').eq(1).text() != undefined){
+            if ($('footer').find('a').eq(1).text() != undefined) {
                 education = $('footer').find('a').eq(1).text();
             }
             var title = $("meta[property='og:title']").attr("content");
@@ -133,12 +133,12 @@ function scrapeContent(res, url, imageUrl) {
                 if (textDetail.startsWith('Job Description')) {
                     walkin.jobDescription = textDetail.substring(textDetail.indexOf('Job Description') + 16).trim();
                 }
-                if (textDetail.startsWith('Industry') || textDetail.startsWith('Salary') || 
-                textDetail.startsWith('Functional Area') || textDetail.startsWith('Role Category') 
-                || textDetail.startsWith('Role') || textDetail.startsWith('Experience')) {
+                if (textDetail.startsWith('Industry') || textDetail.startsWith('Salary') ||
+                    textDetail.startsWith('Functional Area') || textDetail.startsWith('Role Category') ||
+                    textDetail.startsWith('Role') || textDetail.startsWith('Experience')) {
                     var lines = textDetail.split('\n');
                     lines.forEach(function (line) {
-                        line = line.replace(":","");
+                        line = line.replace(":", "");
                         line = line.trim();
                         if (line.startsWith('Salary')) {
                             walkin.salary = line.substring(line.indexOf('Salary') + 6).trim();
