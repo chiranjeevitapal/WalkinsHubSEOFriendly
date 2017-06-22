@@ -30,7 +30,7 @@ module.exports = function (app) {
             res.setHeader("Expires", new Date(Date.now() + 21600000).toUTCString());
             res.render('home.ejs', {
                 walkins: result,
-                jobsType: 'Walk-ins',
+                jobsType: 'Walkin Interviews',
                 user: req.user
             })
         })
