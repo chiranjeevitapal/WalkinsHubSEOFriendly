@@ -42,6 +42,8 @@ router.get('/similarjobs/:location', function (req, res,
             "experience": /0/
         }, {
             "experience": /Fresher/
+        }, {
+            "experience": /Any/
         }],
         $and: [{
             "location": {
@@ -79,6 +81,8 @@ router.get('/watodaylinks', function (req, res) {
 router.post('/wacontent', function (req, res) {
     var url = req.body.url;
     var imageUrl = req.body.image;
+    //url = 'http://www.walkinsalert.com/247-customer-walkin-voice-non-voice-process/';
+    //imageUrl = 'http://www.walkinsalert.com/wp-content/uploads/2015/04/walkinshub.png';
     walkinsAlertScraper.scrapeContent(res, url, imageUrl);
 })
 

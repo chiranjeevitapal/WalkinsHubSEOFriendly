@@ -84,10 +84,12 @@ module.exports = function (app) {
                 "experience": /0 -/
             }, {
                 "experience": /Fresher/
-            },{
+            }, {
                 "experience": /0 – /
-            },{
+            }, {
                 "experience": /0-/
+            }, {
+                "experience": /Any/
             }]
         }).sort({
             "date": -1
@@ -97,7 +99,7 @@ module.exports = function (app) {
             res.setHeader("Expires", new Date(Date.now() + 21600000).toUTCString());
             res.render('home.ejs', {
                 walkins: result,
-                jobsType: 'Fresher Jobs',
+                jobsType: 'Walkins for freshers',
                 user: req.user
             })
         })
@@ -114,6 +116,14 @@ module.exports = function (app) {
                 "experience": {
                     $not: /Fresher/
                 }
+            },{
+                "experience": {
+                    $not: /0 – /
+                }
+            },{
+                "experience": {
+                    $not: /0-/
+                }
             }]
         }).sort({
             "date": -1
@@ -123,7 +133,7 @@ module.exports = function (app) {
             res.setHeader("Expires", new Date(Date.now() + 21600000).toUTCString());
             res.render('home.ejs', {
                 walkins: result,
-                jobsType: 'Experienced Jobs',
+                jobsType: 'Walkins for experienced',
                 user: req.user
             })
         })
@@ -144,7 +154,7 @@ module.exports = function (app) {
             res.setHeader("Expires", new Date(Date.now() + 21600000).toUTCString());
             res.render('home.ejs', {
                 walkins: result,
-                jobsType: location + ' Jobs',
+                jobsType: 'Walkins in '+location,
                 user: req.user
             })
         })

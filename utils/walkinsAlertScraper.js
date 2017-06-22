@@ -38,7 +38,7 @@ function scrapeUrls(res) {
         }
         console.log(recursiveCount);
         recursiveCount++;
-        if (recursiveCount >= 4) {
+        if (recursiveCount >= 7) {
             recursiveCount = 1;
             res.json(urlsArray);
         } else {
@@ -53,38 +53,9 @@ function scrapeContent(res, url, imageUrl) {
         if (error) {
             res.send(error);
         } else {
-            var contentDiv = html.substring(html.indexOf('<div class="ctkw-links-block-before">') + 43, html.indexOf('<div class="ctkw-links-block-after">'));
-            contentDiv = contentDiv.replace('<!-- Quick Adsense WordPress Plugin: http://quicksense.net/ -->', '');
-            contentDiv = contentDiv.replace('<div style="float:none;margin:10px 0 10px 0;text-align:center;">', '');
-            contentDiv = contentDiv.replace('<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>', '');
-            contentDiv = contentDiv.replace('<!-- ImageAd-300X250 -->', '');
-            contentDiv = contentDiv.replace('<ins class="adsbygoogle"', '');
-            contentDiv = contentDiv.replace('style="display:inline-block;width:300px;height:250px"', '');
-            contentDiv = contentDiv.replace('data-ad-client="ca-pub-1582069099626339"', '');
-            contentDiv = contentDiv.replace('data-ad-slot="3309134729"></ins>', '');
-            contentDiv = contentDiv.replace('<script>', '');
-            contentDiv = contentDiv.replace('(adsbygoogle = window.adsbygoogle || []).push({});', '');
-            contentDiv = contentDiv.replace('</script>', '');
-            contentDiv = contentDiv.replace('</div>', '');
-            contentDiv = contentDiv.replace(/<br \/>/g, '');
-            contentDiv = contentDiv.replace(/<span style="color: #800000;">/g, '');
-            contentDiv = contentDiv.replace(/<\/span>/g, '');
-            //contentDiv = contentDiv.replace(/\s/g, '');
-            contentDiv = contentDiv.replace(/<strong>/g, "");
-            contentDiv = contentDiv.replace(/<\/strong>/g, '');
-            contentDiv = contentDiv.replace(/<em>/g, "");
-            contentDiv = contentDiv.replace(/<\/em>/g, '');
-            //html = contentDiv;
+
             var $ = cheerio.load(html);
-            $(".entry-tags").remove();
-            var company = $('footer').find('a').eq(0).text();
-            var education = "Any Graduate";
-            if ($('footer').find('a').eq(1).text() != undefined) {
-                education = $('footer').find('a').eq(1).text();
-            }
-            var title = $("meta[property='og:title']").attr("content");
-            html = contentDiv;
-            $ = cheerio.load(html);
+
             var walkin = {
                 title: "",
                 logo: "logos\\walkinshub.png",
@@ -92,7 +63,7 @@ function scrapeContent(res, url, imageUrl) {
                 website: "",
                 position: "",
                 eligibility: "",
-                experience: "",
+                experience: "Any",
                 salary: "Not Mentioned",
                 location: "",
                 walkinDate: "",
@@ -110,11 +81,21 @@ function scrapeContent(res, url, imageUrl) {
                 industry: "",
                 openings: ""
             }
-            var today = new Date();
-            walkin.title = title;
-            walkin.company = company;
-            walkin.eligibility = education;
-            walkin.date = today;
+            var company = "";
+            var education = "Any Graduate";
+            var tagLocation = "";
+            $('footer a').each(function () {
+                var hrefString = $(this).attr('href');
+                if (hrefString.indexOf('/o/') != -1) {
+                    tagLocation = $(this).text();
+                }
+                if (hrefString.indexOf('company') != -1) {
+                    company = $(this).text();
+                }
+                if (hrefString.indexOf('edu') != -1) {
+                    education = $(this).text();
+                }
+            })
             var options = {
                 url: imageUrl,
                 dest: './logos/' // Save to /path/to/dest/image.jpg
@@ -128,8 +109,21 @@ function scrapeContent(res, url, imageUrl) {
                 }).catch((err) => {
                     throw err
                 })
+            walkin.title = $(".entry-title a").text();
+            //walkin.title = $("meta[property='og:title']").attr("content");
+            if (company == "") {
+                company = walkin.title.substring(0, walkin.title.indexOf("Walkin"));
+            }
+            walkin.company = company;
+            walkin.eligibility = education;
+            walkin.date = new Date();
             $('p').each(function () {
                 var textDetail = $(this).text();
+                textDetail = textDetail.replace(/<strong>/g, "");
+                textDetail = textDetail.replace(/<\/strong>/g, '');
+                textDetail = textDetail.replace(/<em>/g, "");
+                textDetail = textDetail.replace(/<\/em>/g, '');
+                textDetail = textDetail.trim();
                 if (textDetail.startsWith('Job Description')) {
                     walkin.jobDescription = textDetail.substring(textDetail.indexOf('Job Description') + 16).trim();
                 }
@@ -140,46 +134,56 @@ function scrapeContent(res, url, imageUrl) {
                     lines.forEach(function (line) {
                         line = line.replace(":", "");
                         line = line.trim();
-                        if (line.startsWith('Salary')) {
+                        console.log(line);
+                        if (line.indexOf('Salary') != -1) {
                             walkin.salary = line.substring(line.indexOf('Salary') + 6).trim();
                         }
-                        if (line.startsWith('Industry')) {
+                        if (line.indexOf('Industry') != -1) {
                             walkin.industry = line.substring(line.indexOf('Industry') + 8).trim();
                         }
-                        if (line.startsWith('Functional Area')) {
+                        if (line.indexOf('Functional Area') != -1) {
                             walkin.functionalArea = line.substring(line.indexOf('Functional Area') + 15).trim();
                         }
-                        if (line.startsWith('Role Category')) {
+                        if (line.indexOf('Role Category') != -1) {
                             walkin.jobRequirements = line.substring(line.indexOf('Role Category') + 13).trim();
                         }
-                        if (line.startsWith('Role')) {
+                        if (line.indexOf('Role') != -1) {
                             walkin.position = line.substring(line.indexOf('Role') + 4).trim();
                         }
-                        if (line.startsWith('Experience')) {
+                        if (line.indexOf('Experience') != -1) {
                             walkin.experience = line.substring(line.indexOf('Experience') + 10).trim();
                         }
-                        if (line.startsWith('Location')) {
+                        if (line.indexOf('Location') != -1) {
                             walkin.location = line.substring(line.indexOf('Location') + 8).trim();
                         }
-                        if (line.startsWith('Openings')) {
+                        if (line.indexOf('Openings') != -1) {
                             walkin.openings = line.substring(line.indexOf('Openings') + 8).trim();
                         }
+                        if (line.indexOf('Skills') != -1) {
+                            walkin.jobRequirements = walkin.jobRequirements + "\n" + line.substring(line.indexOf('Skills') + 6).trim();
+                        }
                     })
+                }
+                if (walkin.location == "") {
+                    walkin.location = tagLocation;
                 }
                 if (textDetail.startsWith('Interested candidates')) {
                     walkin.howToApply = textDetail.trim();
                 }
-                if (textDetail.startsWith('Venue:')) {
+                if (textDetail.startsWith('Venue')) {
                     walkin.howToApply = walkin.howToApply + ' ' + textDetail.trim();
                 }
-                if (textDetail.startsWith('Candidate Profile:')) {
-                    walkin.candidateProfile = textDetail.substring(textDetail.indexOf('Candidate Profile:') + 18).trim();
+                if (textDetail.startsWith('Documents')) {
+                    walkin.howToApply = walkin.howToApply + "\n" + walkin.howToApply + ' ' + textDetail.trim();
                 }
-                if (textDetail.startsWith('Company Profile:')) {
-                    walkin.companyProfile = textDetail.substring(textDetail.indexOf('Company Profile:') + 16).trim();
+                if (textDetail.startsWith('Candidate Profile')) {
+                    walkin.candidateProfile = textDetail.substring(textDetail.indexOf('Candidate Profile') + 17).trim();
                 }
-                if (textDetail.startsWith('Contact Details:')) {
-                    walkin.contactDetails = textDetail.substring(textDetail.indexOf('Contact Details:') + 16).trim();
+                if (textDetail.startsWith('Company Profile')) {
+                    walkin.companyProfile = textDetail.substring(textDetail.indexOf('Company Profile') + 15).trim();
+                }
+                if (textDetail.startsWith('Contact Details')) {
+                    walkin.contactDetails = textDetail.substring(textDetail.indexOf('Contact Details') + 15).trim();
                 }
             });
             setTimeout(function () {
