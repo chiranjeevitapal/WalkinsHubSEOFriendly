@@ -25,10 +25,10 @@ module.exports = function (app) {
         db.collection('walkins').find({}).sort({
             "date": -1
         }).limit(300).toArray((err, result) => {
+            if (err) return console.log(err)
             result.forEach(function (walkin) {
                 walkin.date = formatDate(new Date(walkin.date));
             })
-            if (err) return console.log(err)
             res.setHeader("Cache-Control", "public, max-age=21600, no-cache");
             res.setHeader("Expires", new Date(Date.now() + 21600000).toUTCString());
             res.render('home.ejs', {
@@ -98,6 +98,9 @@ module.exports = function (app) {
             "date": -1
         }).limit(300).toArray((err, result) => {
             if (err) return console.log(err)
+            result.forEach(function (walkin) {
+                walkin.date = formatDate(new Date(walkin.date));
+            })
             res.setHeader("Cache-Control", "public, max-age=21600, no-cache");
             res.setHeader("Expires", new Date(Date.now() + 21600000).toUTCString());
             res.render('home.ejs', {
@@ -132,6 +135,9 @@ module.exports = function (app) {
             "date": -1
         }).limit(200).toArray((err, result) => {
             if (err) return console.log(err)
+            result.forEach(function (walkin) {
+                walkin.date = formatDate(new Date(walkin.date));
+            })
             res.setHeader("Cache-Control", "public, max-age=21600, no-cache");
             res.setHeader("Expires", new Date(Date.now() + 21600000).toUTCString());
             res.render('home.ejs', {
@@ -153,6 +159,9 @@ module.exports = function (app) {
             "date": -1
         }).limit(200).toArray((err, result) => {
             if (err) return console.log(err)
+            result.forEach(function (walkin) {
+                walkin.date = formatDate(new Date(walkin.date));
+            })
             res.setHeader("Cache-Control", "public, max-age=21600, no-cache");
             res.setHeader("Expires", new Date(Date.now() + 21600000).toUTCString());
             res.render('home.ejs', {
