@@ -25,6 +25,9 @@ module.exports = function (app) {
         db.collection('walkins').find({}).sort({
             "date": -1
         }).limit(300).toArray((err, result) => {
+            result.forEach(function (walkin) {
+                walkin.date = formatDate(new Date(walkin.date));
+            })
             if (err) return console.log(err)
             res.setHeader("Cache-Control", "public, max-age=21600, no-cache");
             res.setHeader("Expires", new Date(Date.now() + 21600000).toUTCString());
@@ -302,4 +305,17 @@ module.exports = function (app) {
     app.get('/**', (req, res) => {
         res.redirect('/')
     })
+
+    function formatDate(date) {
+        var monthNames = [
+          "Jan", "Feb", "Mar",
+          "Apr", "May", "Jun", "Jul",
+          "Aug", "Sep", "Oct",
+          "Nov", "Dec"
+        ];
+        var day = date.getDate();
+        var monthIndex = date.getMonth();
+        var year = date.getFullYear();
+        return day + '-' + monthNames[monthIndex] + '-' + year;
+      }
 }

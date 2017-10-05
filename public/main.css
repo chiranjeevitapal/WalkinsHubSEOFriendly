@@ -1,0 +1,54 @@
+.main-container {
+    margin-top: 80px;
+}
+
+.title {
+    margin: 40px auto 25px;
+}
+
+.btn {
+    margin: 4px auto;
+    outline: none;
+}
+
+.home {
+    margin-top: 110px;
+}
+
+
+.notFound {
+    font-size: 7em;
+}
+
+.dataTable {
+    display: table;
+    margin-top: 20px;
+    padding: 0px;
+    width: 100%;
+}
+
+.tableRow {
+    display: table-row;
+}
+
+.tableRow>span {
+    list-style: none;
+    display: table-cell;
+    padding: 2px 6px;
+}
+
+.tableHeader {
+    display: table-header-group;
+    /*position: absolute;*/
+}
+
+.tableHeader span {
+    background-color: #31708f;
+    color: white;
+    font-weight: bold;
+}
+
+.tableBody {
+    display: table-row-group;
+}
+
