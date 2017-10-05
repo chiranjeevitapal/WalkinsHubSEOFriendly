@@ -34,7 +34,7 @@
                                 <span><%= walkin.date %></span>
                                 <span><%= walkin.company %></span>
                                 <span><%= walkin.position %></span>
-                                <span><%= walkin.location %></span>
+                                <span><%= walkin.location.substring(0,15) %></span>
                                 <span><%= walkin.experience %></span>
                                 <span><a href="/walkin/<%= walkin._id %>">Details</a></span>
                             </li>
