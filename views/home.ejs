@@ -17,7 +17,7 @@
                     </script>
                 </div>
                 <% if (walkins.length > 0) { %>
-                <ul class="dataTable">
+                <ul class="dataTable hidden-xs hidden-sm">
                     <div class="tableHeader">
                         <li class="tableRow">
                             <span>Date</span>
@@ -41,6 +41,22 @@
                         <% }); %>
                     </div>
                 </ul>
+                <div class="row hidden-md hidden-lg">
+                <% walkins.forEach( walkin => { %>
+                    <div class="col-xs-12 col-sm-12">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <p>Date: <%= walkin.date %></p>
+                                <p>Company: <%= walkin.company %></p>
+                                <p>Position: <%= walkin.position %></p>
+                                <p>Location: <%= walkin.location %></p>
+                                <p>Experience: <%= walkin.experience %></p>
+                                <p><a href="/walkin/<%= walkin._id %>" class="btn btn-sm btn-primary">Details</a></p>
+                            </div>
+                        </div>
+                    </div>
+                <% }); %>
+                </div>
                 <% } else {  %>
                     <h4>No job information is available right now. Please check back later.</h4>
                 <% } %>
