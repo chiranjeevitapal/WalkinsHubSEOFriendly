@@ -37,11 +37,11 @@
               <p><strong>Experience </strong><%= walkin.experience  == ''? "Not Specified" : walkin.experience %></p>
             </blockquote>
             <h2>Job Description</h2>
-            <p><%= walkin.jobDescription %></p>
+            <p><%= walkin.jobDescription  == ''? "Not Specified" : walkin.jobDescription %></p>
             <h3>More Specifications</h3>
-            <p><%= walkin.jobRequirements %></p>
+            <p><%= walkin.jobRequirements == ''? "Not Specified" : walkin.jobRequirements %></p>
             <hr>
-            <p><%= walkin.candidateProfile %></p>
+            <p><%= walkin.candidateProfile == ''? "Not Specified" : walkin.candidateProfile%></p>
             <blockquote>
               <p><strong>Salary </strong><%= walkin.salary  == ''? "Not Specified" : walkin.salary%></p>
             </blockquote>
