@@ -67,7 +67,11 @@
             </script>
             </p>
             <h3>How to Apply</h3>
-            <p><%= walkin.howToApply == ''? "Check contact details" : walkin.howToApply%></b></p>
+            <% if (walkin.howToApply.indexOf("http")!= -1) { %>
+                <p><a href="<%= walkin.howToApply %>" target="_blank">Click to Apply</a></p>
+            <% } else {%>
+                <p><%= walkin.howToApply == ''? "Check contact details" : walkin.howToApply %></p>
+            <% } %>
             <hr>
             <blockquote>
               <p><strong>Company Website </strong><a href="http://<%= walkin.website %>" target="_blank"><%= walkin.website %></a></p>
