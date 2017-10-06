@@ -1,0 +1,99 @@
+<head>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-5482095998977489",
+            enable_page_level_ads: true
+        });
+    </script>
+    <meta charset="UTF-8">
+    <title>Today jobs/walkins in
+        <%= walkin.company %>. Today walkins/jobs in <%= walkin.location %>.
+    </title>
+    <meta name="description" content="Walk-in interviews at <%= walkin.company %>. Job location is <%= walkin.location %>" />
+    <meta name="keywords" content="Today Walkins,Today walkins in Bangalore,Today walkins in Hyderabad,Walkins today,Chandigarh Walkins,Chennai Walkins,Delhi Walkins,Ncr Walkins,Mumbai Walkins,Kolkata Walkins,Pune Walkins,Today walkins in Hyderabad,freshers walkins,this week walkins,Fresher Offcampus,Fresher referral,Jobs,Walkins,Fresher jobs,Fresher Placements,Fresher walkins,Software jobs,Today walkins,Backdoor jobs,Referral jobs,Home based jobs,Today jobs,Jobs in Bangalore,Walkins in Bangalore,Fresher Jobs in Bangalore,Fresher Walkins in  Bangalore,Online Jobs in Bangalore,Today Walkins in Bangalore,Today jobs in Bangalore ,Jobs in Hyderabad,Walkins in Hyderabad,Fresher Jobs in Hyderabad,Fresher Walkins in  Hyderabad,Online Jobs in Hyderabad,Today Walkins in Hyderabad,Today jobs in Hyderabad,Jobs in Chennai,Walkins in Chennai,Fresher Jobs in Chennai,Fresher Walkins in  Chennai,Online Jobs in Chennai,Today Walkins in Chennai,Today jobs in Chennai,Work from home jobs,networking jobs,Data entry jobs,medical coding jobs,freelancing,make money online"
+    />
+    <meta name="application-name" content="WalkinsHub - Best Job site for freshers/experienced" />
+    <meta name="copyright" content="2017 www.walkinshub.com" />
+    <meta name="content-language" content="EN" />
+    <meta name="author" content="www.walkinshub.com" />
+    <meta name="distribution" content="GLOBAL" />
+    <meta name="robots" content="ALL" />
+    <meta name="pragma" content="no-cache" />
+    <meta name="revisit-after" content="1 day" />
+    <meta name="classification" content="Jobs in <%= walkin.company %>, Referral Jobs, Work From Home, Jobs, Career, Freshers jobs, Bank Jobs, IT Jobs, Technical Jobs, Govt Jobs" />
+    <meta http-equiv="content-type" content="text/html;charset=ISO-8859-1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="fb:app_id" content="1646263562333117" />
+    <meta property="og:title" content="Jobs in <%= walkin.company %>, Jobs in <%= walkin.location %>, Jobs for <%= walkin.position %>. Today walkins in <%= walkin.location %>" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="http://www.walkinshub.com/walkin/<%= walkin._id %>" />
+    <meta property="og:description" content="<%= walkin.company %> is hiring. Job location is <%= walkin.location %>. Designation is <%= walkin.position %>." />
+    <meta property="og:image" content="http://www.walkinshub.com/<%= walkin.logo %>" />
+    <!--meta property="og:image:type" content="jpg" /-->
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="google-site-verification" content="dtN_8kSuZli5X3rJSr_lwToXx9CCr9KApWcOWCxcNCs" />
+    <meta name="google-site-verification" content="dBwBXSsbGMxqwYBck9yEKz72TAuSugQEpVsQEdh1824" />
+    <!--script async src="//connect.facebook.net/en_US/sdk.js"></script-->
+    <link rel="shortcut icon" type="image/x-icon" href="favicon1.ico" />
+
+    <link rel="stylesheet" href="../bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../main.css">
+    <link rel="stylesheet" href="../blog.css">
+</head>
+
+<script async type="text/javascript">
+    (function(i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function() {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-91328157-1', 'auto');
+    ga('send', 'pageview');
+
+    (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.8&appId=1646263562333117";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    $(document).ready(function() {
+        /*setTimeout(function() {
+            $("#pagedivtop").show();
+            $("#pagedivbottom").show();
+        }, 15000);*/
+        setTimeout(function() {
+            $("#subscribeModal").modal('show');
+        }, 30000);
+        $.ajax({
+            url: '/api/similarjobs/<%= walkin.location %>',
+            type: 'GET',
+            success: function(data) {
+                $.each(data, function(i, obj) {
+                    console.log(obj.position)
+                    $('#suggestedJobsList').append(
+                        '<li class="list-group-item"><a href="/walkin/'+ obj._id +'">' +
+                        '<img src="../' + obj.logo + '" class="img-responsive" style="height: 100px;width: 100px; alt="Logo">' +
+                        '<b>' + obj.location + '</b> <b>(' + obj.experience + ') - (' + obj.eligibility + ')</b>' +
+                        '</a></li>'
+                    );
+                });
+            },
+            error: function(data) {
+                console.log('woops!'); //or whatever
+            }
+        });
+    });
+</script>

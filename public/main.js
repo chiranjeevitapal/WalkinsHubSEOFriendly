@@ -1,8 +1,13 @@
 function searchByLocation(){
     var location = $("#location").val();
-    if(location == ""){
-        alert("Please enter a location");
-    }else{
+    var isFresher = $("#fresher").is(":checked");
+    if(location == "" && !isFresher){
+        window.location.href = "/";
+    }else if(location != "" && !isFresher){
         window.location.href = "/jobs/"+location;
+    }else if(location == "" && isFresher){
+        window.location.href = "/jobs/fresher";
+    }else if(location != "" && isFresher){
+        window.location.href = "/fresherjobs/"+location;
     }
 }

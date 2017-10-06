@@ -42,9 +42,7 @@ module.exports = function (app) {
     /* GET One Walkin with the provided ID */
     app.get('/walkin/:id/', function (req, res) {
         var host = req.headers.host;
-        //var id = req.params.id.substring(req.params.id.lastIndexOf('-') + 1);
         var id = req.params.id;
-        //console.log(id);
         if (id.indexOf('-') == -1) {
             db.collection('walkins').findOne({
                 _id: ObjectId(id)
@@ -53,6 +51,7 @@ module.exports = function (app) {
                 if (result == null) {
                     res.redirect('/')
                 } else {
+                    result.date = formatDate(new Date(result.date));
                     res.setHeader("Cache-Control", "public, max-age=21600, no-cache");
                     res.setHeader("Expires", new Date(Date.now() + 21600000).toUTCString());
                     res.render('details.ejs', {
@@ -84,13 +83,9 @@ module.exports = function (app) {
         var host = req.headers.host;
         db.collection('walkins').find({
             $or: [{
-                "experience": /0 -/
+                "experience": /0/
             }, {
                 "experience": /Fresher/
-            }, {
-                "experience": /0 – /
-            }, {
-                "experience": /0-/
             }, {
                 "experience": /Any/
             }]
@@ -106,43 +101,6 @@ module.exports = function (app) {
             res.render('home.ejs', {
                 walkins: result,
                 jobsType: 'Walkins for freshers',
-                user: req.user
-            })
-        })
-    })
-
-    app.get('/jobs/experienced/', (req, res) => {
-        var host = req.headers.host;
-        db.collection('walkins').find({
-            $and: [{
-                "experience": {
-                    $not: /0 -/
-                }
-            }, {
-                "experience": {
-                    $not: /Fresher/
-                }
-            },{
-                "experience": {
-                    $not: /0 – /
-                }
-            },{
-                "experience": {
-                    $not: /0-/
-                }
-            }]
-        }).sort({
-            "date": -1
-        }).limit(200).toArray((err, result) => {
-            if (err) return console.log(err)
-            result.forEach(function (walkin) {
-                walkin.date = formatDate(new Date(walkin.date));
-            })
-            res.setHeader("Cache-Control", "public, max-age=21600, no-cache");
-            res.setHeader("Expires", new Date(Date.now() + 21600000).toUTCString());
-            res.render('home.ejs', {
-                walkins: result,
-                jobsType: 'Walkins for experienced',
                 user: req.user
             })
         })
@@ -171,6 +129,39 @@ module.exports = function (app) {
             })
         })
     });
+
+    app.get('/fresherjobs/:location/', (req, res) => {
+        var host = req.headers.host;
+        var location = req.params.location.toLowerCase();
+        db.collection('walkins').find({
+            $and: [{
+                $or: [{
+                    "experience": /0/
+                }, {
+                    "experience": /Fresher/
+                }, {
+                    "experience": /Any/
+                }]
+        }, {
+            location: new RegExp('^' + location + '$', 'i')
+        }]
+        }).sort({
+            "date": -1
+        }).limit(300).toArray((err, result) => {
+            if (err) return console.log(err)
+            result.forEach(function (walkin) {
+                walkin.date = formatDate(new Date(walkin.date));
+            })
+            res.setHeader("Cache-Control", "public, max-age=21600, no-cache");
+            res.setHeader("Expires", new Date(Date.now() + 21600000).toUTCString());
+            res.render('home.ejs', {
+                walkins: result,
+                user: req.user
+            })
+        })
+    })
+
+    
 
     app.get('/contact/', (req, res) => {
         var host = req.headers.host;

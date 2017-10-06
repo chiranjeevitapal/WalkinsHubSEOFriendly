@@ -15,20 +15,23 @@
                     (adsbygoogle = window.adsbygoogle || []).push({});
                     </script>
                 </div>
-                <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        <div class="form-inline">
-                            <div class="form-group">
-                                <input type="text" class="form-control" id="location" placeholder="Location">
-                            </div>
-                            <button type="submit" class="btn btn-default" onclick="searchByLocation()">Search</button>
-                        </div>
+                <div class="form-inline">
+                    <div class="form-group col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                        <input type="text" class="form-control" id="location" aria-describedby="location" placeholder="Location">
                     </div>
-                </div>
+                    <div class="form-check col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                        <label class="form-check-label">
+                        <input type="checkbox" id="fresher" class="form-check-input">
+                        Fresher
+                        </label>
+                    </div>
+                    <button type="submit" class="btn btn-success" onclick="searchByLocation()">Search</button>
+                    </div>
+                <form>  
                 <% if (walkins.length > 0) { %>
-                <div class="row">
+                <div class="row d-none d-md-block">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        <ul class="dataTable hidden-xs hidden-sm">
+                        <ul class="dataTable">
                             <div class="tableHeader">
                                 <li class="tableRow">
                                     <span>Date</span>
@@ -54,21 +57,23 @@
                         </ul>
                     </div>
                 </div>
-                <div class="row hidden-md hidden-lg">
-                <% walkins.forEach( walkin => { %>
-                    <div class="col-xs-12 col-sm-12">
-                        <div class="panel panel-default">
-                            <div class="panel-body">
-                                <p>Date: <%= walkin.date %></p>
-                                <p>Company: <%= walkin.company %></p>
-                                <p>Position: <%= walkin.position %></p>
-                                <p>Location: <%= walkin.location %></p>
-                                <p>Experience: <%= walkin.experience %></p>
-                                <p><a href="/walkin/<%= walkin._id %>" class="btn btn-sm btn-primary">Details</a></p>
+                <!--stackoverflow.com/questions/45666656/bootstrap-4-responsive-utilities-visible-hidden-xs-sm-lg-not-working-->
+                <div class="row d-md-none d-lg-none d-xl-none">
+                <% var count = 0; walkins.forEach( walkin => {%>
+                    <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4">
+                    
+                        <div class="card bg-light mb-3" style="max-width: 20rem;">
+                        <div class="card-header"><%= walkin.company %></div>
+                            <div class="card-body">
+                                <p class="card-text"><%= walkin.date %></p>
+                                <p class="card-text">Position: <%= walkin.position %></p>
+                                <p class="card-text">Location: <%= walkin.location %></p>
+                                <p class="card-text">Experience: <%= walkin.experience %></p>
+                                <p class="card-text"><a href="/walkin/<%= walkin._id %>" class="btn btn-sm btn-success">Details</a></p>
                             </div>
                         </div>
                     </div>
-                <% }); %>
+                <% count++ }); %>
                 </div>
                 <% } else {  %>
                     <h4>No job information is available right now. Please check back later.</h4>
@@ -77,4 +82,3 @@
     </section>
     <% include partials/scripts.ejs %>
 </body>
-</html>
