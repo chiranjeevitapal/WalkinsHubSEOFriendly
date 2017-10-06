@@ -6,7 +6,7 @@
     <div class="blog-header">
       <div class="container">
         <h1 class="blog-title"><%= walkin.company %></h1>
-        <p class="lead blog-description"><%= walkin.position == ''? "Not Specified" : walkin.position %></p>
+        <p class="lead blog-description"><%= walkin.position == ''? "Not specified" : walkin.position %></p>
         <p>
         <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
             <!-- Details Page - Top Responsive -->
@@ -26,34 +26,34 @@
       <div class="row">
         <div class="col-sm-8 blog-main">
           <div class="blog-post">
-            <h2 class="blog-post-title"><%= walkin.location == ''? "Not Specified" : walkin.location %></h2>
+            <h2 class="blog-post-title"><%= walkin.location == ''? "Not specified" : walkin.location %></h2>
             <p class="blog-post-meta"><%= walkin.date %> by <a href="/">Walkins Hub</a></p>
 
             <blockquote>
-              <p><strong>Education </strong><%= walkin.eligibility == ''? "Not Specified" : walkin.eligibility%></p>
+              <p><strong>Education </strong><%= walkin.eligibility == ''? "Not specified" : walkin.eligibility%></p>
             </blockquote>
             <hr>
             <blockquote>
-              <p><strong>Experience </strong><%= walkin.experience  == ''? "Not Specified" : walkin.experience %></p>
+              <p><strong>Experience </strong><%= walkin.experience  == ''? "Not specified" : walkin.experience %></p>
             </blockquote>
             <h2>Job Description</h2>
-            <p><%= walkin.jobDescription  == ''? "Not Specified" : walkin.jobDescription %></p>
+            <p><%= walkin.jobDescription  == ''? "Not specified" : walkin.jobDescription %></p>
             <h3>Job Requirements</h3>
-            <p><%= walkin.jobRequirements == ''? "Not Specified" : walkin.jobRequirements %></p>
+            <p><%= walkin.jobRequirements == ''? "Not specified" : walkin.jobRequirements %></p>
             <hr>
             <h3>Candidate Requirements</h3>
-            <p><%= walkin.candidateProfile == ''? "Not Specified" : walkin.candidateProfile%></p>
+            <p><%= walkin.candidateProfile == ''? "Not specified" : walkin.candidateProfile%></p>
             <blockquote>
-              <p><strong>Salary </strong><%= walkin.salary  == ''? "Not Specified" : walkin.salary%></p>
+              <p><strong>Salary </strong><%= walkin.salary  == ''? "Not specified" : walkin.salary%></p>
             </blockquote>
             <blockquote>
-              <p><strong>Last Date </strong><%= walkin.lastDate == ''? "Not Specified" : walkin.lastDate %></p>
+              <p><strong>Last Date </strong><%= walkin.lastDate == ''? "Not specified" : walkin.lastDate %></p>
             </blockquote>
             <blockquote>
-              <p><strong>Walkin Date </strong><%= walkin.walkinDate  == ''? "Not Specified" : walkin.walkinDate %></p>
+              <p><strong>Walkin Date </strong><%= walkin.walkinDate  == ''? "Not specified" : walkin.walkinDate %></p>
             </blockquote>
             <blockquote>
-              <p><strong>Walkin Time </strong><%= walkin.walkinTime  == ''? "Not Specified" : walkin.walkinTime %></p>
+              <p><strong>Walkin Time </strong><%= walkin.walkinTime  == ''? "Not specified" : walkin.walkinTime %></p>
             </blockquote>
             <p>
             <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -75,7 +75,7 @@
             <% } %>
             <hr>
             <blockquote>
-              <p><strong>Company Website </strong><a href="http://<%= walkin.website %>" target="_blank"><%= walkin.website %></a></p>
+              <p><strong>Company Website </strong><% if (walkin.website == ''){ %>"Not specified" <% }else{%><a href="http://<%= walkin.website %>" target="_blank"><%= walkin.website %></a><% }%></p>
             </blockquote>
             <h3>Contact Details</h3>
             <p><%= walkin.contactDetails == ''? "Check how to apply" : walkin.contactDetails %></b></p>
