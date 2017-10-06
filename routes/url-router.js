@@ -68,6 +68,7 @@ module.exports = function (app) {
                 if (result == null) {
                     res.redirect('/')
                 } else {
+                    result.date = formatDate(new Date(result.date));
                     res.setHeader("Cache-Control", "public, max-age=21600, no-cache");
                     res.setHeader("Expires", new Date(Date.now() + 21600000).toUTCString());
                     res.render('details.ejs', {
