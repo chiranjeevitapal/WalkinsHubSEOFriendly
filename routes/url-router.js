@@ -84,7 +84,7 @@ module.exports = function (app) {
         var host = req.headers.host;
         db.collection('walkins').find({
             $or: [{
-                "experience": /0/
+                "experience": /^0/
             }, {
                 "experience": /Fresher/
             }, {
@@ -137,7 +137,7 @@ module.exports = function (app) {
         db.collection('walkins').find({
             $and: [{
                 $or: [{
-                    "experience": /0/
+                    "experience": /^0/
                 }, {
                     "experience": /Fresher/
                 }, {

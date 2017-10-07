@@ -39,7 +39,7 @@ router.get('/similarjobs/:location', function (req, res,
     next) {
     db.collection('walkins').find({
         $or: [{
-            "experience": /0/
+            "experience": /^0/
         }, {
             "experience": /Fresher/
         }, {
