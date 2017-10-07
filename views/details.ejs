@@ -102,12 +102,12 @@
             <h4>About Company</h4>
             <p><%= walkin.companyProfile == ''? "Verify Company website" : walkin.companyProfile %></p>
           </div>
-          <div class="sidebar-module">
+          <!--div class="sidebar-module">
             <h4>Suggested Jobs</h4>
             <ol class="list-unstyled" id="suggestedJobsList">
               
             </ol>
-          </div>
+          </div-->
           <div class="sidebar-module">
             <h4>Follow Us</h4>
             <ol class="list-unstyled">
@@ -122,13 +122,12 @@
       </div><!-- /.row -->
 
     </div><!-- /.container -->
-
     <% include partials/scripts.ejs %>
     <!--% include partials/facebook.ejs %-->
     </section>
   </body>
 
-  <script async type="text/javascript">
+  <!--script async type="text/javascript">
     $(document).ready(function() {
         $.ajax({
             url: '/api/similarjobs/<%= walkin.location %>',
@@ -148,4 +147,4 @@
             }
         });
     });
-</script>
+</script-->
