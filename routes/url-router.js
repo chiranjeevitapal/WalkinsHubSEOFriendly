@@ -278,11 +278,7 @@ module.exports = function (app) {
             '<url>' +
             '<loc>http://www.walkinshub.com/jobs/fresher</loc>' +
             '<changefreq>daily</changefreq>' +
-            '</url>' +
-            '<url>' +
-            '<loc>http://www.walkinshub.com/jobs/experienced</loc>' +
-            '<changefreq>daily</changefreq>' +
-            '</url>';
+            '</url>' ;
 
 
         db.collection('walkins').find({}).toArray(function (err, walkins) {
