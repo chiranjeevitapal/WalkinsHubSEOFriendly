@@ -27,7 +27,6 @@
                     (adsbygoogle = window.adsbygoogle || []).push({});
                     </script>
                 </p>
-                <!--
                 <% if (walkins.length > 0) { %>
                 <div class="row d-none d-md-block">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -57,9 +56,7 @@
                         </ul>
                     </div>
                 </div>
-                -->
-                <!--stackoverflow.com/questions/45666656/bootstrap-4-responsive-utilities-visible-hidden-xs-sm-lg-not-working-->
-               <!-- <div class="d-md-none d-lg-none d-xl-none">  -->
+                <div class="d-md-none d-lg-none d-xl-none"> 
                     <div class="row">
                     <% var count = 0; walkins.forEach( walkin => {%>
                         <div class="col-sm-12 col-md-4 col-lg-3 col-xl-3">
@@ -73,6 +70,7 @@
                                         <p class="card-text"><a href="/walkin/<%= walkin._id %>" class="btn btn-sm btn-success">Details</a></p>
                                     </div>
                                 </div>
+                            </div>
                         </div>
                         <% if(count == 2){ %>
                             <div class="col-sm-12 col-md-4 col-lg-3 col-xl-3">
@@ -118,8 +116,7 @@
                     <% } else {  %>
                         <h4>No job information is available right now. Please check back later.</h4>
                     <% } %>
-                    </div>
-                <!-- </div> -->
+                </div>
             </div>
     </section>
     <% include partials/scripts.ejs %>
