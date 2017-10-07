@@ -57,65 +57,67 @@
                     </div>
                 </div>
                 <!--stackoverflow.com/questions/45666656/bootstrap-4-responsive-utilities-visible-hidden-xs-sm-lg-not-working-->
-                <div class="row d-sm-block d-md-none">
-                <% var count = 0; walkins.forEach( walkin => {%>
-                    <div class="col-sm-12">
-                        <div class="card bg-light mb-3">
-                            <div class="card-header text-info"><%= walkin.company %></div>
-                                <div class="card-body">
-                                    <p class="card-text text-info"><%= walkin.date %></p>
-                                    <p class="card-text">Position: <%= walkin.position %></p>
-                                    <p class="card-text">Location: <%= walkin.location %></p>
-                                    <p class="card-text">Experience: <%= walkin.experience %></p>
-                                    <p class="card-text"><a href="/walkin/<%= walkin._id %>" class="btn btn-sm btn-success">Details</a></p>
-                                </div>
-                            </div>
-                    </div>
-                    <% if(count == 2){ %>
+                <div class=".d-md-none"> 
+                    <div class="row">
+                    <% var count = 0; walkins.forEach( walkin => {%>
                         <div class="col-sm-12">
                             <div class="card bg-light mb-3">
-                                <div class="card-header text-success"><b>Sponsored Job</b></div>
+                                <div class="card-header text-info"><%= walkin.company %></div>
                                     <div class="card-body">
-                                        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                                        <!-- Main Page - Middle Responsive -->
-                                        <ins class="adsbygoogle"
-                                            style="display:block"
-                                            data-ad-client="ca-pub-5482095998977489"
-                                            data-ad-slot="7997627254"
-                                            data-ad-format="auto"></ins>
-                                        <script>
-                                        (adsbygoogle = window.adsbygoogle || []).push({});
-                                        </script>
+                                        <p class="card-text text-info"><%= walkin.date %></p>
+                                        <p class="card-text">Position: <%= walkin.position %></p>
+                                        <p class="card-text">Location: <%= walkin.location %></p>
+                                        <p class="card-text">Experience: <%= walkin.experience %></p>
+                                        <p class="card-text"><a href="/walkin/<%= walkin._id %>" class="btn btn-sm btn-success">Details</a></p>
                                     </div>
                                 </div>
-                            </div>
                         </div>
-                    <% } %>
-                    <% if(count == 4){ %>
-                        <div class="col-sm-12">
-                            <div class="card bg-light mb-3">
-                                <div class="card-header text-success"><b>Sponsored Job</b></div>
-                                    <div class="card-body">
-                                        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                                            <!-- Main Page - Bottom Responsive -->
+                        <% if(count == 2){ %>
+                            <div class="col-sm-12">
+                                <div class="card bg-light mb-3">
+                                    <div class="card-header text-success"><b>Sponsored Job</b></div>
+                                        <div class="card-body">
+                                            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                                            <!-- Main Page - Middle Responsive -->
                                             <ins class="adsbygoogle"
                                                 style="display:block"
                                                 data-ad-client="ca-pub-5482095998977489"
-                                                data-ad-slot="9474360456"
+                                                data-ad-slot="7997627254"
                                                 data-ad-format="auto"></ins>
                                             <script>
                                             (adsbygoogle = window.adsbygoogle || []).push({});
-                                        </script>
+                                            </script>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        <% } %>
+                        <% if(count == 4){ %>
+                            <div class="col-sm-12">
+                                <div class="card bg-light mb-3">
+                                    <div class="card-header text-success"><b>Sponsored Job</b></div>
+                                        <div class="card-body">
+                                            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                                                <!-- Main Page - Bottom Responsive -->
+                                                <ins class="adsbygoogle"
+                                                    style="display:block"
+                                                    data-ad-client="ca-pub-5482095998977489"
+                                                    data-ad-slot="9474360456"
+                                                    data-ad-format="auto"></ins>
+                                                <script>
+                                                (adsbygoogle = window.adsbygoogle || []).push({});
+                                            </script>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <% } %>
+                    <% count++ }); %>
+                    <% } else {  %>
+                        <h4>No job information is available right now. Please check back later.</h4>
                     <% } %>
-                <% count++ }); %>
+                    </div>
                 </div>
-                <% } else {  %>
-                    <h4>No job information is available right now. Please check back later.</h4>
-                <% } %>
             </div>
     </section>
     <% include partials/scripts.ejs %>
