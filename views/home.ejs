@@ -3,121 +3,120 @@
 <% include partials/nav.ejs %>
     <section class="main-container">
         <div class="container">
-                <div class="form-inline">
-                    <div class="form-group col-xs-12 col-sm-12 col-md-4 col-lg-4">
-                        <input type="text" class="form-control" id="location" aria-describedby="location" placeholder="Location">
-                    </div>
-                    <div class="form-check col-xs-12 col-sm-12 col-md-4 col-lg-4">
-                        <label class="form-check-label">
-                        <input type="checkbox" id="fresher" class="form-check-input">
-                        Fresher
-                        </label>
-                    </div>
-                    <button type="submit" class="btn btn-success" onclick="searchByLocation()">Search</button>
+            <div class="form-inline">
+                <div class="form-group col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                    <input type="text" class="form-control" id="location" aria-describedby="location" placeholder="Location">
                 </div>
-                <p>
-                    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                    <!-- Main page - Top Responsive -->
-                    <ins class="adsbygoogle"
-                        style="display:block"
-                        data-ad-client="ca-pub-5482095998977489"
-                        data-ad-slot="6520894053"
-                        data-ad-format="auto"></ins>
-                    <script>
-                    (adsbygoogle = window.adsbygoogle || []).push({});
-                    </script>
-                </p>
-                <% if (walkins.length > 0) { %>
-                <div class="row d-none d-md-block">
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        <ul class="dataTable">
-                            <div class="tableHeader">
+                <div class="form-check col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                    <label class="form-check-label">
+                    <input type="checkbox" id="fresher" class="form-check-input">
+                    Fresher
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-success" onclick="searchByLocation()">Search</button>
+            </div>
+            <p>
+                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- Main page - Top Responsive -->
+                <ins class="adsbygoogle"
+                    style="display:block"
+                    data-ad-client="ca-pub-5482095998977489"
+                    data-ad-slot="6520894053"
+                    data-ad-format="auto"></ins>
+                <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </p>
+            <% if (walkins.length > 0) { %>
+            <div class="row d-none d-md-block">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <ul class="dataTable">
+                        <div class="tableHeader">
+                            <li class="tableRow">
+                                <span>Date</span>
+                                <span>Company</span>
+                                <span>Position</span>
+                                <span>Location</span>
+                                <span>Experience</span>
+                                <span>Details</span>
+                            </li>
+                        </div>
+                        <div class="tableBody">
+                            <% walkins.forEach( walkin => { %>
                                 <li class="tableRow">
-                                    <span>Date</span>
-                                    <span>Company</span>
-                                    <span>Position</span>
-                                    <span>Location</span>
-                                    <span>Experience</span>
-                                    <span>Details</span>
+                                    <span><%= walkin.date %></span>
+                                    <span><%= walkin.company %></span>
+                                    <span><%= walkin.position.substring(0,15) %></span>
+                                    <span><%= walkin.location.substring(0,15) %></span>
+                                    <span><%= walkin.experience %></span>
+                                    <span><a href="/walkin/<%= walkin._id %>">Details</a></span>
                                 </li>
-                            </div>
-                            <div class="tableBody">
-                                <% walkins.forEach( walkin => { %>
-                                    <li class="tableRow">
-                                        <span><%= walkin.date %></span>
-                                        <span><%= walkin.company %></span>
-                                        <span><%= walkin.position.substring(0,15) %></span>
-                                        <span><%= walkin.location.substring(0,15) %></span>
-                                        <span><%= walkin.experience %></span>
-                                        <span><a href="/walkin/<%= walkin._id %>">Details</a></span>
-                                    </li>
-                                <% }); %>
-                            </div>
-                        </ul>
-                    </div>
+                            <% }); %>
+                        </div>
+                    </ul>
                 </div>
-                <div class="d-md-none d-lg-none d-xl-none"> 
-                    <div class="row">
-                    <% var count = 0; walkins.forEach( walkin => {%>
+            </div>
+            <div class="d-md-none d-lg-none d-xl-none"> 
+                <div class="row">
+                    <% var count = 0; walkins.forEach( walkin => { %>
                         <div class="col-sm-12 col-md-4 col-lg-3 col-xl-3">
                             <div class="card bg-light mb-3">
                                 <div class="card-header text-info"><%= walkin.company %></div>
-                                    <div class="card-body">
-                                        <p class="card-text text-info"><%= walkin.date %></p>
-                                        <p class="card-text">Position: <%= walkin.position %></p>
-                                        <p class="card-text">Location: <%= walkin.location %></p>
-                                        <p class="card-text">Experience: <%= walkin.experience %></p>
-                                        <p class="card-text"><a href="/walkin/<%= walkin._id %>" class="btn btn-sm btn-success">Details</a></p>
-                                    </div>
+                                <div class="card-body">
+                                    <p class="card-text text-info"><%= walkin.date %></p>
+                                    <p class="card-text">Position: <%= walkin.position %></p>
+                                    <p class="card-text">Location: <%= walkin.location %></p>
+                                    <p class="card-text">Experience: <%= walkin.experience %></p>
+                                    <p class="card-text"><a href="/walkin/<%= walkin._id %>" class="btn btn-sm btn-success">Details</a></p>
                                 </div>
                             </div>
                         </div>
-                        <% if(count == 2){ %>
-                            <div class="col-sm-12 col-md-4 col-lg-3 col-xl-3">
+                        
+                        <div class="col-sm-12 col-md-4 col-lg-3 col-xl-3">
+                            <% if(count == 2){ %>
                                 <div class="card bg-light mb-3">
                                     <div class="card-header text-success"><b>Sponsored Job</b></div>
-                                        <div class="card-body">
-                                            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                                            <!-- Main Page - Middle Responsive -->
+                                    <div class="card-body">
+                                        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                                        <!-- Main Page - Middle Responsive -->
+                                        <ins class="adsbygoogle"
+                                            style="display:block"
+                                            data-ad-client="ca-pub-5482095998977489"
+                                            data-ad-slot="7997627254"
+                                            data-ad-format="auto"></ins>
+                                        <script>
+                                        (adsbygoogle = window.adsbygoogle || []).push({});
+                                        </script>
+                                    </div>
+                                </div>
+                            <% } %>
+                        </div>
+                        <div class="col-sm-12 col-md-4 col-lg-3 col-xl-3">
+                            <% if(count == 4){ %>
+                                <div class="card bg-light mb-3">
+                                    <div class="card-header text-success"><b>Sponsored Job</b></div>
+                                    <div class="card-body">
+                                        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                                            <!-- Main Page - Bottom Responsive -->
                                             <ins class="adsbygoogle"
                                                 style="display:block"
                                                 data-ad-client="ca-pub-5482095998977489"
-                                                data-ad-slot="7997627254"
+                                                data-ad-slot="9474360456"
                                                 data-ad-format="auto"></ins>
                                             <script>
                                             (adsbygoogle = window.adsbygoogle || []).push({});
-                                            </script>
-                                        </div>
+                                        </script>
                                     </div>
                                 </div>
-                            </div>
-                        <% } %>
-                        <% if(count == 4){ %>
-                            <div class="col-sm-12 col-md-4 col-lg-3 col-xl-3">
-                                <div class="card bg-light mb-3">
-                                    <div class="card-header text-success"><b>Sponsored Job</b></div>
-                                        <div class="card-body">
-                                            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                                                <!-- Main Page - Bottom Responsive -->
-                                                <ins class="adsbygoogle"
-                                                    style="display:block"
-                                                    data-ad-client="ca-pub-5482095998977489"
-                                                    data-ad-slot="9474360456"
-                                                    data-ad-format="auto"></ins>
-                                                <script>
-                                                (adsbygoogle = window.adsbygoogle || []).push({});
-                                            </script>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        <% } %>
+                            <% } %>
+                        </div>
                     <% count++ }); %>
-                    <% } else {  %>
-                        <h4>No job information is available right now. Please check back later.</h4>
-                    <% } %>
                 </div>
             </div>
+            <% } else {  %>
+                <h4>No job information is available right now. Please check back later.</h4>
+            <% } %>
+        </div>
     </section>
     <% include partials/scripts.ejs %>
 </body>
