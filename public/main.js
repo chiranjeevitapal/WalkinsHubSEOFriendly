@@ -11,3 +11,7 @@ function searchByLocation(){
         window.location.href = "/fresherjobs/"+location;
     }
 }
+
+function activateAds(adId){
+console.log(adId);
+}
