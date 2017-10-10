@@ -12,6 +12,4 @@ function searchByLocation(){
     }
 }
 
-function activateAds(adId){
-console.log(adId);
-}
+
