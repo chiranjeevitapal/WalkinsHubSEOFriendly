@@ -39,8 +39,9 @@
                                     <span><%= walkin.experience %></span>
                                     <span><a href="/walkin/<%= walkin._id %>">Details</a></span>
                                 </li>
+                                <li class="tableRow">
                                 <% if(count == 1){ %>
-                                <li>
+                                    <span style="width:100%">
                                     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                                     <ins class="adsbygoogle"
                                         style="display:block"
@@ -51,11 +52,12 @@
                                     <script>
                                         (adsbygoogle = window.adsbygoogle || []).push({});
                                     </script>
-                                </li>
+                                    </span>
                                 <% } %>
-                                
+                                </li>
+                                <li class="tableRow">
                                 <% if(count == 3){ %>
-                                <li>
+                                    <span style="width:100%">
                                     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                                     <ins class="adsbygoogle"
                                         style="display:block"
@@ -66,10 +68,12 @@
                                     <script>
                                         (adsbygoogle = window.adsbygoogle || []).push({});
                                     </script>
-                                 </li>
+                                    </span>
                                 <% } %>
+                                </li>
+                                <li class="tableRow">
                                 <% if(count == 5){ %>
-                                <li>
+                                    <span style="width:100%">
                                     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                                     <ins class="adsbygoogle"
                                         style="display:block"
@@ -80,8 +84,9 @@
                                     <script>
                                         (adsbygoogle = window.adsbygoogle || []).push({});
                                     </script>
-                                </li>
+                                    </span>
                                 <% } %>
+                                </li>
                             <% count++ }); %>
                         </div>
                     </ul>
