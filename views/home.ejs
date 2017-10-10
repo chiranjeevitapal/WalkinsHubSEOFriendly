@@ -76,13 +76,13 @@
                                     </script>
                                 </li>
                                 <% if(countDesktop == 1){ 
-                                    $("#id1").show();
+                                    document.getElementById("#id1").display("block");
                                 } %>
                                 <% if(countDesktop == 3){ 
-                                    $("#id2").show();
+                                    document.getElementById("#id2").display("block");
                                 } %>
                                 <% if(countDesktop == 5){
-                                    $("#id3").show();
+                                    document.getElementById("#id3").display("block");
                                 } %>
                             <% countDesktop++ }); %>
                         </div>
