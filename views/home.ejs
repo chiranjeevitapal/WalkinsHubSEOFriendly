@@ -30,7 +30,7 @@
                             </li>
                         </div>
                         <div class="tableBody">
-                            <% var count = 0; walkins.forEach( walkin => { %>
+                            <% var countDesktop = 0; walkins.forEach( walkin => { %>
                                 <li class="tableRow">
                                     <span><%= walkin.date %></span>
                                     <span><%= walkin.company %></span>
@@ -39,8 +39,7 @@
                                     <span><%= walkin.experience %></span>
                                     <span><a href="/walkin/<%= walkin._id %>">Details</a></span>
                                 </li>
-                                <p>
-                                <% if(count == 1){ %>
+                                <% if(countDesktop == 1){ %>
                                     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                                     <ins class="adsbygoogle"
                                         style="display:block"
@@ -52,9 +51,7 @@
                                         (adsbygoogle = window.adsbygoogle || []).push({});
                                     </script>
                                 <% } %>
-                                </p>
-                                <p>
-                                <% if(count == 3){ %>
+                                <% if(countDesktop == 3){ %>
                                     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                                     <ins class="adsbygoogle"
                                         style="display:block"
@@ -66,9 +63,7 @@
                                         (adsbygoogle = window.adsbygoogle || []).push({});
                                     </script>
                                 <% } %>
-                                </p>
-                                <p>
-                                <% if(count == 5){ %>
+                                <% if(countDesktop == 5){ %>
                                     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                                     <ins class="adsbygoogle"
                                         style="display:block"
@@ -80,8 +75,7 @@
                                         (adsbygoogle = window.adsbygoogle || []).push({});
                                     </script>
                                 <% } %>
-                                </p>
-                            <% count++ }); %>
+                            <% countDesktop++ }); %>
                         </div>
                     </ul>
                 </div>
