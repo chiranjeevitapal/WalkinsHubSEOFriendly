@@ -75,16 +75,17 @@
                                         (adsbygoogle = window.adsbygoogle || []).push({});
                                     </script>
                                 </li>
-                                <% if(countDesktop == 1){ 
+                            <% 
+                                if(countDesktop == 1) {
                                     document.getElementById("#id1").display("block");
-                                } %>
-                                <% if(countDesktop == 3){ 
+                                }
+                                if(countDesktop == 3) {
                                     document.getElementById("#id2").display("block");
-                                } %>
-                                <% if(countDesktop == 5){
+                                }
+                                if(countDesktop == 5) {
                                     document.getElementById("#id3").display("block");
-                                } %>
-                            <% countDesktop++ }); %>
+                                }
+                            countDesktop++ }); %>
                         </div>
                     </ul>
                 </div>
