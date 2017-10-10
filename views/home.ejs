@@ -39,8 +39,8 @@
                                 <td><%= walkin.experience %></td>
                                 <td><a href="/walkin/<%= walkin._id %>">Details</a></td>
                             </tr>
+                            <tr>
                             <% if(countDesktop == 1){ %>
-                                <tr>
                                     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                                     <ins class="adsbygoogle"
                                         style="display:block"
@@ -51,10 +51,10 @@
                                     <script>
                                         (adsbygoogle = window.adsbygoogle || []).push({});
                                     </script>
-                                </tr>
                             <% } %>
+                            </tr>
+                            <tr>
                             <% if(countDesktop == 3){ %>
-                                <tr>
                                     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                                     <ins class="adsbygoogle"
                                         style="display:block"
@@ -65,10 +65,11 @@
                                     <script>
                                         (adsbygoogle = window.adsbygoogle || []).push({});
                                     </script>
-                                </tr>
                             <% } %>
+                            </tr>
+                            <tr>
                             <% if(countDesktop == 5){ %>
-                                <tr>
+                                
                                     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                                     <ins class="adsbygoogle"
                                         style="display:block"
@@ -79,8 +80,9 @@
                                     <script>
                                         (adsbygoogle = window.adsbygoogle || []).push({});
                                     </script>
-                                </tr>
+                                
                             <% } %>
+                            </tr>
                             <% countDesktop++ ; }); %>
                         </tbody>
                     </table>
