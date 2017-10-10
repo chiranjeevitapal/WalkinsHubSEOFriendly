@@ -39,9 +39,7 @@
                                     <span><%= walkin.experience %></span>
                                     <span><a href="/walkin/<%= walkin._id %>">Details</a></span>
                                 </li>
-                                <div>
-                                <% if(countDesktop == 1){ %>
-                                <br/>
+                                <li class="tableRow" id="ad1" style="display:none;">
                                     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                                     <ins class="adsbygoogle"
                                         style="display:block"
@@ -52,11 +50,8 @@
                                     <script>
                                         (adsbygoogle = window.adsbygoogle || []).push({});
                                     </script>
-                                <% } %>
-                                </div>
-                                <div>
-                                <% if(countDesktop == 3){ %>
-                                <br/>
+                                </li>
+                                <li class="tableRow" id="ad2" style="display:none;">
                                     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                                     <ins class="adsbygoogle"
                                         style="display:block"
@@ -67,11 +62,8 @@
                                     <script>
                                         (adsbygoogle = window.adsbygoogle || []).push({});
                                     </script>
-                                <% } %>
-                                </div>
-                                <div>
-                                <% if(countDesktop == 5){ %>
-                                <br/>
+                                </li>
+                                <li class="tableRow" id="ad3" style="display:none;">
                                     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                                     <ins class="adsbygoogle"
                                         style="display:block"
@@ -82,8 +74,16 @@
                                     <script>
                                         (adsbygoogle = window.adsbygoogle || []).push({});
                                     </script>
+                                </li>
+                                <% if(countDesktop == 1){ %>
+                                    $("#id1").show();
                                 <% } %>
-                                </div>
+                                <% if(countDesktop == 3){ %>
+                                    $("#id2").show();
+                                <% } %>
+                                <% if(countDesktop == 5){ %>
+                                    $("#id3").show();
+                                <% } %>
                             <% countDesktop++ }); %>
                         </div>
                     </ul>
