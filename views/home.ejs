@@ -42,7 +42,7 @@
                             </li>
                         </div>
                         <div class="tableBody">
-                            <% walkins.forEach( walkin => { %>
+                            <% var count = 0; walkins.forEach( walkin => { %>
                                 <li class="tableRow">
                                     <span><%= walkin.date %></span>
                                     <span><%= walkin.company %></span>
@@ -51,6 +51,44 @@
                                     <span><%= walkin.experience %></span>
                                     <span><a href="/walkin/<%= walkin._id %>">Details</a></span>
                                 </li>
+                                <p>
+                                <% if(count == 2){ %>
+                                    <li class="tableRow">
+                                        <div class="card-header text-success"><b>Sponsored Job</b></div>
+                                        <div class="card-body">
+                                            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                                            <!-- Main Page - Middle Responsive -->
+                                            <ins class="adsbygoogle"
+                                                style="display:block"
+                                                data-ad-client="ca-pub-5482095998977489"
+                                                data-ad-slot="7997627254"
+                                                data-ad-format="auto"></ins>
+                                            <script>
+                                            (adsbygoogle = window.adsbygoogle || []).push({});
+                                            </script>
+                                        </div>
+                                    </li>
+                                <% } %>
+                                </p>
+                                <p>
+                                <% if(count == 4){ %>
+                                    <li class="tableRow">
+                                        <div class="card-header text-success"><b>Sponsored Job</b></div>
+                                        <div class="card-body">
+                                            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                                            <!-- Main Page - Bottom Responsive -->
+                                            <ins class="adsbygoogle"
+                                                style="display:block"
+                                                data-ad-client="ca-pub-5482095998977489"
+                                                data-ad-slot="9474360456"
+                                                data-ad-format="auto"></ins>
+                                            <script>
+                                            (adsbygoogle = window.adsbygoogle || []).push({});
+                                            </script>
+                                        </div>
+                                    </li>
+                                <% } %>
+                                </p>
                             <% }); %>
                         </div>
                     </ul>
