@@ -39,7 +39,8 @@
                                     <span><%= walkin.experience %></span>
                                     <span><a href="/walkin/<%= walkin._id %>">Details</a></span>
                                 </li>
-                                <li class="tableRow" id="ad1" style="display:none;">
+                                <div class="row">
+                                <% if(countDesktop == 1){ %>
                                     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                                     <ins class="adsbygoogle"
                                         style="display:block"
@@ -50,8 +51,10 @@
                                     <script>
                                         (adsbygoogle = window.adsbygoogle || []).push({});
                                     </script>
-                                </li>
-                                <li class="tableRow" id="ad2" style="display:none;">
+                                <% } %>
+                                </div>
+                                <div class="row">
+                                <% if(countDesktop == 3){ %>
                                     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                                     <ins class="adsbygoogle"
                                         style="display:block"
@@ -62,8 +65,10 @@
                                     <script>
                                         (adsbygoogle = window.adsbygoogle || []).push({});
                                     </script>
-                                </li>
-                                <li class="tableRow" id="ad3" style="display:none;">
+                                <% } %>
+                                </div>
+                                <div class="row">
+                                <% if(countDesktop == 5){ %>
                                     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                                     <ins class="adsbygoogle"
                                         style="display:block"
@@ -74,10 +79,9 @@
                                     <script>
                                         (adsbygoogle = window.adsbygoogle || []).push({});
                                     </script>
-                                </li>
-                            <% 
-                            console.log("hello");
-                            countDesktop++ }); %>
+                                <% } %>
+                                </div>
+                            <% countDesktop++ }); %>
                         </div>
                     </ul>
                 </div>
@@ -169,3 +173,4 @@
     <% include partials/scripts.ejs %>
     <% include partials/facebook.ejs %>
 </body>
+
