@@ -51,9 +51,8 @@
                                     <span><%= walkin.experience %></span>
                                     <span><a href="/walkin/<%= walkin._id %>">Details</a></span>
                                 </li>
-                                <p>
+                                <li class="tableRow">
                                 <% if(count == 2){ %>
-                                    <li class="tableRow">
                                         <div class="card-header text-success"><b>Sponsored Job</b></div>
                                         <div class="card-body">
                                             <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -67,12 +66,10 @@
                                             (adsbygoogle = window.adsbygoogle || []).push({});
                                             </script>
                                         </div>
-                                    </li>
                                 <% } %>
-                                </p>
-                                <p>
+                                </li>
+                                <li class="tableRow">
                                 <% if(count == 4){ %>
-                                    <li class="tableRow">
                                         <div class="card-header text-success"><b>Sponsored Job</b></div>
                                         <div class="card-body">
                                             <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -86,9 +83,9 @@
                                             (adsbygoogle = window.adsbygoogle || []).push({});
                                             </script>
                                         </div>
-                                    </li>
+                                    
                                 <% } %>
-                                </p>
+                                </li>
                             <% count++ }); %>
                         </div>
                     </ul>
