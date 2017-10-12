@@ -10,7 +10,7 @@
                 <div class="form-check col-xs-12 col-sm-12 col-md-4 col-lg-4">
                     <label class="form-check-label">
                     <input type="checkbox" id="fresher" class="form-check-input">
-                    Fresher
+                        Fresher
                     </label>
                 </div>
                 <button type="submit" class="btn btn-success" onclick="searchByLocation()">Search</button>
@@ -21,7 +21,7 @@
                     <table class="table table-responsive">
                         <thead>
                             <tr>
-                                <th>Date</th>
+                                <th>Posted On</th>
                                 <th>Company</th>
                                 <th>Position</th>
                                 <th>Location</th>
@@ -32,7 +32,7 @@
                         <tbody>
                             <% var countDesktop = 0; walkins.forEach( walkin => { %>
                             <tr>
-                                <td><%= walkin.date %></td>
+                                <td class="text-success"><%= walkin.date %></td>
                                 <td><%= walkin.company %></td>
                                 <td><%= walkin.position.substring(0,15) %></td>
                                 <td><%= walkin.location.substring(0,15) %></td>
