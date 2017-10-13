@@ -113,7 +113,7 @@ module.exports = function (app) {
         //var id = req.params.id.substring(req.params.id.lastIndexOf('-') + 1);
         var location = req.params.location.toLowerCase();
         db.collection('walkins').find({
-            location: new RegExp('^' + location + '$', 'i')
+            location: new RegExp('.*' + location + '.*', 'i')
         }).sort({
             "date": -1
         }).limit(200).toArray((err, result) => {
@@ -144,7 +144,7 @@ module.exports = function (app) {
                     "experience": /Any/
                 }]
         }, {
-            location: new RegExp('^' + location + '$', 'i')
+            location: new RegExp('.*' + location + '.*', 'i')
         }]
         }).sort({
             "date": -1
