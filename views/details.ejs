@@ -71,8 +71,8 @@
                 <p><h4 class="lead blog-description"><%= walkin.howToApply == ''? "Check contact details" : walkin.howToApply %></h4></p>
             <% } %>
             <hr>
-            <blockquote>
-              <p><strong>Company Website </strong><% if (walkin.website == ''){ %>"Not specified" <% }else{%><a href="http://<%= walkin.website %>" target="_blank"><%= walkin.website %></a><% }%></p>
+            <h3>Company Website </h3>
+              <p><% if (walkin.website == ''){ %>"Not specified" <% }else{%><a href="http://<%= walkin.website %>" target="_blank"><%= walkin.website %></a><% }%></p>
             </blockquote>
             <h2>Contact Details</h2>
             <p><h3 class="lead blog-description"><%= walkin.contactDetails == ''? "Check how to apply" : walkin.contactDetails %></b></h3></p>
