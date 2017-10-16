@@ -3,10 +3,10 @@
     <% include partials/nav.ejs %>
     <section class="main-container">
 
-    <div class="blog-header">
+    <div class="blog-header" itemscope itemtype="http://schema.org/JobPosting">
       <div class="container">
-        <h1 class="blog-title"><%= walkin.company %></h1>
-        <p class="lead blog-description"><%= walkin.position == ''? "Not specified" : walkin.position %></p>
+        <h1 class="blog-title" itemprop="title"><small><%= walkin.title %></small></h1>
+        <p class="blog-post-meta"><%= walkin.date %> by <a href="/">Walkins Hub Team</a></p>
         <p>
         <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
         <!-- Details Top -->
@@ -27,35 +27,30 @@
       <div class="row">
         <div class="col-sm-8 blog-main">
           <div class="blog-post">
-            <h2 class="blog-post-title"><%= walkin.location == ''? "Not specified" : walkin.location %></h2>
-            <p class="blog-post-meta"><%= walkin.date %> by <a href="/">Walkins Hub</a></p>
-
-            <blockquote>
-              <p><strong>Education </strong><%= walkin.eligibility == ''? "Not specified" : walkin.eligibility%></p>
+            <h2>Company</h2>
+            <p><h3 class="lead blog-description" itemprop="hiringOrganization"><%= walkin.company %></h3></p>
+            <h2>Job Location</h2>
+            <p><h3 class="lead blog-description" itemprop="jobLocation"><%= walkin.location == ''? "Not specified" : walkin.location %></h3></p>
+            <h2>Position</h2>
+            <p><h3 class="lead blog-description" itemprop="occupationalCategory"><%= walkin.position == ''? "Not specified" : walkin.position %></h3></p>
+            <h2>Education</h2>
+              <p ><h3 class="lead blog-description" itemprop="educationRequirements"><%= walkin.eligibility == ''? "Not specified" : walkin.eligibility%></h3></p>
             </blockquote>
             <hr>
-            <blockquote>
-              <p><strong>Experience </strong><%= walkin.experience  == ''? "Not specified" : walkin.experience %></p>
+            <h2>Experience</h2>
+              <p><h3 class="lead blog-description" itemprop="experienceRequirements"><%= walkin.experience  == ''? "Not specified" : walkin.experience %></h3></p>
             </blockquote>
             <h2>Job Description</h2>
-            <p><%= walkin.jobDescription  == ''? "Not specified" : walkin.jobDescription %></p>
-            <h3>Job Requirements</h3>
-            <p><%= walkin.jobRequirements == ''? "Not specified" : walkin.jobRequirements %></p>
+            <p><h3 class="lead blog-description" itemprop="description"><%= walkin.jobDescription  == ''? "Not specified" : walkin.jobDescription %></h3></p>
+            <h2>Job Requirements</h2>
+            <p><h3 class="lead blog-description" itemprop="qualifications"><%= walkin.jobRequirements == ''? "Not specified" : walkin.jobRequirements %></h3></p>
             <hr>
-            <h3>Candidate Requirements</h3>
-            <p><%= walkin.candidateProfile == ''? "Not specified" : walkin.candidateProfile%></p>
-            <blockquote>
-              <p><strong>Salary </strong><%= walkin.salary  == ''? "Not specified" : walkin.salary%></p>
-            </blockquote>
-            <blockquote>
-              <p><strong>Last Date </strong><%= walkin.lastDate == ''? "Not specified" : walkin.lastDate %></p>
-            </blockquote>
-            <blockquote>
-              <p><strong>Walkin Date </strong><%= walkin.walkinDate  == ''? "Not specified" : walkin.walkinDate %></p>
-            </blockquote>
-            <blockquote>
-              <p><strong>Walkin Time </strong><%= walkin.walkinTime  == ''? "Not specified" : walkin.walkinTime %></p>
-            </blockquote>
+            <h2>Candidate Requirements</h2>
+            <p><h3 class="lead blog-description" itemprop="responsibilities"><%= walkin.candidateProfile == ''? "Not specified" : walkin.candidateProfile%></h3></p>
+            <p><h2>Salary </h2><h3 class="lead blog-description" itemprop="incentiveCompensation"><%= walkin.salary  == ''? "Not specified" : walkin.salary%></h3></p>
+            <p><h2>Last Date </h2><h3 class="lead blog-description"><%= walkin.lastDate == ''? "Not specified" : walkin.lastDate %></h3></p>
+            <p><h2>Walkin Date </h2><h3 class="lead blog-description"><%= walkin.walkinDate  == ''? "Not specified" : walkin.walkinDate %></h3></p>
+            <p><h2>Walkin Time </h2><h3 class="lead blog-description"><%= walkin.walkinTime  == ''? "Not specified" : walkin.walkinTime %></h3></p>
             <p>
             <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
             <!-- Details Middle -->
@@ -73,14 +68,14 @@
             <% if (walkin.howToApply.indexOf("http")!= -1) { %>
                 <p><a href="<%= walkin.howToApply %>" target="_blank">Click to Apply</a></p>
             <% } else {%>
-                <p><%= walkin.howToApply == ''? "Check contact details" : walkin.howToApply %></p>
+                <p><h4 class="lead blog-description"><%= walkin.howToApply == ''? "Check contact details" : walkin.howToApply %></h4></p>
             <% } %>
             <hr>
             <blockquote>
               <p><strong>Company Website </strong><% if (walkin.website == ''){ %>"Not specified" <% }else{%><a href="http://<%= walkin.website %>" target="_blank"><%= walkin.website %></a><% }%></p>
             </blockquote>
-            <h3>Contact Details</h3>
-            <p><%= walkin.contactDetails == ''? "Check how to apply" : walkin.contactDetails %></b></p>
+            <h2>Contact Details</h2>
+            <p><h3 class="lead blog-description"><%= walkin.contactDetails == ''? "Check how to apply" : walkin.contactDetails %></b></h3></p>
             <p>
             <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
             <!-- Details Bottom -->

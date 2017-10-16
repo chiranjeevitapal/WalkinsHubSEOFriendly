@@ -3,6 +3,7 @@
 <% include partials/nav.ejs %>
     <section class="main-container">
         <div class="container">
+         <h1 class="blog-title text-center"><small>JOB WALKINS</small></h1>
             <div class="form-inline">
                 <div class="form-group col-xs-12 col-sm-12 col-md-4 col-lg-4">
                     <input id="location" class="form-control" placeholder="Location" aria-describedby="location">
@@ -21,23 +22,23 @@
                     <table class="table table-responsive">
                         <thead>
                             <tr>
-                                <th>Posted On</th>
-                                <th>Company</th>
-                                <th>Position</th>
-                                <th>Location</th>
-                                <th>Experience</th>
-                                <th>Details</th>
+                                <th><h2 class="small-h2">Posted On</h2></th>
+                                <th><h2 class="small-h2">Company</h2></th>
+                                <th><h2 class="small-h2">Position</h2></th>
+                                <th><h2 class="small-h2">Location</h2></th>
+                                <th><h2 class="small-h2">Experience</h2></th>
+                                <th><h2 class="small-h2">Details</h2></th>
                             </tr>
                         </thead>
                         <tbody>
                             <% var countDesktop = 0; walkins.forEach( walkin => { %>
                             <tr>
-                                <td class="text-success"><%= walkin.date %></td>
-                                <td><%= walkin.company %></td>
-                                <td><%= walkin.position.substring(0,15) %></td>
-                                <td><%= walkin.location.substring(0,15) %></td>
-                                <td><%= walkin.experience %></td>
-                                <td><a href="/walkin/<%= walkin._id %>">Details</a></td>
+                                <td class="text-success"><h2 class="small-h3"><%= walkin.date %></h3></td>
+                                <td><h3 class="small-h3"><%= walkin.company %></h3></td>
+                                <td><h3 class="small-h3"><%= walkin.position.substring(0,15) %></h3></td>
+                                <td><h3 class="small-h3"><%= walkin.location.substring(0,15) %></h3></td>
+                                <td><h3 class="small-h3"><%= walkin.experience %></h3></td>
+                                <td><h3 class="small-h3"><a href="/walkin/<%= walkin._id %>">Details</a></h3></td>
                             </tr>
                             <% if(countDesktop == 1){ %>
                                 <tr>
@@ -97,13 +98,13 @@
                     <% var count = 0; walkins.forEach( walkin => { %>
                         <div class="col-sm-12 col-md-4 col-lg-3 col-xl-3">
                             <div class="card bg-light mb-3">
-                                <div class="card-header text-info"><%= walkin.company %></div>
+                                <div class="card-header"><h2 class="small-h2 text-info"><%= walkin.company %></h2></div>
                                 <div class="card-body">
-                                    <p class="card-text text-info"><%= walkin.date %></p>
-                                    <p class="card-text">Position: <%= walkin.position %></p>
-                                    <p class="card-text">Location: <%= walkin.location %></p>
-                                    <p class="card-text">Experience: <%= walkin.experience %></p>
-                                    <p class="card-text"><a href="/walkin/<%= walkin._id %>" class="btn btn-sm btn-success">Details</a></p>
+                                    <p class="card-text"><h2 class="small-h2 text-info"><%= walkin.date %></h2></p>
+                                    <p class="card-text"><h2 class="small-h2">Position: <%= walkin.position %></h2></p>
+                                    <p class="card-text"><h3 class="small-h3">Location: <%= walkin.location %></h2></p>
+                                    <p class="card-text"><h3 class="small-h3">Experience: <%= walkin.experience %></h2></p>
+                                    <p class="card-text pull-right"><a href="/walkin/<%= walkin._id %>" class="btn btn-sm btn-success">Details</a></p>
                                 </div>
                             </div>
                         </div>

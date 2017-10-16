@@ -65,3 +65,12 @@
     height: 100px;
   }
 
+  .small-h2 {
+      font-weight: bold;
+      font-size: 16px;
+  }
+
+  .small-h3 {
+    font-size: 16px;
+}
+
